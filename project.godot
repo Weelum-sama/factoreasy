@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Factoreasy"
+run/main_scene="uid://bej5sh4ue04tg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://qdggxkd3w7wm"
+Util="*uid://u8k48fisygp3"
 
 [physics]
 

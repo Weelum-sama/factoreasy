@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://bej5sh4ue04tg"]
 
+[ext_resource type="PackedScene" uid="uid://cbfsq27jqf6tr" path="res://Scenes/Facilities/extractor.tscn" id="1_ig7tw"]
+
 [node name="main" type="Node2D" unique_id=1849373714]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
+
+[node name="Extractor" parent="." unique_id=320177823 instance=ExtResource("1_ig7tw")]
+input = 0

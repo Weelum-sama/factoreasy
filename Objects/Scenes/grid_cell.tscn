@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://124n20j78ekd"]
+
+[ext_resource type="Script" uid="uid://b1px5l3iiusst" path="res://Objects/Scripts/grid_cell.gd" id="1_s82uv"]
+
+[node name="GridCell" type="PanelContainer" unique_id=1932041098]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s82uv")

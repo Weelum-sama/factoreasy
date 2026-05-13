@@ -1,31 +1,10 @@
 [gd_scene format=3 uid="uid://bej5sh4ue04tg"]
 
-[ext_resource type="PackedScene" uid="uid://b46t4psux7ekr" path="res://Scenes/conveyer.tscn" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://b6f04bqipq8k7" path="res://Scenes/movable_object.tscn" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://dgdoqsjk2uvfk" path="res://Scenes/conveyer_v_2.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cwjhhfxj4du2q" path="res://Objects/Scenes/map.tscn" id="1_jjgbg"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
-zoom = Vector2(6, 6)
+zoom = Vector2(4, 4)
 
-[node name="up" type="Node" parent="." unique_id=82801537]
-
-[node name="Conveyer" parent="up" unique_id=1954283685 instance=ExtResource("1_jjgbg")]
-position = Vector2(16, 38)
-animation = &"up"
-
-[node name="Conveyer2" parent="up" unique_id=1871800244 instance=ExtResource("1_jjgbg")]
-position = Vector2(16, 6)
-rotation = 1.5707964
-animation = &"up"
-
-[node name="MovableObject" parent="up" unique_id=1862988245 instance=ExtResource("2_bo1nx")]
-position = Vector2(16, 40)
-scale = Vector2(0.1, 0.1)
-
-[node name="ConveyerOwn" parent="." unique_id=1751955810 instance=ExtResource("3_8gbba")]
-position = Vector2(-40, 38)
-
-[node name="ConveyerOwn2" parent="." unique_id=1227683756 instance=ExtResource("3_8gbba")]
-position = Vector2(-40, 6)
+[node name="Map" parent="." unique_id=1110758275 instance=ExtResource("1_jjgbg")]

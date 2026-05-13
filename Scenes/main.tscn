@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b46t4psux7ekr" path="res://Scenes/conveyer.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b6f04bqipq8k7" path="res://Scenes/movable_object.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://dgdoqsjk2uvfk" path="res://Scenes/conveyer_v_2.tscn" id="3_8gbba"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
 
@@ -22,3 +23,9 @@ animation = &"up"
 [node name="MovableObject" parent="up" unique_id=1862988245 instance=ExtResource("2_bo1nx")]
 position = Vector2(16, 40)
 scale = Vector2(0.1, 0.1)
+
+[node name="ConveyerOwn" parent="." unique_id=1751955810 instance=ExtResource("3_8gbba")]
+position = Vector2(-40, 38)
+
+[node name="ConveyerOwn2" parent="." unique_id=1227683756 instance=ExtResource("3_8gbba")]
+position = Vector2(-40, 6)

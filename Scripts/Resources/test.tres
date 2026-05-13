@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BeltTile" format=3 uid="uid://kevve4ohui32"]
+
+[ext_resource type="Script" uid="uid://e8fbj5yrau4f" path="res://Scripts/Resources/belt_tile.gd" id="1_ld362"]
+
+[resource]
+script = ExtResource("1_ld362")
+metadata/_custom_type_script = "uid://e8fbj5yrau4f"

@@ -20,10 +20,15 @@ config/icon="res://icon.svg"
 Global="*uid://qdggxkd3w7wm"
 Util="*uid://u8k48fisygp3"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

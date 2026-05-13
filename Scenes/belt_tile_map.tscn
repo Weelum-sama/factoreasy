@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfvujxjp7fl24"]
+
+[ext_resource type="Script" uid="uid://dtafmlmgirgia" path="res://Scripts/Conveyer/belt_tile_map.gd" id="1_21t2y"]
+
+[node name="BeltTileMap" type="TileMapLayer" unique_id=680615547]
+script = ExtResource("1_21t2y")

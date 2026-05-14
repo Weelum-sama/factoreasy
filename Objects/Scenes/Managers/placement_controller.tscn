@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmsbd71at8nc7"]
+
+[ext_resource type="Script" uid="uid://cdip74pynls0h" path="res://Objects/Scripts/Managers/placement_controller.gd" id="1_pkyci"]
+
+[node name="PlacementController" type="Node2D" unique_id=1330468871]
+script = ExtResource("1_pkyci")

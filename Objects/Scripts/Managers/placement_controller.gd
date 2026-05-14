@@ -12,8 +12,8 @@ func _process(delta: float) -> void:
 		return
 	
 	var mouse := get_global_mouse_position()
-	var snapped := GridManager.snap_to_grid(mouse)
-	var cell := GridManager.cell_to_world(mouse)
+	var snapped: Vector2 = GridManager.snap_to_grid(mouse)
+	var cell: Vector2 = GridManager.cell_to_world(mouse)
 	_ghost.position = snapped + Vector2(GridManager.CELL_SIZE * 0.5, GridManager.CELL_SIZE * 0.5)
 	
 	# Visual indicator for cell validity
@@ -36,11 +36,19 @@ func start_placement(scene: PackedScene) -> void:
 	add_child(_ghost)
 
 func _try_place() -> void:
-	var cell := GridManager.world_to_cell(get_global_mouse_position())
+	var cell: Vector2 = GridManager.world_to_cell(get_global_mouse_position())
 	var building := building_scene.instantiate()
 	get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):
 		building.queue_free() # could not place
+	
+	# In case of resource node
+	if building.has_method("get_resource_id"):
+		var consumed := GameState.consume_node_from_inventory(building.get_resource_id())
+		if not consumed:
+			GridManager.remove(cell)
+			building.queue_free()
+			return
 
 func _cancel_placement() -> void:
 	if _ghost:

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*uid://qdggxkd3w7wm"
 Util="*uid://u8k48fisygp3"
 GridManager="*uid://iw5r6i2hjw7e"
+GameState="*uid://dyba18qw62636"
 
 [editor_plugins]
 

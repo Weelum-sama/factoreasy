@@ -1,10 +1,5 @@
 [gd_scene format=3 uid="uid://bej5sh4ue04tg"]
 
-[ext_resource type="PackedScene" uid="uid://cwjhhfxj4du2q" path="res://Objects/Scenes/map.tscn" id="1_jjgbg"]
-
 [node name="main" type="Node2D" unique_id=1849373714]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
-zoom = Vector2(4, 4)
-
-[node name="Map" parent="." unique_id=1110758275 instance=ExtResource("1_jjgbg")]

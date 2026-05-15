@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://dp4jwnjueo5yt"]
+
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_di7su"]
+[ext_resource type="Resource" uid="uid://c70raptgl6r1y" path="res://Scripts/Resources/Recipes/iron_ore_recipe.tres" id="2_ml11h"]
+[ext_resource type="Script" uid="uid://c84g06pexjov8" path="res://Scripts/Resources/facility_data.gd" id="3_8me0q"]
+[ext_resource type="Texture2D" uid="uid://dy7e0l82x87yy" path="res://icon.svg" id="4_l2aq0"]
+
+[resource]
+script = ExtResource("3_8me0q")
+id = "extractor"
+display_name = "extractor"
+texture = ExtResource("4_l2aq0")
+building_id = "extractor"
+recipes = Array[ExtResource("1_di7su")]([ExtResource("2_ml11h")])
+metadata/_custom_type_script = "uid://c84g06pexjov8"

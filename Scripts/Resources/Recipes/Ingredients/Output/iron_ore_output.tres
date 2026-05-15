@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://bi66ecj5gk0e2"]
+
+[ext_resource type="Resource" uid="uid://dyf04iihs1bjg" path="res://Scripts/Resources/Items/iron_ore.tres" id="1_ihekh"]
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="2_q8oxg"]
+
+[resource]
+script = ExtResource("2_q8oxg")
+item = ExtResource("1_ihekh")
+amount = 1
+metadata/_custom_type_script = "uid://bxvq6snmfesks"

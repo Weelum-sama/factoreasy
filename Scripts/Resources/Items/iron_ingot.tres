@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dlqxkax0bbvxq"]
 
 [ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_uj2fi"]
+[ext_resource type="Texture2D" uid="uid://jq6ww3drrh7p" path="res://Assets/Resources/iron_ingot.png" id="2_qvqms"]
 
 [resource]
 script = ExtResource("1_uj2fi")
 name = "iron ingot"
+texture = ExtResource("2_qvqms")
 sell_value = 1.0
 metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

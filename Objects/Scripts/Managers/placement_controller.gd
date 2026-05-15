@@ -2,7 +2,7 @@ extends Node2D
 
 
 var _ghost: Sprite2D = null
-var building_scene: PackedScene = null
+var building_scene: PackedScene = preload("res://Objects/Scenes/Facilities/producing_facility.tscn")
 var placement_active: bool = false
 
 func _process(delta: float) -> void:
@@ -28,9 +28,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Cancel"):
 		_cancel_placement()
 
-func start_placement(scene: PackedScene) -> void:
+func start_placement(data: FacilityData) -> void:
 	_cancel_placement()
-	building_scene = scene
+	building_scene.get_script().facility_data = data
 	_ghost = Sprite2D.new()
 	# TODO: assign ghost.texture from scene metadata or a preview texture
 	add_child(_ghost)

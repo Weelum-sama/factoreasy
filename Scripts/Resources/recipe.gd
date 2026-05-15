@@ -5,9 +5,8 @@ class_name Recipe
 @export var output: RecipeIngredient
 @export var production_time: float = 2.0
 
-func produce() -> void:
-	
-	pass
+func produce() -> RecipeIngredient:
+	return output
 
 func can_produce(current_recipe: Recipe, current_input: Array[RecipeIngredient]) -> bool:
 	var valid = false

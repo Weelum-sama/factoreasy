@@ -9,3 +9,7 @@ func _draw() -> void:
 		draw_line(Vector2(x * cs, 0), Vector2(x * cs, rows * cs), color)
 	for y in range(rows + 1):
 		draw_line(Vector2(0, y * cs), Vector2(cols * cs, y * cs), color)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Test"):
+		GameState.add_node_to_inventory("iron_ore_node", 2)

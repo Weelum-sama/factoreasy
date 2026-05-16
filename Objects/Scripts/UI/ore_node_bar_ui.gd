@@ -50,6 +50,7 @@ func _add_slot(data: OreNodeData) -> void:
 func _update_slot_label(node_id: String, new_count: int) -> void:
 	var button: TextureButton = _slots.get(node_id)
 	if button:
+		button.modulate = Color(1, 1, 1, 1) if new_count > 0 else Color(1, 1, 1, 0.4)
 		var data: OreNodeData = _load_node_data(node_id)
 		if data:
 			button.tooltip_text = "%s\nx%d" % [data.display_name, new_count]

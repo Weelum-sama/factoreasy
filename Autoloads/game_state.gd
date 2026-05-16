@@ -31,7 +31,13 @@ var node_inventory: Dictionary = {
 	"copper_ore_node":		0,
 }
 
+signal node_unlocked(node_id: String)
 signal inventory_changed(resource_id: String, new_count: int)
+
+func unlock_node(node_id: String) -> void:
+	if unlocked_nodes.has(node_id):
+		unlocked_nodes[node_id] = true
+		node_unlocked.emit(node_id)
 
 func add_node_to_inventory(resource_id: String, amount: int = 1) -> void:
 	node_inventory[resource_id] = node_inventory.get(resource_id, 0) + amount
@@ -43,3 +49,6 @@ func consume_node_from_inventory(resource_id: String, amount: int = 1) -> bool:
 	node_inventory[resource_id] -= amount
 	inventory_changed.emit(resource_id, node_inventory[resource_id])
 	return true
+
+func has_node_in_inventory(node_id: String) -> bool:
+	return node_inventory.get(node_id, 0) > 0

@@ -17,6 +17,12 @@ func _ready() -> void:
 	var nodebar := get_tree().root.find_child("OreNodeBarUI", true, false)
 	toolbar.placement_requested.connect(start_placement)
 	nodebar.placement_requested.connect(start_ore_placement)
+	GameState.inventory_changed.connect(_on_inventory_changed)
+
+func _on_inventory_changed(resource_id: String, new_count: int) -> void:
+	if current_mode == Util.PLACEMENTMODE.ORE_NODE:
+		if _pending_ore_data and resource_id == _pending_ore_data.id and new_count <= 0:
+			_cancel_placement()
 
 func _process(delta: float) -> void:
 	if current_mode == Util.PLACEMENTMODE.NONE or _ghost == null:
@@ -77,9 +83,6 @@ func _place_facility(cell: Vector2i) -> void:
 
 # Ore nodes can be placed without exiting unless inventory is empty
 func _place_ore_node(cell: Vector2i) -> void:
-	if GameState.node_inventory.get(_pending_ore_data.id, 0) <= 0:
-		_cancel_placement()
-		return
 	if not GridManager.is_cell_empty(cell):
 		return
 	var node: OreNode = _ore_node_scene.instantiate()
@@ -88,7 +91,6 @@ func _place_ore_node(cell: Vector2i) -> void:
 	GameState.consume_node_from_inventory(_pending_ore_data.id)
 	if not GridManager.place(cell, node):
 		GameState.add_node_to_inventory(_pending_ore_data.id) # Give back if placement failed
-	# Cancel is handled by _on_inventory_changed
 
 func _cancel_placement() -> void:
 	if _ghost:

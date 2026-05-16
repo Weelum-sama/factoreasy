@@ -3,12 +3,9 @@ class_name ProducingFacility
 
 @export var facility_data: FacilityData
 
-var amount_in_input: int = 0
-var amount_in_output: int = 0
-
 var _timer: float = 0.0
-var _input_buffer: Item
-var _output_buffer: Item
+var _input_buffer: Dictionary = {}
+var _output_buffer: Dictionary = {}
 
 func _ready() -> void:
 	if facility_data == null:
@@ -25,28 +22,23 @@ func _process(delta: float) -> void:
 	if _timer >= recipe.production_time:
 		_timer = 0.0
 		_try_produce(recipe)
-	
 
 func _try_produce(recipe: Recipe) -> void:
-	# TODO: Make this scalable for when multiple inputs are required
-	var current_ingredient = RecipeIngredient.new()
-	current_ingredient.item = _input_buffer
-	current_ingredient.amount = amount_in_input
-	if not recipe.can_produce(recipe, Array(current_ingredient)):
+	if not recipe.can_produce(_input_buffer):
 		return
-	
-	var output_ingredient = recipe.produce()
-	var item = output_ingredient.item
-	var amount = output_ingredient.amount
-	# TODO: Add amount of items to depot
+	# Consume inputs
+	for ingredient in recipe.input:
+		_input_buffer[ingredient.item] -= ingredient.amount
+	# Add output
+	var output_item := recipe.output.item
+	_output_buffer[output_item] = _output_buffer.get(output_item, 0) + recipe.output.amount
 
 func receive_item(item: Item, amount: int) -> bool:
-	_input_buffer = item
-	amount_in_input += amount
+	_input_buffer[item] = _input_buffer.get(item, 0) + amount
 	return true
 
 func take_item(item: Item) -> bool:
-	if amount_in_output <= 0:
+	if _output_buffer.get(item, 0) <= 0:
 		return false
-	amount_in_output -= 1
+	_output_buffer[item] -= 1
 	return true

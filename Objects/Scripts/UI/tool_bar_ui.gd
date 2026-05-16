@@ -1,17 +1,16 @@
 extends Control
 
+signal placement_requested(data: FacilityData)
 
 func _ready() -> void:
 	GameState.building_unlocked.connect(_on_building_unlocked)
-
-func _process(delta: float) -> void:
-	pass
+	_refresh_toolbar()
 
 func _on_building_unlocked(building_id: String) -> void:
 	_refresh_toolbar()
 
 func _refresh_toolbar() -> void:
-	for child in $SlotContainer.get_children():
+	for child in %SlotContainer.get_children():
 		child.queue_free()
 	
 	for building_id in GameState.unlocked_buildings:
@@ -20,12 +19,12 @@ func _refresh_toolbar() -> void:
 		var data: FacilityData = _load_facility_data(building_id)
 		if data:
 			_add_slot(data)
-	
 
 func _load_facility_data(building_id: String) -> FacilityData:
-	var path := "res://Resources/Facility Data/%s.tres" % building_id
+	var path := "res://Scripts/Resources/Facility Data/%s_data.tres" % building_id
 	if ResourceLoader.exists(path):
 		return load(path)
+	push_warning("No FacilityData found at: " + path)
 	return null
 
 func _add_slot(data: FacilityData) -> void:
@@ -33,5 +32,6 @@ func _add_slot(data: FacilityData) -> void:
 	button.texture_normal = data.texture
 	button.tooltip_text = data.display_name
 	button.pressed.connect(func():
-		$PlacementController.start_placement(data))
-	$SlotContainer.add_child(button)
+		placement_requested.emit(data)
+	)
+	%SlotContainer.add_child(button)

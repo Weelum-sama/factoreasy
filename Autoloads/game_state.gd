@@ -17,13 +17,18 @@ func unlock_building(building_id: String) -> void:
 		building_unlocked.emit("building_unlocked" ,building_id)
 
 func is_building_unlocked(building_id: String) -> bool:
-	return unlocked_buildings.get(building_id, false)
+	return unlocked_buildings.get(building_id)
 
 ### Nodes
 
+var unlocked_nodes: Dictionary = {
+	"iron_ore_node":		true,
+	"copper_ore_node":		false,
+}
+
 var node_inventory: Dictionary = {
-	"iron_ore_node":	0,
-	"copper_ore_node":	0,
+	"iron_ore_node":		2,
+	"copper_ore_node":		0,
 }
 
 signal inventory_changed(resource_id: String, new_count: int)

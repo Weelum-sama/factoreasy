@@ -1,33 +1,33 @@
 extends Control
 
-signal placement_requested(data: FacilityData)
+signal placement_requested(data: OreNodeData)
 
 func _ready() -> void:
-	GameState.building_unlocked.connect(_on_building_unlocked)
+	GameState.inventory_changed.connect(_on_inventory_changed)
 	_refresh_toolbar()
 
-func _on_building_unlocked(building_id: String) -> void:
+func _on_inventory_changed(node_id: String) -> void:
 	_refresh_toolbar()
 
 func _refresh_toolbar() -> void:
 	for child in $PanelContainer/SlotContainer.get_children():
 		child.queue_free()
 	
-	for building_id in GameState.unlocked_buildings:
-		if not GameState.unlocked_buildings[building_id]:
+	for node_id in GameState.unlocked_nodes:
+		if not GameState.unlocked_nodes[node_id]:
 			continue
-		var data: FacilityData = _load_facility_data(building_id)
+		var data: OreNodeData = _load_node_data(node_id)
 		if data:
 			_add_slot(data)
 
-func _load_facility_data(building_id: String) -> FacilityData:
-	var path := "res://Scripts/Resources/Facility Data/%s_data.tres" % building_id
+func _load_node_data(node_id: String) -> OreNodeData:
+	var path := "res://Scripts/Resources/Node Data/%s_data.tres" % node_id
 	if ResourceLoader.exists(path):
 		return load(path)
 	push_warning("No FacilityData found at: " + path)
 	return null
 
-func _add_slot(data: FacilityData) -> void:
+func _add_slot(data: OreNodeData) -> void:
 	var button := TextureButton.new()
 	button.custom_minimum_size = Vector2(48, 48)
 	button.texture_normal = data.texture

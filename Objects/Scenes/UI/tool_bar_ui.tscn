@@ -4,11 +4,12 @@
 
 [node name="ToolBarUI" type="Control" unique_id=2146166244]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_1paa2")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=569519714]
@@ -21,6 +22,6 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="SlotContainer" type="HBoxContainer" parent="PanelContainer" unique_id=486942104]
-unique_name_in_owner = true
 layout_direction = 2
 layout_mode = 2
+mouse_filter = 2

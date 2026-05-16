@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c7a52a0f5nu5x"]
+
+[ext_resource type="Script" uid="uid://fuc25pmbysvj" path="res://Objects/Scripts/UI/ore_node_bar_ui.gd" id="1_wq3i2"]
+
+[node name="OreNodeBarUI" type="Control" unique_id=754573461]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_wq3i2")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1250239997]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="SlotContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1441348482]
+layout_mode = 2

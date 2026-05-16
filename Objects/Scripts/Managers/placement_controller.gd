@@ -1,23 +1,30 @@
 extends Node2D
 
-@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
-
 var _ghost: Sprite2D = null
-var _pending_data: FacilityData = null
-var _facility_scene: PackedScene
-var placement_active: bool = false
+
+# Facility
+var _facility_scene: PackedScene = null
+var _pending_facility_data: FacilityData = null
+
+# Ore Node
+var _pending_ore_data: OreNodeData = null
+var _ore_node_scene: PackedScene = null
+
+var current_mode: Util.PLACEMENTMODE = Util.PLACEMENTMODE.NONE
 
 func _ready() -> void:
 	var toolbar := get_tree().root.find_child("ToolBarUI", true, false)
+	var nodebar := get_tree().root.find_child("OreNodeBarUI", true, false)
 	toolbar.placement_requested.connect(start_placement)
+	nodebar.placement_requested.connect(start_ore_placement)
 
 func _process(delta: float) -> void:
-	if not placement_active or _ghost == null:
+	if current_mode == Util.PLACEMENTMODE.NONE or _ghost == null:
 		return
 	
 	var mouse := get_global_mouse_position()
 	var snapped := GridManager.snap_to_grid(mouse)
-	var cell := GridManager.cell_to_world(mouse)
+	var cell := GridManager.world_to_cell(mouse)
 	_ghost.position = snapped + Vector2(GridManager.CELL_SIZE * 0.5, GridManager.CELL_SIZE * 0.5)
 	
 	# Visual indicator for cell validity
@@ -35,33 +42,60 @@ func _process(delta: float) -> void:
 func start_placement(data: FacilityData) -> void:
 	_cancel_placement()
 	_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
-	_pending_data = data
-	placement_active = true
+	_pending_facility_data = data
+	current_mode = Util.PLACEMENTMODE.FACILITY
+	_ghost = Sprite2D.new()
+	if data.texture:
+		_ghost.texture = data.texture
+	add_child(_ghost)
+
+func start_ore_placement(data: OreNodeData) -> void:
+	_cancel_placement()
+	_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
+	_pending_ore_data = data
+	current_mode = Util.PLACEMENTMODE.ORE_NODE
 	_ghost = Sprite2D.new()
 	if data.texture:
 		_ghost.texture = data.texture
 	add_child(_ghost)
 
 func _try_place() -> void:
-	if _pending_data == null:
-		return
 	var cell := GridManager.world_to_cell(get_global_mouse_position())
+	match current_mode:
+		Util.PLACEMENTMODE.FACILITY:
+			_place_facility(cell)
+		Util.PLACEMENTMODE.ORE_NODE:
+			_place_ore_node(cell)
+
+# Facilities can be placed without exiting
+func _place_facility(cell: Vector2i) -> void:
 	var building: ProducingFacility = _facility_scene.instantiate()
-	building.facility_data = _pending_data
+	building.facility_data = _pending_facility_data
 	get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):
-		building.queue_free() # could not place
+		building.queue_free()
+
+# Ore nodes can be placed without exiting unless inventory is empty
+func _place_ore_node(cell: Vector2i) -> void:
+	if GameState.node_inventory.get(_pending_ore_data.id, 0) <= 0:
+		_cancel_placement()
 		return
-	
-	# In case of resource node
-	if building.has_method("get_resource_id"):
-		if not GameState.consume_node_from_inventory(building.get_resource_id()):
-			GridManager.remove(cell)
-			building.queue_free()
-			return
+	if not GridManager.is_cell_empty(cell):
+		return
+	var node: OreNode = _ore_node_scene.instantiate()
+	node.data = _pending_ore_data
+	get_tree().current_scene.add_child(node)
+	GameState.consume_node_from_inventory(_pending_ore_data.id)
+	if not GridManager.place(cell, node):
+		GameState.add_node_to_inventory(_pending_ore_data.id) # Give back if placement failed
+	# Cancel is handled by _on_inventory_changed
 
 func _cancel_placement() -> void:
 	if _ghost:
 		_ghost.queue_free()
 		_ghost = null
 	_facility_scene = null
+	_pending_facility_data = null
+	_ore_node_scene = null
+	_pending_ore_data = null
+	current_mode = Util.PLACEMENTMODE.NONE

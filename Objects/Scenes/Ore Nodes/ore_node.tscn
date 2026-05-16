@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cdxcnvh8ou0s0"]
+
+[ext_resource type="Script" uid="uid://ci3de3wygrbsg" path="res://Objects/Scripts/Ore Nodes/ore_node.gd" id="1_2fsko"]
+[ext_resource type="Texture2D" uid="uid://dy7e0l82x87yy" path="res://icon.svg" id="1_dtb0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fsko"]
+size = Vector2(128, 128)
+
+[node name="OreNode" type="Node2D" unique_id=1083191538]
+script = ExtResource("1_2fsko")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1447965821]
+texture = ExtResource("1_dtb0w")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1254460297]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1504839321]
+shape = SubResource("RectangleShape2D_2fsko")

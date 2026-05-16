@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="OreNodeData" format=3 uid="uid://drfyydf53baf8"]
+
+[ext_resource type="Resource" uid="uid://dyf04iihs1bjg" path="res://Scripts/Resources/Items/iron_ore.tres" id="1_31xpw"]
+[ext_resource type="Script" uid="uid://c714qalhcrl15" path="res://Scripts/Resources/ore_node_data.gd" id="1_vx5gp"]
+[ext_resource type="Texture2D" uid="uid://dy7e0l82x87yy" path="res://icon.svg" id="3_4kdp5"]
+
+[resource]
+script = ExtResource("1_vx5gp")
+id = "iron_ore_node"
+display_name = "iron ore node"
+texture = ExtResource("3_4kdp5")
+item = ExtResource("1_31xpw")
+metadata/_custom_type_script = "uid://c714qalhcrl15"

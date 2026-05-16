@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkehjj0iwcq5m" path="res://Scripts/grid_debug.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://c4ryly0e8mwau" path="res://Objects/Scripts/UI/tool_bar_ui.gd" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://m26gseop6vq3" path="res://Scripts/camera_script.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://dmsbd71at8nc7" path="res://Objects/Scenes/Managers/placement_controller.tscn" id="3_jjvhh"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
@@ -33,7 +34,11 @@ layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
 offset = Vector2(1900, 1280)
+ignore_rotation = false
 zoom = Vector2(0.25, 0.25)
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 30.0
+script = ExtResource("2_jjvhh")
 
 [node name="GridDebug" type="Node2D" parent="." unique_id=362493852]
 script = ExtResource("1_jjgbg")

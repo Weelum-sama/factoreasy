@@ -4,6 +4,7 @@ const MIN_ZOOM: float = 2.25
 const MAX_ZOOM: float = 0.25
 const ZOOM_INCREMENT: float = 0.2
 const MOVE_SPEED: float = 1000
+const MIN_MOVE_SPEED: float = 500
 
 var MIN_ZOOM_VECTOR: Vector2 = Vector2(MIN_ZOOM, MIN_ZOOM)
 var MAX_ZOOM_VECTOR: Vector2 = Vector2(MAX_ZOOM, MAX_ZOOM)
@@ -28,7 +29,9 @@ func _control_position(delta: float) -> void:
 		"Move Up", "Move Down")
 	if !input_direction == Vector2.ZERO:
 		var rotated_direction := input_direction.rotated(rotation)
-		position += rotated_direction * MOVE_SPEED * delta
+		var current_zoom: float = MAX_ZOOM / zoom.x
+		var current_move_speed: float = clamp(current_zoom * MOVE_SPEED, MIN_MOVE_SPEED, MOVE_SPEED)
+		position += rotated_direction * current_move_speed * delta
 
 func _control_rotation() -> void:
 	if Input.is_action_just_pressed("Rotate Camera"):

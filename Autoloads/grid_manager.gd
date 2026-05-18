@@ -42,3 +42,6 @@ func place(cell: Vector2i, building: Node) -> bool:
 
 func remove(cell: Vector2i) -> void:
 	_grid.erase(cell)
+
+func get_building_from_cell(cell: Vector2i) -> Node:
+	return _grid[cell]

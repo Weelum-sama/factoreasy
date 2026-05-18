@@ -1,6 +1,6 @@
 extends Node
 
-const CELL_SIZE: int = 128
+const CELL_SIZE: int = 32
 
 var _grid: Dictionary = {}
 

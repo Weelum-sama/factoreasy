@@ -134,4 +134,4 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=509952617]
 sprite_frames = SubResource("SpriteFrames_sgb5w")
 autoplay = "default"
-frame_progress = 0.2231695
+frame_progress = 0.8337422

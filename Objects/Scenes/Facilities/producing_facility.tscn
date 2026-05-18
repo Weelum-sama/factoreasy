@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://cof1m27b24dnt"]
 
-[ext_resource type="Texture2D" uid="uid://dy7e0l82x87yy" path="res://icon.svg" id="1_6snnf"]
 [ext_resource type="Script" uid="uid://c6grfl33ymc64" path="res://Objects/Scripts/Facilities/producing_facility.gd" id="1_aolhg"]
+[ext_resource type="Texture2D" uid="uid://j41c63uucykn" path="res://Assets/Sprites/Buildings/extractor.png" id="2_aolhg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aolhg"]
-size = Vector2(128, 128)
+size = Vector2(32, 32)
 
 [node name="ProducingFacility" type="Node2D" unique_id=1757983028]
 script = ExtResource("1_aolhg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=82925098]
-texture = ExtResource("1_6snnf")
+texture = ExtResource("2_aolhg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1141831224]
 

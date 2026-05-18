@@ -15,9 +15,8 @@
 [node name="ToolBarUI" parent="CanvasLayer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
-offset = Vector2(1900, 1280)
+offset = Vector2(500, 320)
 ignore_rotation = false
-zoom = Vector2(0.25, 0.25)
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 25.0
 script = ExtResource("2_jjvhh")

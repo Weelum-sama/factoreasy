@@ -1,9 +1,13 @@
 extends Camera2D
 
-const MIN_ZOOM: Vector2 = Vector2(1.0, 1.0)
-const MAX_ZOOM: Vector2 = Vector2(0.1, 0.1)
-const ZOOM_INCREMENT: Vector2 = Vector2(0.02, 0.02)
-const MOVE_SPEED: float = 1500
+const MIN_ZOOM: float = 2.25
+const MAX_ZOOM: float = 0.25
+const ZOOM_INCREMENT: float = 0.2
+const MOVE_SPEED: float = 1000
+
+var MIN_ZOOM_VECTOR: Vector2 = Vector2(MIN_ZOOM, MIN_ZOOM)
+var MAX_ZOOM_VECTOR: Vector2 = Vector2(MAX_ZOOM, MAX_ZOOM)
+var ZOOM_INCREMENT_VECTOR: Vector2 = Vector2(ZOOM_INCREMENT, ZOOM_INCREMENT)
 
 var movement_vector: Vector2
 
@@ -14,9 +18,9 @@ func _process(delta: float) -> void:
 
 func _control_zoom() -> void:
 	if Input.is_action_just_pressed("Zoom In"):
-		zoom = clamp(zoom + (ZOOM_INCREMENT), MAX_ZOOM, MIN_ZOOM)
+		zoom = clamp(zoom + ZOOM_INCREMENT_VECTOR, MAX_ZOOM_VECTOR, MIN_ZOOM_VECTOR)
 	elif Input.is_action_just_pressed("Zoom Out"):
-		zoom = clamp(zoom - (ZOOM_INCREMENT), MAX_ZOOM, MIN_ZOOM)
+		zoom = clamp(zoom - ZOOM_INCREMENT_VECTOR, MAX_ZOOM_VECTOR, MIN_ZOOM_VECTOR)
 
 func _control_position(delta: float) -> void:
 	var input_direction = Input.get_vector(

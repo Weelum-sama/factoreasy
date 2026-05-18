@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxnniqs1dp885"
-path="res://.godot/imported/TileMap2.2.0.png-6b66ee0e255ebd79ead7828c81bbf38f.ctex"
+uid="uid://bt6eq2ush7l01"
+path="res://.godot/imported/gear_coin.png-3211bd97437c888df633233474ee693e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileMap2.2.0.png"
-dest_files=["res://.godot/imported/TileMap2.2.0.png-6b66ee0e255ebd79ead7828c81bbf38f.ctex"]
+source_file="res://Assets/Sprites/gear_coin.png"
+dest_files=["res://.godot/imported/gear_coin.png-3211bd97437c888df633233474ee693e.ctex"]
 
 [params]
 

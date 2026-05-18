@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt6eq2ush7l01"
-path="res://.godot/imported/gear_coin.png-4b361d5717c865c7599a728ee20cdfa6.ctex"
+uid="uid://jq6ww3drrh7p"
+path="res://.godot/imported/iron_ingot.png-f21a2e680fcea898f91097486ca9cdc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/gear_coin.png"
-dest_files=["res://.godot/imported/gear_coin.png-4b361d5717c865c7599a728ee20cdfa6.ctex"]
+source_file="res://Assets/Sprites/Resources/iron_ingot.png"
+dest_files=["res://.godot/imported/iron_ingot.png-f21a2e680fcea898f91097486ca9cdc4.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 ## fix:
 - ~~buttons still place building when clicking on another building~~
-- button sizes
+- ~~button sizes~~
 - strategy pattern for placing buildings?
 
 ## implement:

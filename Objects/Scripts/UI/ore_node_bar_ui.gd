@@ -37,7 +37,8 @@ func _load_node_data(node_id: String) -> OreNodeData:
 
 func _add_slot(data: OreNodeData) -> void:
 	var button := TextureButton.new()
-	button.custom_minimum_size = Vector2(48, 48)
+	button.custom_minimum_size = Vector2(64, 64)
+	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT
 	button.texture_normal = data.texture
 	button.tooltip_text = data.display_name
 	button.pressed.connect(func():

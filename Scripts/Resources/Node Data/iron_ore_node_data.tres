@@ -6,8 +6,9 @@
 
 [resource]
 script = ExtResource("1_vx5gp")
+item = ExtResource("1_31xpw")
 id = "iron_ore_node"
 display_name = "iron ore node"
 texture = ExtResource("3_31xpw")
-item = ExtResource("1_31xpw")
+building_id = "iron_ore_node"
 metadata/_custom_type_script = "uid://c714qalhcrl15"

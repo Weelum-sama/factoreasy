@@ -28,8 +28,13 @@ func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("Toggle Select"):
-		_cancel_placement()
-		current_mode = Util.PLACEMENTMODE.SELECTION
+		if current_mode == Util.PLACEMENTMODE.SELECTION:
+			_exit_select_mode()
+		else:
+			_cancel_placement()
+			current_mode = Util.PLACEMENTMODE.SELECTION
+		return
+	
 	match current_mode:
 		Util.PLACEMENTMODE.FACILITY:
 			_handle_placement_input()
@@ -84,7 +89,7 @@ func _handle_selection_input() -> void:
 				building.queue_free()
 			_exit_select_mode()
 	
-	if Input.is_action_just_pressed("Cancel") or Input.is_action_just_pressed("Toggle Select"):
+	if Input.is_action_just_pressed("Cancel"):
 		_exit_select_mode()
 
 func start_placement(data: FacilityData) -> void:

@@ -31,6 +31,7 @@ func _add_slot(data: FacilityData) -> void:
 	var button := TextureButton.new()
 	button.custom_minimum_size = Vector2(64, 64)
 	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT
+	button.focus_mode = Control.FOCUS_NONE
 	button.texture_normal = data.texture
 	button.tooltip_text = data.display_name
 	button.pressed.connect(func():

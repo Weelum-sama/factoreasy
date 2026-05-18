@@ -40,6 +40,7 @@ func _add_slot(data: OreNodeData) -> void:
 	button.custom_minimum_size = Vector2(64, 64)
 	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT
 	button.texture_normal = data.texture
+	button.focus_mode = Control.FOCUS_NONE
 	button.tooltip_text = data.display_name
 	button.pressed.connect(func():
 		if GameState.has_node_in_inventory(data.id):

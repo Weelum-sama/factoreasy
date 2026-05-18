@@ -6,8 +6,9 @@
 
 [resource]
 script = ExtResource("1_kj2l8")
+item = ExtResource("1_4hoad")
 id = "copper_ore_node"
 display_name = "copper ore node"
 texture = ExtResource("2_otilm")
-item = ExtResource("1_4hoad")
+building_id = "copper_ore_node"
 metadata/_custom_type_script = "uid://c714qalhcrl15"

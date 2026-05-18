@@ -40,10 +40,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_ghost.modulate = Color(1, 0.3, 0.3, 0.6)
 	
 	# Placement
-	if Input.is_action_just_pressed("Confirm"):
+	if Input.is_action_just_released("Confirm"): # On release specifically
 		_try_place()
 	if Input.is_action_just_pressed("Cancel"):
 		_cancel_placement()
+	if Input.is_action_just_pressed("Rotate Building"):
+		_rotate_building()
 
 func start_placement(data: FacilityData) -> void:
 	_cancel_placement()
@@ -77,6 +79,7 @@ func _try_place() -> void:
 func _place_facility(cell: Vector2i) -> void:
 	var building: ProducingFacility = _facility_scene.instantiate()
 	building.facility_data = _pending_facility_data
+	building.rotation = _ghost.rotation
 	get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):
 		building.queue_free()
@@ -87,6 +90,7 @@ func _place_ore_node(cell: Vector2i) -> void:
 		return
 	var node: OreNode = _ore_node_scene.instantiate()
 	node.data = _pending_ore_data
+	node.rotation = _ghost.rotation
 	get_tree().current_scene.add_child(node)
 	GameState.consume_node_from_inventory(_pending_ore_data.id)
 	if not GridManager.place(cell, node):
@@ -101,3 +105,7 @@ func _cancel_placement() -> void:
 	_ore_node_scene = null
 	_pending_ore_data = null
 	current_mode = Util.PLACEMENTMODE.NONE
+
+func _rotate_building() -> void:
+	if _ghost:
+		_ghost.rotate(PI/2.0)

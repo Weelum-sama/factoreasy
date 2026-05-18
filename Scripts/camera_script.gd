@@ -31,5 +31,5 @@ func _control_position(delta: float) -> void:
 		position += rotated_direction * MOVE_SPEED * delta
 
 func _control_rotation() -> void:
-	if Input.is_action_just_pressed("Rotate"):
+	if Input.is_action_just_pressed("Rotate Camera"):
 		rotate(PI/2.0)

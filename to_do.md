@@ -6,7 +6,7 @@
 - strategy pattern for placing buildings?
 
 ## implement:
-- rotate during placement
+- ~~rotate during placement~~
 - select mode + stash
 - shop window
 - state machine facilities

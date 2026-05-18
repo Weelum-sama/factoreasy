@@ -24,7 +24,7 @@ func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 		if _pending_ore_data and resource_id == _pending_ore_data.id and new_count <= 0:
 			_cancel_placement()
 
-func _process(delta: float) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if current_mode == Util.PLACEMENTMODE.NONE or _ghost == null:
 		return
 	

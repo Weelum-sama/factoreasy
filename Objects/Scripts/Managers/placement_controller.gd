@@ -12,6 +12,8 @@ var _ore_node_scene: PackedScene = null
 
 var current_mode: Util.PLACEMENTMODE = Util.PLACEMENTMODE.NONE
 
+var selected_buildings: Array[Node] = []
+
 func _ready() -> void:
 	var toolbar := get_tree().root.find_child("ToolBarUI", true, false)
 	var nodebar := get_tree().root.find_child("OreNodeBarUI", true, false)
@@ -25,7 +27,19 @@ func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 			_cancel_placement()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if current_mode == Util.PLACEMENTMODE.NONE or _ghost == null:
+	if Input.is_action_pressed("Toggle Select"):
+		_cancel_placement()
+		current_mode = Util.PLACEMENTMODE.SELECTION
+	match current_mode:
+		Util.PLACEMENTMODE.FACILITY:
+			_handle_placement_input()
+		Util.PLACEMENTMODE.ORE_NODE:
+			_handle_placement_input()
+		Util.PLACEMENTMODE.SELECTION:
+			_handle_selection_input()
+
+func _handle_placement_input() -> void:
+	if _ghost == null:
 		return
 	
 	var mouse := get_global_mouse_position()
@@ -46,6 +60,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		_cancel_placement()
 	if Input.is_action_just_pressed("Rotate Building"):
 		_rotate_building()
+
+func _handle_selection_input() -> void:
+	if Input.is_action_just_pressed("Confirm"):
+		var mouse := get_global_mouse_position()
+		var cell := GridManager.world_to_cell(mouse)
+		var building = GridManager.get_cell_occupant(cell)
+		if building:
+			if not selected_buildings.has(building):
+				selected_buildings.append(building)
+			else:
+				selected_buildings.erase(building)
+				building.modulate = Color(1.0, 1.0, 1.0)
+	
+	if not selected_buildings.is_empty():
+		for building in selected_buildings:
+			building.modulate = Color.SKY_BLUE
+	
+	if Input.is_action_just_pressed("Cancel") or Input.is_action_just_pressed("Toggle Select"):
+		_exit_select_mode()
 
 func start_placement(data: FacilityData) -> void:
 	_cancel_placement()
@@ -96,6 +129,17 @@ func _place_ore_node(cell: Vector2i) -> void:
 	if not GridManager.place(cell, node):
 		GameState.add_node_to_inventory(_pending_ore_data.id) # Give back if placement failed
 
+func _rotate_building() -> void:
+	if _ghost:
+		_ghost.rotate(PI/2.0)
+
+func _exit_select_mode() -> void:
+	current_mode = Util.PLACEMENTMODE.NONE
+	if not selected_buildings.is_empty():
+		for building in selected_buildings:
+			building.modulate = Color(1.0, 1.0, 1.0)
+	selected_buildings.clear()
+
 func _cancel_placement() -> void:
 	if _ghost:
 		_ghost.queue_free()
@@ -105,7 +149,3 @@ func _cancel_placement() -> void:
 	_ore_node_scene = null
 	_pending_ore_data = null
 	current_mode = Util.PLACEMENTMODE.NONE
-
-func _rotate_building() -> void:
-	if _ghost:
-		_ghost.rotate(PI/2.0)

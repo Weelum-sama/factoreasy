@@ -76,6 +76,13 @@ func _handle_selection_input() -> void:
 	if not selected_buildings.is_empty():
 		for building in selected_buildings:
 			building.modulate = Color.SKY_BLUE
+		
+		if Input.is_action_just_pressed("Stash"):
+			for building in selected_buildings:
+				var cell_to_remove = GridManager.world_to_cell(building.global_position)
+				GridManager.remove(cell_to_remove)
+				building.queue_free()
+			_exit_select_mode()
 	
 	if Input.is_action_just_pressed("Cancel") or Input.is_action_just_pressed("Toggle Select"):
 		_exit_select_mode()

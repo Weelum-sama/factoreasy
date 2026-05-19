@@ -1,19 +1,23 @@
 extends Node2D
 
+# Hovering sprite for placement preview
 var _ghost: Sprite2D = null
 
-# Facility
+# Placeable scenes
 var _facility_scene: PackedScene = null
-var _pending_data: FacilityData = null
-
-# Ore Node
 var _ore_node_scene: PackedScene = null
 
+# Data for placeables
+var _pending_data: FacilityData = null
+
+# Placement mode currently active
 var current_mode: Util.PLACEMENTMODE = Util.PLACEMENTMODE.NONE
 
+# Array of buildings selected for selection mode
 var selected_buildings: Array[Node] = []
 
 func _ready() -> void:
+	# UI initialisation
 	var toolbar := get_tree().root.find_child("ToolBarUI", true, false)
 	var nodebar := get_tree().root.find_child("OreNodeBarUI", true, false)
 	toolbar.placement_requested.connect(start_placement)
@@ -21,11 +25,13 @@ func _ready() -> void:
 	GameState.inventory_changed.connect(_on_inventory_changed)
 
 func _on_inventory_changed(resource_id: String, new_count: int) -> void:
+	# Stop placement once final node is used up
 	if current_mode == Util.PLACEMENTMODE.ORE_NODE:
 		if _pending_data and resource_id == _pending_data.id and new_count <= 0:
 			_cancel_placement()
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Check whether select mode is toggled
 	if Input.is_action_pressed("Toggle Select"):
 		if current_mode == Util.PLACEMENTMODE.SELECTION:
 			_exit_select_mode()
@@ -46,6 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if GameState.has_node_in_inventory(building.data.id):
 				start_placement(building.data)
 	
+	# Handling input based on current placement mode
 	match current_mode:
 		Util.PLACEMENTMODE.FACILITY:
 			_handle_placement_input()
@@ -55,9 +62,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_handle_selection_input()
 
 func _handle_placement_input() -> void:
+	# If there's no ghost, jump out
 	if _ghost == null:
 		return
 	
+	# Retrieve mouse position and draw the ghost accordingly
 	var mouse := get_global_mouse_position()
 	var snapped := GridManager.snap_to_grid(mouse)
 	var cell := GridManager.world_to_cell(mouse)
@@ -78,6 +87,7 @@ func _handle_placement_input() -> void:
 		_rotate_building()
 
 func _handle_selection_input() -> void:
+	# Retrieve building selected and stored in array
 	if Input.is_action_just_pressed("Confirm"):
 		var building = _get_building_from_mouse()
 		if building:
@@ -87,10 +97,12 @@ func _handle_selection_input() -> void:
 				selected_buildings.erase(building)
 				building.modulate = Color(1.0, 1.0, 1.0)
 	
+	# If one or more buildings are selected, shade them differently
 	if not selected_buildings.is_empty():
 		for building in selected_buildings:
 			building.modulate = Color.SKY_BLUE
 		
+		# Stash selected buildings if desired
 		if Input.is_action_just_pressed("Stash"):
 			for building in selected_buildings:
 				var cell_to_remove = GridManager.world_to_cell(building.global_position)
@@ -98,12 +110,15 @@ func _handle_selection_input() -> void:
 				building.queue_free()
 			_exit_select_mode()
 	
+	# Get out of selection mode if canceled
 	if Input.is_action_just_pressed("Cancel"):
 		_exit_select_mode()
 
 func start_placement(data: FacilityData) -> void:
+	# Override any prior placements
 	_cancel_placement()
 	
+	# Retrieve data for placeable
 	_pending_data = data
 	if data is ProducingFacilityData:
 		_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
@@ -112,11 +127,13 @@ func start_placement(data: FacilityData) -> void:
 		_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
 		current_mode = Util.PLACEMENTMODE.ORE_NODE
 	
+	# Instantiate ghost for placement preview
 	_ghost = Sprite2D.new()
 	if data.texture:
 		_ghost.texture = data.texture
 	add_child(_ghost)
 
+# Attempt to place the building
 func _try_place() -> void:
 	var cell := GridManager.world_to_cell(get_global_mouse_position())
 	match current_mode:
@@ -125,41 +142,49 @@ func _try_place() -> void:
 		Util.PLACEMENTMODE.ORE_NODE:
 			_place_ore_node(cell)
 
-# Facilities can be placed without exiting
+# Facilities can be placed without exiting placement mode
 func _place_facility(cell: Vector2i) -> void:
 	var data := _pending_data as ProducingFacilityData
 	var building: ProducingFacility = _facility_scene.instantiate()
 	building.facility_data = data
 	building.rotation = _ghost.rotation
-
+	
+	# Place building and register in GridManager, building removed if unable to register
 	get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):
 		building.queue_free()
 
 # Ore nodes can be placed without exiting unless inventory is empty
 func _place_ore_node(cell: Vector2i) -> void:
+	# Jump out if cell is already occupied, ore nodes are given back when exiting tree!
 	if not GridManager.is_cell_empty(cell):
 		return
 	
+	# Retrieve data for placable
 	var data := _pending_data as OreNodeData
 	var node: OreNode = _ore_node_scene.instantiate()
 	node.data = _pending_data
 	node.rotation = _ghost.rotation
 	
+	# Add node to the tree and register in GridManager
 	get_tree().current_scene.add_child(node)
-	GameState.consume_node_from_inventory(_pending_data.id)
 	if not GridManager.place(cell, node):
-		GameState.add_node_to_inventory(_pending_data.id) # Give back if placement failed
+		return
+	# Consume the node from inventory if placed and registered
+	GameState.consume_node_from_inventory(_pending_data.id)
 
+# Checks mouse position and returns the node that occupies the hovered cell
 func _get_building_from_mouse() -> Node:
 	var mouse := get_global_mouse_position()
 	var cell := GridManager.world_to_cell(mouse)
 	return GridManager.get_cell_occupant(cell)
 
+# Rotate ghost and therefore building
 func _rotate_building() -> void:
 	if _ghost:
 		_ghost.rotate(PI/2.0)
 
+# Getting out of select mode requires logic
 func _exit_select_mode() -> void:
 	current_mode = Util.PLACEMENTMODE.NONE
 	if not selected_buildings.is_empty():
@@ -167,6 +192,7 @@ func _exit_select_mode() -> void:
 			building.modulate = Color(1.0, 1.0, 1.0)
 	selected_buildings.clear()
 
+# Canceling placement and clearing data
 func _cancel_placement() -> void:
 	if _ghost:
 		_ghost.queue_free()

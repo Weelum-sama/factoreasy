@@ -7,3 +7,4 @@ class_name FacilityData
 @export var building_id: String = ""
 @export var building_width: int = 1
 @export var building_height: int = 1
+@export var research_cost: int = 100

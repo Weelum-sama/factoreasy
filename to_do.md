@@ -10,7 +10,7 @@
 - ~~rotate during placement~~
 - ~~select mode + stash~~
 - ~~stash returns ore nodes to inventory~~
-- quick select middle mouse button
+- ~~quick select middle mouse button~~
 - shop window
 - state machine facilities
 

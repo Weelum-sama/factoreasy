@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bej5sh4ue04tg"]
 
+[ext_resource type="PackedScene" uid="uid://cm4w6k4o5beg4" path="res://Objects/Scenes/UI/sidebar_ui.tscn" id="1_21xkr"]
 [ext_resource type="Script" uid="uid://dkehjj0iwcq5m" path="res://Scripts/grid_debug.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b2cabtjf4lkoa" path="res://Objects/Scenes/UI/tool_bar_ui.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://m26gseop6vq3" path="res://Scripts/camera_script.gd" id="2_jjvhh"]
@@ -10,9 +11,33 @@
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1757633803]
 
-[node name="OreNodeBarUI" parent="CanvasLayer" unique_id=754573461 instance=ExtResource("2_kry3j")]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1074168058]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="ToolBarUI" parent="CanvasLayer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=113146341]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GameArea" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1939408335]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SidebarUI" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1853947216 instance=ExtResource("1_21xkr")]
+layout_mode = 2
+
+[node name="OreNodeBarUI" parent="CanvasLayer/MarginContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ToolBarUI" parent="CanvasLayer/MarginContainer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
+layout_mode = 2
+mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
 offset = Vector2(500, 320)

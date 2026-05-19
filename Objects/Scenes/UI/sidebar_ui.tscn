@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cm4w6k4o5beg4"]
+
+[ext_resource type="Script" uid="uid://ch0yhgsrs434v" path="res://Objects/Scripts/UI/coin_display.gd" id="2_tmd3e"]
+[ext_resource type="Script" uid="uid://cmdb1l5ikpkbp" path="res://Objects/Scripts/UI/store_tab.gd" id="3_4v2ih"]
+[ext_resource type="Script" uid="uid://buyvigg1oyvur" path="res://Objects/Scripts/UI/research_tab.gd" id="3_tmd3e"]
+
+[node name="SidebarUI" type="VBoxContainer" unique_id=1853947216]
+custom_minimum_size = Vector2(220, 0)
+offset_right = 220.0
+offset_bottom = 58.0
+
+[node name="CoinDisplay" type="Label" parent="." unique_id=1494898452]
+layout_mode = 2
+script = ExtResource("2_tmd3e")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=410335498]
+layout_mode = 2
+current_tab = 0
+
+[node name="StoreTab" type="ScrollContainer" parent="TabContainer" unique_id=1571925321]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/StoreTab" unique_id=2125756668]
+layout_mode = 2
+script = ExtResource("3_4v2ih")
+
+[node name="ResearchTab" type="ScrollContainer" parent="TabContainer" unique_id=1406536427]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/ResearchTab" unique_id=999676654]
+layout_mode = 2
+script = ExtResource("3_tmd3e")

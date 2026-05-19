@@ -1,6 +1,7 @@
 extends Node
 
 ### Buildings
+
 var unlocked_buildings: Dictionary = {
 	"extractor":	true,
 	"conveyor":		true,
@@ -52,3 +53,16 @@ func consume_node_from_inventory(resource_id: String, amount: int = 1) -> bool:
 
 func has_node_in_inventory(node_id: String) -> bool:
 	return node_inventory.get(node_id, 0) > 0
+
+## Coins
+
+var _total_coins: float = 30.0
+
+signal coins_changed(new_amount: float)
+
+func add_coins(amount: float) -> void:
+	_total_coins += amount
+	coins_changed.emit(_total_coins)
+
+func get_total_coins() -> float:
+	return _total_coins

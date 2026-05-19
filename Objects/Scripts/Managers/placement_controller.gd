@@ -4,10 +4,9 @@ var _ghost: Sprite2D = null
 
 # Facility
 var _facility_scene: PackedScene = null
-var _pending_facility_data: FacilityData = null
+var _pending_data: FacilityData = null
 
 # Ore Node
-var _pending_ore_data: OreNodeData = null
 var _ore_node_scene: PackedScene = null
 
 var current_mode: Util.PLACEMENTMODE = Util.PLACEMENTMODE.NONE
@@ -18,12 +17,12 @@ func _ready() -> void:
 	var toolbar := get_tree().root.find_child("ToolBarUI", true, false)
 	var nodebar := get_tree().root.find_child("OreNodeBarUI", true, false)
 	toolbar.placement_requested.connect(start_placement)
-	nodebar.placement_requested.connect(start_ore_placement)
+	nodebar.placement_requested.connect(start_placement)
 	GameState.inventory_changed.connect(_on_inventory_changed)
 
 func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 	if current_mode == Util.PLACEMENTMODE.ORE_NODE:
-		if _pending_ore_data and resource_id == _pending_ore_data.id and new_count <= 0:
+		if _pending_data and resource_id == _pending_data.id and new_count <= 0:
 			_cancel_placement()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -34,6 +33,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			_cancel_placement()
 			current_mode = Util.PLACEMENTMODE.SELECTION
 		return
+	
+	# Quick selection
+	if Input.is_action_just_pressed("Quick Select"):
+		var building = _get_building_from_mouse()
+		if not building:
+			return
+		
+		if building is ProducingFacility:
+			start_placement(building.facility_data)
+		elif building is OreNode:
+			if GameState.has_node_in_inventory(building.data.id):
+				start_placement(building.data)
 	
 	match current_mode:
 		Util.PLACEMENTMODE.FACILITY:
@@ -68,9 +79,7 @@ func _handle_placement_input() -> void:
 
 func _handle_selection_input() -> void:
 	if Input.is_action_just_pressed("Confirm"):
-		var mouse := get_global_mouse_position()
-		var cell := GridManager.world_to_cell(mouse)
-		var building = GridManager.get_cell_occupant(cell)
+		var building = _get_building_from_mouse()
 		if building:
 			if not selected_buildings.has(building):
 				selected_buildings.append(building)
@@ -94,19 +103,15 @@ func _handle_selection_input() -> void:
 
 func start_placement(data: FacilityData) -> void:
 	_cancel_placement()
-	_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
-	_pending_facility_data = data
-	current_mode = Util.PLACEMENTMODE.FACILITY
-	_ghost = Sprite2D.new()
-	if data.texture:
-		_ghost.texture = data.texture
-	add_child(_ghost)
-
-func start_ore_placement(data: OreNodeData) -> void:
-	_cancel_placement()
-	_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
-	_pending_ore_data = data
-	current_mode = Util.PLACEMENTMODE.ORE_NODE
+	
+	_pending_data = data
+	if data is ProducingFacilityData:
+		_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
+		current_mode = Util.PLACEMENTMODE.FACILITY
+	elif data is OreNodeData:
+		_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
+		current_mode = Util.PLACEMENTMODE.ORE_NODE
+	
 	_ghost = Sprite2D.new()
 	if data.texture:
 		_ghost.texture = data.texture
@@ -122,9 +127,11 @@ func _try_place() -> void:
 
 # Facilities can be placed without exiting
 func _place_facility(cell: Vector2i) -> void:
+	var data := _pending_data as ProducingFacilityData
 	var building: ProducingFacility = _facility_scene.instantiate()
-	building.facility_data = _pending_facility_data
+	building.facility_data = data
 	building.rotation = _ghost.rotation
+
 	get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):
 		building.queue_free()
@@ -133,13 +140,21 @@ func _place_facility(cell: Vector2i) -> void:
 func _place_ore_node(cell: Vector2i) -> void:
 	if not GridManager.is_cell_empty(cell):
 		return
+	
+	var data := _pending_data as OreNodeData
 	var node: OreNode = _ore_node_scene.instantiate()
-	node.data = _pending_ore_data
+	node.data = _pending_data
 	node.rotation = _ghost.rotation
+	
 	get_tree().current_scene.add_child(node)
-	GameState.consume_node_from_inventory(_pending_ore_data.id)
+	GameState.consume_node_from_inventory(_pending_data.id)
 	if not GridManager.place(cell, node):
-		GameState.add_node_to_inventory(_pending_ore_data.id) # Give back if placement failed
+		GameState.add_node_to_inventory(_pending_data.id) # Give back if placement failed
+
+func _get_building_from_mouse() -> Node:
+	var mouse := get_global_mouse_position()
+	var cell := GridManager.world_to_cell(mouse)
+	return GridManager.get_cell_occupant(cell)
 
 func _rotate_building() -> void:
 	if _ghost:
@@ -156,8 +171,9 @@ func _cancel_placement() -> void:
 	if _ghost:
 		_ghost.queue_free()
 		_ghost = null
+	if current_mode == Util.PLACEMENTMODE.SELECTION:
+		_exit_select_mode()
 	_facility_scene = null
-	_pending_facility_data = null
+	_pending_data = null
 	_ore_node_scene = null
-	_pending_ore_data = null
 	current_mode = Util.PLACEMENTMODE.NONE

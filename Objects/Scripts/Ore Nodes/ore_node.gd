@@ -10,4 +10,10 @@ func _ready() -> void:
 	$Sprite2D.texture = data.texture
 
 func extract_item() -> Item:
-	return data.item
+	if data:
+		return data.item
+	else:
+		return null
+
+func _on_tree_exiting() -> void:
+	GameState.add_node_to_inventory(data.id)

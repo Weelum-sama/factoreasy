@@ -9,7 +9,7 @@
 ## implement:
 - ~~rotate during placement~~
 - ~~select mode + stash~~
-- stash returns ore nodes to inventory
+- ~~stash returns ore nodes to inventory~~
 - quick select middle mouse button
 - shop window
 - state machine facilities

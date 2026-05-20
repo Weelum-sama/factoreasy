@@ -96,6 +96,11 @@ func _handle_selection_input() -> void:
 				selected_buildings.erase(building)
 				building.modulate = Color(1.0, 1.0, 1.0)
 	
+	# Select all buildings and store them in array
+	if Input.is_action_just_pressed("Select All"):
+		selected_buildings.clear()
+		selected_buildings = GridManager.get_all_cell_occupants()
+	
 	# If one or more buildings are selected, shade them differently
 	if not selected_buildings.is_empty():
 		for building in selected_buildings:

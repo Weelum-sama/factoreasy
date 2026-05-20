@@ -28,8 +28,16 @@ func snap_to_grid(world_pos: Vector2) -> Vector2:
 func is_cell_empty(cell: Vector2i) -> bool:
 	return not _grid.has(cell)
 
+### Retrieving cell occupants
+
 func get_cell_occupant(cell: Vector2i) -> Node:
 	return _grid.get(cell, null)
+
+func get_all_cell_occupants() -> Array[Node]:
+	var array : Array[Node] = []
+	for occupant in _grid.values():
+		array.append(occupant)
+	return _grid.values()
 
 ### Placement and removal
 

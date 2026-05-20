@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dsk3vvyg4h47c"]
+
+[ext_resource type="Script" uid="uid://bokhac3akadcg" path="res://Objects/Scripts/UI/mode_display.gd" id="1_5fh0p"]
+
+[node name="ModeDisplay" type="Control" unique_id=1020221613]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_5fh0p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=642030418]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

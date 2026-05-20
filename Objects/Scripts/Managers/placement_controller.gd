@@ -26,18 +26,19 @@ func _ready() -> void:
 
 func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 	# Stop placement once final node is used up
-	if current_mode == Util.PLACEMENTMODE.ORE_NODE:
+	if Util.get_current_placement_mode() == Util.PLACEMENTMODE.ORE_NODE:
 		if _pending_data and resource_id == _pending_data.id and new_count <= 0:
 			_cancel_placement()
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Check whether select mode is toggled
 	if Input.is_action_pressed("Toggle Select"):
-		if current_mode == Util.PLACEMENTMODE.SELECTION:
+		if Util.get_current_placement_mode() == Util.PLACEMENTMODE.SELECTION:
 			_exit_select_mode()
 		else:
 			_cancel_placement()
-			current_mode = Util.PLACEMENTMODE.SELECTION
+			
+			Util.set_current_placement_mode(Util.PLACEMENTMODE.SELECTION)
 		return
 	
 	# Quick selection
@@ -53,7 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				start_placement(building.data)
 	
 	# Handling input based on current placement mode
-	match current_mode:
+	match Util.get_current_placement_mode():
 		Util.PLACEMENTMODE.FACILITY:
 			_handle_placement_input()
 		Util.PLACEMENTMODE.ORE_NODE:
@@ -122,10 +123,10 @@ func start_placement(data: FacilityData) -> void:
 	_pending_data = data
 	if data is ProducingFacilityData:
 		_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
-		current_mode = Util.PLACEMENTMODE.FACILITY
+		Util.set_current_placement_mode(Util.PLACEMENTMODE.FACILITY)
 	elif data is OreNodeData:
 		_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
-		current_mode = Util.PLACEMENTMODE.ORE_NODE
+		Util.set_current_placement_mode(Util.PLACEMENTMODE.ORE_NODE)
 	
 	# Instantiate ghost for placement preview
 	_ghost = Sprite2D.new()
@@ -136,7 +137,7 @@ func start_placement(data: FacilityData) -> void:
 # Attempt to place the building
 func _try_place() -> void:
 	var cell := GridManager.world_to_cell(get_global_mouse_position())
-	match current_mode:
+	match Util.get_current_placement_mode():
 		Util.PLACEMENTMODE.FACILITY:
 			_place_facility(cell)
 		Util.PLACEMENTMODE.ORE_NODE:
@@ -186,7 +187,7 @@ func _rotate_building() -> void:
 
 # Getting out of select mode requires logic
 func _exit_select_mode() -> void:
-	current_mode = Util.PLACEMENTMODE.NONE
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.NONE)
 	if not selected_buildings.is_empty():
 		for building in selected_buildings:
 			building.modulate = Color(1.0, 1.0, 1.0)
@@ -197,9 +198,9 @@ func _cancel_placement() -> void:
 	if _ghost:
 		_ghost.queue_free()
 		_ghost = null
-	if current_mode == Util.PLACEMENTMODE.SELECTION:
+	if Util.get_current_placement_mode() == Util.PLACEMENTMODE.SELECTION:
 		_exit_select_mode()
 	_facility_scene = null
 	_pending_data = null
 	_ore_node_scene = null
-	current_mode = Util.PLACEMENTMODE.NONE
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.NONE)

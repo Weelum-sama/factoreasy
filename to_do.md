@@ -18,7 +18,7 @@
 ## make placeholder sprites:
 - ~~extractor texture~~
 - ~~iron ore node texture~~
-- sink texture
+- ~~sink texture~~
 
 ### nice to have
 - drag controls for camera

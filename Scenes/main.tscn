@@ -41,9 +41,6 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ModeDisplay" parent="CanvasLayer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_right = 1152.0
 offset_bottom = 648.0
 

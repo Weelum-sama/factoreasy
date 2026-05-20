@@ -20,20 +20,29 @@ func _refresh() -> void:
 func _add_entry(data: OreNodeData) -> void:
 	var row := HBoxContainer.new()
 	var icon := TextureRect.new()
+	
 	if data.texture:
 		icon.texture = data.texture
-		icon.custom_minimum_size = Vector2(32, 32)
+	icon.custom_minimum_size = Vector2(32, 32)
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	
 	var label := Label.new()
 	label.text = "%s\n%d coins" % [data.display_name, data.cost]
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	
 	var button := Button.new()
 	button.text = "buy"
 	button.focus_mode = Control.FOCUS_NONE
+	button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	button.pressed.connect(func():
 		if GameState.get_total_coins() >= data.cost:
 			GameState.add_coins(-data.cost)
 			GameState.add_node_to_inventory(data.id)
 			)
+	
 	row.add_child(icon)
 	row.add_child(label)
 	row.add_child(button)
@@ -45,6 +54,7 @@ func _on_coins_changed(new_amount: float) -> void:
 func _on_node_unlocked(_id: String) -> void:
 	_refresh()
 
+### TESTING PURPOSES
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Test"):
 		GameState.add_coins(100)

@@ -37,7 +37,7 @@ func get_all_cell_occupants() -> Array[Node]:
 	var array : Array[Node] = []
 	for occupant in _grid.values():
 		array.append(occupant)
-	return _grid.values()
+	return array
 
 ### Placement and removal
 

@@ -4,8 +4,9 @@
 - ~~buttons still place building when clicking on another building~~
 - ~~button sizes~~
 - ~~strategy pattern for placing buildings?~~
-- tab not working as input button
-- strange icon stretch on shop items
+- ~~tab not working as input button~~
+- ~~strange icon stretch on shop items~~
+- ui container misalignment
 
 ## implement:
 - ~~rotate during placement~~
@@ -13,6 +14,8 @@
 - ~~stash returns ore nodes to inventory~~
 - ~~quick select middle mouse button~~
 - ~~shop window~~
+- press and hold select
+- move selection
 - state machine facilities
 
 ## make placeholder sprites:

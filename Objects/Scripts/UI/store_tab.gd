@@ -27,7 +27,7 @@ func _add_entry(data: OreNodeData) -> void:
 	label.text = "%s\n%d coins" % [data.display_name, data.cost]
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var button := Button.new()
-	button.text = "Buy"
+	button.text = "buy"
 	button.focus_mode = Control.FOCUS_NONE
 	button.pressed.connect(func():
 		if GameState.get_total_coins() >= data.cost:

@@ -3,10 +3,8 @@
 [ext_resource type="Script" uid="uid://fuc25pmbysvj" path="res://Objects/Scripts/UI/ore_node_bar_ui.gd" id="1_wq3i2"]
 
 [node name="OreNodeBarUI" type="Control" unique_id=754573461]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("1_wq3i2")
 

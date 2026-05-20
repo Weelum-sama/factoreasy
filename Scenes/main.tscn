@@ -28,12 +28,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="SidebarUI" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1853947216 instance=ExtResource("1_21xkr")]
-layout_mode = 2
-
-[node name="OreNodeBarUI" parent="CanvasLayer/MarginContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
+[node name="OreNodeBarUI" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="SidebarUI" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1853947216 instance=ExtResource("1_21xkr")]
+layout_mode = 2
 
 [node name="ToolBarUI" parent="CanvasLayer/MarginContainer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
 layout_mode = 2

@@ -6,8 +6,9 @@
 
 [node name="SidebarUI" type="VBoxContainer" unique_id=1853947216]
 custom_minimum_size = Vector2(220, 0)
-offset_right = 220.0
-offset_bottom = 58.0
+anchors_preset = -1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CoinDisplay" type="Label" parent="." unique_id=1494898452]
 layout_mode = 2
@@ -15,21 +16,26 @@ script = ExtResource("2_tmd3e")
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=410335498]
 layout_mode = 2
+size_flags_vertical = 3
 current_tab = 0
 
-[node name="StoreTab" type="ScrollContainer" parent="TabContainer" unique_id=1571925321]
+[node name="store" type="ScrollContainer" parent="TabContainer" unique_id=1571925321]
 layout_mode = 2
+accessibility_name = "store"
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/StoreTab" unique_id=2125756668]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/store" unique_id=2125756668]
 layout_mode = 2
+size_flags_vertical = 3
 script = ExtResource("3_4v2ih")
 
-[node name="ResearchTab" type="ScrollContainer" parent="TabContainer" unique_id=1406536427]
+[node name="research" type="ScrollContainer" parent="TabContainer" unique_id=1406536427]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/ResearchTab" unique_id=999676654]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/research" unique_id=999676654]
 layout_mode = 2
+size_flags_vertical = 3
+accessibility_name = "research"
 script = ExtResource("3_tmd3e")

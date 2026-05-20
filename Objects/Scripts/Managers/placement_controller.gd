@@ -5,13 +5,11 @@ var _ghost: Sprite2D = null
 
 # Placeable scenes
 var _facility_scene: PackedScene = null
+var _consuming_facility_scene: PackedScene = null
 var _ore_node_scene: PackedScene = null
 
 # Data for placeables
 var _pending_data: FacilityData = null
-
-# Placement mode currently active
-var current_mode: Util.PLACEMENTMODE = Util.PLACEMENTMODE.NONE
 
 # Array of buildings selected for selection mode
 var selected_buildings: Array[Node] = []
@@ -32,7 +30,7 @@ func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Check whether select mode is toggled
-	if Input.is_action_pressed("Toggle Select"):
+	if Input.is_action_just_pressed("Toggle Select"):
 		if Util.get_current_placement_mode() == Util.PLACEMENTMODE.SELECTION:
 			_exit_select_mode()
 		else:
@@ -47,7 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if not building:
 			return
 		
-		if building is ProducingFacility:
+		if building is ProducingFacility or building is ConsumingFacility:
 			start_placement(building.facility_data)
 		elif building is OreNode:
 			if GameState.has_node_in_inventory(building.data.id):
@@ -124,6 +122,9 @@ func start_placement(data: FacilityData) -> void:
 	if data is ProducingFacilityData:
 		_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
 		Util.set_current_placement_mode(Util.PLACEMENTMODE.FACILITY)
+	elif data is ConsumingFacilityData:
+		_consuming_facility_scene = load("res://Objects/Scenes/Consuming Facilities/consuming_facility.tscn")
+		Util.set_current_placement_mode(Util.PLACEMENTMODE.FACILITY)
 	elif data is OreNodeData:
 		_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
 		Util.set_current_placement_mode(Util.PLACEMENTMODE.ORE_NODE)
@@ -145,8 +146,17 @@ func _try_place() -> void:
 
 # Facilities can be placed without exiting placement mode
 func _place_facility(cell: Vector2i) -> void:
-	var data := _pending_data as ProducingFacilityData
-	var building: ProducingFacility = _facility_scene.instantiate()
+	var data := _pending_data
+	var building
+	
+	if data is ProducingFacilityData:
+		building = _facility_scene.instantiate()
+	elif data is ConsumingFacilityData:
+		building = _consuming_facility_scene.instantiate()
+	else:
+		push_error("Unknown facility data type: " + data.get_class())
+		return
+	
 	building.facility_data = data
 	building.rotation = _ghost.rotation
 	

@@ -1,0 +1,2 @@
+extends FacilityData
+class_name ConsumingFacilityData

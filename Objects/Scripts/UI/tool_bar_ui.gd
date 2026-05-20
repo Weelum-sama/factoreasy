@@ -24,7 +24,11 @@ func _load_facility_data(building_id: String) -> FacilityData:
 	var path := "res://Scripts/Resources/Facility Data/%s_data.tres" % building_id
 	if ResourceLoader.exists(path):
 		return load(path)
-	push_warning("No FacilityData found at: " + path)
+	else:
+		path = "res://Scripts/Resources/Consuming Facility Data/%s_data.tres" % building_id
+		if ResourceLoader.exists(path):
+			return load(path)
+	push_warning("No Data found at: " + path)
 	return null
 
 func _add_slot(data: FacilityData) -> void:

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ConsumingFacilityData" format=3 uid="uid://ji3m4tnfidcm"]
+
+[ext_resource type="Script" uid="uid://bcg45j731gvyk" path="res://Scripts/Resources/consuming_facility_data.gd" id="1_7dp0m"]
+[ext_resource type="Texture2D" uid="uid://bgxrsw51br3ux" path="res://Assets/Sprites/Buildings/sink.png" id="2_q54lo"]
+
+[resource]
+script = ExtResource("1_7dp0m")
+id = "sink"
+display_name = "sink"
+texture = ExtResource("2_q54lo")
+building_id = "sink"
+metadata/_custom_type_script = "uid://bcg45j731gvyk"

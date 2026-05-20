@@ -22,6 +22,12 @@ Util="*uid://u8k48fisygp3"
 GridManager="*uid://iw5r6i2hjw7e"
 GameState="*uid://dyba18qw62636"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")

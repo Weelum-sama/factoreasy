@@ -14,6 +14,11 @@ var _pending_data: FacilityData = null
 # Array of buildings selected for selection mode
 var selected_buildings: Array[Node] = []
 
+# Moving placed buildings
+var _hold_timer: float = 0.0
+const HOLD_DURATION: float = 0.3
+var _hold_candidate: Node = null
+
 func _ready() -> void:
 	# UI initialisation
 	var toolbar := get_tree().root.find_child("ToolBarUI", true, false)
@@ -50,6 +55,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif building is OreNode:
 			if GameState.has_node_in_inventory(building.data.id):
 				start_placement(building.data)
+	
+	# Checking for input for moving buildings
+	if Input.is_action_pressed("Confirm") and Util.get_current_placement_mode() == Util.PLACEMENTMODE.NONE:
+		var occupant = _get_building_from_mouse()
+		if occupant != null:
+			_hold_candidate = occupant
+			#_hold_timer = 0.0
+	else:
+		_hold_candidate = null
+		_hold_timer = 0.0
 	
 	# Handling input based on current placement mode
 	match Util.get_current_placement_mode():
@@ -154,6 +169,7 @@ func _place_facility(cell: Vector2i) -> void:
 	var data := _pending_data
 	var building
 	
+	# Check what type of building is being placed
 	if data is ProducingFacilityData:
 		building = _facility_scene.instantiate()
 	elif data is ConsumingFacilityData:
@@ -219,3 +235,40 @@ func _cancel_placement() -> void:
 	_pending_data = null
 	_ore_node_scene = null
 	Util.set_current_placement_mode(Util.PLACEMENTMODE.NONE)
+
+
+
+func _process(delta: float) -> void:
+	if Util._current_placement_mode == Util.PLACEMENTMODE.NONE:
+		if _hold_candidate != null:
+			_hold_timer += delta
+			if _hold_timer >= HOLD_DURATION:
+				_pick_up_building(_hold_candidate)
+				_hold_candidate = null
+				_hold_timer = 0.0
+		return
+
+
+func _pick_up_building(building: Node) -> void:
+	var cell := GridManager.world_to_cell((building as Node2D).global_position)
+	GridManager.remove(cell)
+	
+	if building is ProducingFacility:
+		_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
+		_pending_data = building.facility_data
+		Util.set_current_placement_mode(Util.PLACEMENTMODE.FACILITY)
+	elif building is ConsumingFacility:
+		_consuming_facility_scene = load("res://Objects/Scenes/Consuming Facilities/consuming_facility.tscn")
+		_pending_data = building.facility_data
+		Util.set_current_placement_mode(Util.PLACEMENTMODE.FACILITY)
+	elif building is OreNode:
+		_ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
+		_pending_data = building.data
+		Util.set_current_placement_mode(Util.PLACEMENTMODE.ORE_NODE)
+	
+	building.queue_free()
+	_ghost = Sprite2D.new()
+	if _pending_data and _pending_data.texture:
+		_ghost.texture = _pending_data.texture
+	add_child(_ghost)
+	

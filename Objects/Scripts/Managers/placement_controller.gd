@@ -85,6 +85,9 @@ func _handle_placement_input() -> void:
 	# If there's no ghost, jump out
 	if _ghost == null:
 		return
+	# Turn ghost visible once cursor position is known
+	if not _ghost.visible:
+		_ghost.visible = true
 	
 	# Retrieve mouse position and draw the ghost accordingly
 	var mouse := get_global_mouse_position()
@@ -160,6 +163,7 @@ func start_placement(data: FacilityData) -> void:
 	
 	# Instantiate ghost for placement preview
 	_ghost = Sprite2D.new()
+	_ghost.visible = false # Make invisible by default, will become visible once position is set
 	if data.texture:
 		_ghost.texture = data.texture
 	add_child(_ghost)
@@ -280,7 +284,8 @@ func _pick_up_building(building: Node) -> void:
 	
 	# Remove original building and spawn ghost for preview
 	building.queue_free()
-	_ghost = Sprite2D.new()
+	_ghost = Sprite2D.new() # Make invisible by default, will become visible once position is set
+	_ghost.visible = false
 	if _pending_data and _pending_data.texture:
 		_ghost.texture = _pending_data.texture
 	add_child(_ghost)

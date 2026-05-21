@@ -22,6 +22,8 @@ var _hold_candidate: Node = null
 # Moving selected buildings
 var _group_move_offsets: Array[Vector2i] = []
 var _group_move_origins: Array[Vector2i] = []
+var _group_origin_rotations: Array[float] = []
+var _group_rotation: int = 0
 
 func _ready() -> void:
 	# UI initialisation
@@ -69,6 +71,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		_hold_candidate = null
 		_hold_timer = 0.0
+	
+	if Util.PLACEMENTMODE.GROUP_MOVE:
+		if Input.is_action_just_pressed("Rotate Building"):
+			_rotate_group()
 	
 	# Handling input based on current placement mode
 	match Util.get_current_placement_mode():
@@ -283,9 +289,10 @@ func _pick_up_building(building: Node) -> void:
 		Util.set_current_placement_mode(Util.PLACEMENTMODE.ORE_NODE)
 	
 	# Remove original building and spawn ghost for preview
-	building.queue_free()
 	_ghost = Sprite2D.new() # Make invisible by default, will become visible once position is set
 	_ghost.visible = false
+	_ghost.rotation = building.rotation
+	building.queue_free()
 	if _pending_data and _pending_data.texture:
 		_ghost.texture = _pending_data.texture
 	add_child(_ghost)
@@ -300,6 +307,7 @@ func _start_group_move() -> void:
 		var building_cell := GridManager.world_to_cell((building as Node2D).global_position)
 		_group_move_offsets.append(building_cell - cursor_cell)
 		_group_move_origins.append(building_cell)
+		_group_origin_rotations.append(building.rotation)
 		GridManager.remove(building_cell)
 		(building as CanvasItem).modulate = Color.SKY_BLUE
 	
@@ -315,13 +323,14 @@ func _handle_group_move_input() -> void:
 		
 		# Mark red if target cell is blocked by occupied cell
 		var blocked := not GridManager.is_cell_empty(target_cell)
-		(building as CanvasItem).modulate = Color(1, 0.3, 0.3, 0.5) if blocked else Color(1, 1, 1, 0.5)
+		building.modulate = Color(1, 0.3, 0.3, 0.5) if blocked else Color(1, 1, 1, 0.5)
 		
 	# Check for input
 	if Input.is_action_just_released("Confirm"):
 		_try_place_group()
 	elif Input.is_action_just_pressed("Cancel"):
 		_cancel_group_move()
+
 
 # Attempts to place the selected buildings that are being moved
 func _try_place_group() -> void:
@@ -351,9 +360,23 @@ func _cancel_group_move() -> void:
 	for i in selected_buildings.size():
 		var building := selected_buildings[i]
 		GridManager.place(_group_move_origins[i], building)
+		building.rotation = _group_origin_rotations[i]
 		building.modulate = Color.WHITE
 	
 	# Back to selection mode
 	Util.set_current_placement_mode(Util.PLACEMENTMODE.SELECTION)
 	_group_move_offsets.clear()
 	_group_move_origins.clear()
+	_group_origin_rotations.clear()
+
+func _rotate_offset_90(offset: Vector2i) -> Vector2i:
+	return Vector2i(-offset.y, offset.x)
+
+func _rotate_group() -> void:
+	_group_rotation = (_group_rotation + 1) % 4
+	for i in _group_move_offsets.size():
+		_group_move_offsets[i] = _rotate_offset_90(_group_move_offsets[i])
+	
+	# Rotate buildings to match sprites
+	for building in selected_buildings:
+		building.rotation += PI /2.0

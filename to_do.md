@@ -14,8 +14,9 @@
 - ~~stash returns ore nodes to inventory~~
 - ~~quick select middle mouse button~~
 - ~~shop window~~
-- press and hold select
+- ~~press and hold move building~~
 - move selection
+- control legend ui
 - state machine facilities
 
 ## make placeholder sprites:

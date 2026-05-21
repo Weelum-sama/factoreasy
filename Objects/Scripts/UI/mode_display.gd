@@ -17,4 +17,6 @@ func _get_string_for_placement_mode(mode: Util.PLACEMENTMODE) -> String:
 			return "placement mode"
 		Util.PLACEMENTMODE.SELECTION:
 			return "selection mode"
+		Util.PLACEMENTMODE.GROUP_MOVE:
+			return "group move mode"
 	return "regular mode"

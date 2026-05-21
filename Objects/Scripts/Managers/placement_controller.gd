@@ -14,10 +14,14 @@ var _pending_data: FacilityData = null
 # Array of buildings selected for selection mode
 var selected_buildings: Array[Node] = []
 
-# Moving placed buildings
+# Moving placed building
 var _hold_timer: float = 0.0
 const HOLD_DURATION: float = 0.3
 var _hold_candidate: Node = null
+
+# Moving selected buildings
+var _group_move_offsets: Array[Vector2i] = []
+var _group_move_origins: Array[Vector2i] = []
 
 func _ready() -> void:
 	# UI initialisation
@@ -74,6 +78,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			_handle_placement_input()
 		Util.PLACEMENTMODE.SELECTION:
 			_handle_selection_input()
+		Util.PLACEMENTMODE.GROUP_MOVE:
+			_handle_group_move_input()
 
 func _handle_placement_input() -> void:
 	# If there's no ghost, jump out
@@ -120,6 +126,9 @@ func _handle_selection_input() -> void:
 	if not selected_buildings.is_empty():
 		for building in selected_buildings:
 			building.modulate = Color.SKY_BLUE
+		
+		if Input.is_action_just_pressed("Move Selection"):
+			_start_group_move()
 		
 		# Stash selected buildings if desired
 		if Input.is_action_just_pressed("Stash"):
@@ -236,6 +245,7 @@ func _cancel_placement() -> void:
 	_ore_node_scene = null
 	Util.set_current_placement_mode(Util.PLACEMENTMODE.NONE)
 
+### Moving placed buildings
 
 
 func _process(delta: float) -> void:
@@ -248,11 +258,13 @@ func _process(delta: float) -> void:
 				_hold_timer = 0.0
 		return
 
-
+# Pick up one building that's already placed in order to move it
 func _pick_up_building(building: Node) -> void:
+	# Retrieve building's cell and remove it from the grid
 	var cell := GridManager.world_to_cell((building as Node2D).global_position)
 	GridManager.remove(cell)
 	
+	# Load the scene of type of building picked up and enter placement mode accordingly
 	if building is ProducingFacility:
 		_facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
 		_pending_data = building.facility_data
@@ -266,9 +278,77 @@ func _pick_up_building(building: Node) -> void:
 		_pending_data = building.data
 		Util.set_current_placement_mode(Util.PLACEMENTMODE.ORE_NODE)
 	
+	# Remove original building and spawn ghost for preview
 	building.queue_free()
 	_ghost = Sprite2D.new()
 	if _pending_data and _pending_data.texture:
 		_ghost.texture = _pending_data.texture
 	add_child(_ghost)
+
+# Initiate the movement of selected buildings
+func _start_group_move() -> void:
+	var cursor_cell : = GridManager.world_to_cell(get_global_mouse_position())
+	_group_move_offsets.clear()
+	_group_move_origins.clear()
 	
+	for building in selected_buildings:
+		var building_cell := GridManager.world_to_cell((building as Node2D).global_position)
+		_group_move_offsets.append(building_cell - cursor_cell)
+		_group_move_origins.append(building_cell)
+		GridManager.remove(building_cell)
+		(building as CanvasItem).modulate = Color.SKY_BLUE
+	
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.GROUP_MOVE) 
+
+# Handles the input for group movement mode
+func _handle_group_move_input() -> void:
+	var cursor_cell := GridManager.world_to_cell(get_global_mouse_position())
+	for i in selected_buildings.size():
+		var target_cell := cursor_cell + _group_move_offsets[i]
+		var building := selected_buildings[i] as Node2D
+		building.position = GridManager.cell_center(target_cell)
+		
+		# Mark red if target cell is blocked by occupied cell
+		var blocked := not GridManager.is_cell_empty(target_cell)
+		(building as CanvasItem).modulate = Color(1, 0.3, 0.3, 0.5) if blocked else Color(1, 1, 1, 0.5)
+		
+	# Check for input
+	if Input.is_action_just_released("Confirm"):
+		_try_place_group()
+	elif Input.is_action_just_pressed("Cancel"):
+		_cancel_group_move()
+
+# Attempts to place the selected buildings that are being moved
+func _try_place_group() -> void:
+	var cursor_cell := GridManager.world_to_cell(get_global_mouse_position())
+	# Are all target cells empty?
+	for i in selected_buildings.size():
+		var target_cell := cursor_cell + _group_move_offsets[i]
+		if not GridManager.is_cell_empty(target_cell):
+			# Cell is already occupied
+			return
+	
+	# Every cell is free, place the selected buildings
+	for i in selected_buildings.size():
+		var target_cell := cursor_cell + _group_move_offsets[i]
+		var building := selected_buildings[i]
+		GridManager.place(target_cell, building)
+		(building as CanvasItem).modulate = Color.WHITE
+	
+	# Back to selection mode
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.SELECTION)
+	_group_move_offsets.clear()
+	_group_move_origins.clear()
+
+# Cancels any group movement in progress
+func _cancel_group_move() -> void:
+	# Retrieve original cell positions of the buildings and place them
+	for i in selected_buildings.size():
+		var building := selected_buildings[i]
+		GridManager.place(_group_move_origins[i], building)
+		building.modulate = Color.WHITE
+	
+	# Back to selection mode
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.SELECTION)
+	_group_move_offsets.clear()
+	_group_move_origins.clear()

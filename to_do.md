@@ -6,7 +6,7 @@
 - ~~strategy pattern for placing buildings?~~
 - ~~tab not working as input button~~
 - ~~strange icon stretch on shop items~~
-- selected buildings rotate on their own access, shouldn't rotate unless moving
+- ~~selected buildings rotate on their own access, shouldn't rotate unless moving~~
 - ui container misalignment
 
 ## implement:

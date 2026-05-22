@@ -72,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_hold_candidate = null
 		_hold_timer = 0.0
 	
-	if Util.PLACEMENTMODE.GROUP_MOVE:
+	if Util._current_placement_mode == Util.PLACEMENTMODE.GROUP_MOVE:
 		if Input.is_action_just_pressed("Rotate Building"):
 			_rotate_group()
 	

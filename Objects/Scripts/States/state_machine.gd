@@ -1,4 +1,5 @@
 extends Node
+class_name StateMachine
 
 @export var initial_state: State
 
@@ -27,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if current_state:
 		current_state._unhandled_input(event)
 
-func on_child_transition(state, new_state_name):
+func on_child_transition(state, new_state_name) -> void:
 	if state != current_state:
 		return
 	

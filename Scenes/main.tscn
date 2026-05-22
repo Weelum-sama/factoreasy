@@ -7,11 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c7a52a0f5nu5x" path="res://Objects/Scenes/UI/ore_node_bar_ui.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dmsbd71at8nc7" path="res://Objects/Scenes/Managers/placement_controller.tscn" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://dsk3vvyg4h47c" path="res://Objects/Scenes/UI/mode_display.tscn" id="4_6bp64"]
-[ext_resource type="Script" uid="uid://ckknrujs6u4je" path="res://Objects/Scripts/States/state_machine.gd" id="8_6iyac"]
-[ext_resource type="Script" uid="uid://b56uolshyq6ft" path="res://Objects/Scripts/States/Placement/default_state.gd" id="9_fdnlq"]
-[ext_resource type="Script" uid="uid://d33dsqtjwcs2f" path="res://Objects/Scripts/States/Placement/facility_placement_state.gd" id="10_jkdf5"]
-[ext_resource type="Script" uid="uid://bu5befts6ax2t" path="res://Objects/Scripts/States/Placement/selection_state.gd" id="11_wsu2k"]
-[ext_resource type="Script" uid="uid://blbti7lowpyre" path="res://Objects/Scripts/States/Placement/group_movement_state.gd" id="12_k12tt"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
 
@@ -60,20 +55,3 @@ script = ExtResource("2_jjvhh")
 script = ExtResource("1_jjgbg")
 
 [node name="PlacementController" parent="." unique_id=1330468871 instance=ExtResource("3_jjvhh")]
-script = ExtResource("8_6iyac")
-
-[node name="Default" type="Node" parent="PlacementController" unique_id=77847099]
-script = ExtResource("9_fdnlq")
-metadata/_custom_type_script = "uid://b56uolshyq6ft"
-
-[node name="FacilityPlacement" type="Node" parent="PlacementController" unique_id=259550036]
-script = ExtResource("10_jkdf5")
-metadata/_custom_type_script = "uid://d33dsqtjwcs2f"
-
-[node name="Selection" type="Node" parent="PlacementController" unique_id=858231280]
-script = ExtResource("11_wsu2k")
-metadata/_custom_type_script = "uid://bu5befts6ax2t"
-
-[node name="GroupMovement" type="Node" parent="PlacementController" unique_id=1690439434]
-script = ExtResource("12_k12tt")
-metadata/_custom_type_script = "uid://blbti7lowpyre"

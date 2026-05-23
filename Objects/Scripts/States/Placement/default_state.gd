@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _pick_up_building(building: Node) -> void:
 	var cell := GridManager.world_to_cell(building.global_position)
+	print("building rotation: ", (building as Node2D).rotation)
 	GridManager.remove(cell)
 	if building is ProducingFacility:
 		context.facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
@@ -49,8 +50,8 @@ func _pick_up_building(building: Node) -> void:
 		context.ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
 		context.pending_data = building.data
 	context.create_ghost(context.pending_data)
-	context.ghost.rotation = building.rotation
 	building.queue_free()
+	context.pending_rotation = building.rotation
 	transitioned.emit(self, FacilityPlacementState.NAME)
 
 func _quick_select(building: Node) -> void:
@@ -66,4 +67,5 @@ func _quick_select(building: Node) -> void:
 	else:
 		return
 	context.create_ghost(context.pending_data)
+	context.pending_rotation = building.rotation
 	transitioned.emit(self, FacilityPlacementState.NAME)

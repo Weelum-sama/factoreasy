@@ -5,6 +5,7 @@ const NAME = "facilityplacement"
 
 func enter() -> void:
 	context.create_ghost(context.pending_data)
+	context.pending_rotation = 0.0
 
 func exit() -> void:
 	context.destroy_ghost()

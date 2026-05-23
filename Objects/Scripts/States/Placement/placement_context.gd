@@ -4,6 +4,7 @@ class_name PlacementContext
 # Ghost
 var ghost: Sprite2D = null
 var ghost_parent: Node2D
+var pending_rotation: float = 0.0
 
 # Pending placement
 var pending_data: FacilityData = null
@@ -32,10 +33,13 @@ func get_building_from_mouse() -> Node:
 func create_ghost(data: FacilityData) -> void:
 	destroy_ghost()
 	ghost = Sprite2D.new()
+	ghost.rotation = pending_rotation
+	print("ghost rotation before add_child: ", ghost.rotation)
 	ghost.visible = false
 	if data.texture:
 		ghost.texture = data.texture
 	ghost_parent.add_child(ghost)
+	print("ghost rotation after add_child: ", ghost.rotation)
 
 func destroy_ghost() -> void:
 	if ghost:

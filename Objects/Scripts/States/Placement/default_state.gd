@@ -4,11 +4,7 @@ class_name DefaultState
 const NAME = "default"
 
 func enter() -> void:
-	if context:
-		context.pending_data = null
-		context.facility_scene = null
-		context.consuming_facility_scene = null
-		context.ore_node_scene = null
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.NONE)
 
 func update(_delta: float) -> void:
 	if context.hold_candidate != null:

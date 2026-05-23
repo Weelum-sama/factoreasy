@@ -3,6 +3,9 @@ class_name SelectionState
 
 const NAME = "selection"
 
+func enter() -> void:
+	Util.set_current_placement_mode(Util.PLACEMENTMODE.SELECTION)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Toggle Select") or Input.is_action_just_pressed("Cancel"):
 		context.clear_selection()

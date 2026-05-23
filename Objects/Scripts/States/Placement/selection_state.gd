@@ -33,7 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			transitioned.emit(self, GroupMovementState.NAME)
 		if Input.is_action_just_pressed("Stash"):
 			for building in context.selected_buildings:
-				GridManager.remove(GridManager.world_to_cell(building.global_position))
-				building.queue_free()
+				building.cleanup()
 			context.selected_buildings.clear()
 			transitioned.emit(self, DefaultState.NAME)

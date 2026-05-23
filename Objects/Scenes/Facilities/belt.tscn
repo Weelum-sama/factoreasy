@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://w5w6nq5x3qsv"]
 
 [ext_resource type="Texture2D" uid="uid://c4voqwemb4jdx" path="res://Assets/Sprites/conveyer.png" id="1_pu11v"]
+[ext_resource type="Script" uid="uid://bqnofdmi3i2ia" path="res://Objects/Scripts/Facilities/Belts/belt.gd" id="1_s663k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w24w4"]
 atlas = ExtResource("1_pu11v")
@@ -129,9 +130,10 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Conveyer" type="Node2D" unique_id=287387431]
+[node name="Belt" type="Node2D" unique_id=287387431]
+script = ExtResource("1_s663k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=509952617]
 sprite_frames = SubResource("SpriteFrames_sgb5w")
 autoplay = "default"
-frame_progress = 0.8337422
+frame_progress = 0.52263635

@@ -40,3 +40,7 @@ func peek_output() -> Item:
 		if output_buffer[item] > 0:
 			return item
 	return null
+
+func cleanup() -> void:
+	GridManager.remove(GridManager.world_to_cell(global_position))
+	queue_free()

@@ -19,6 +19,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		transitioned.emit(self, SelectionState.NAME)
 		return
 	
+	if Input.is_action_just_pressed("Toggle Belt"):
+		transitioned.emit(self, BeltPlacementState.NAME)
+		return
+	
 	if Input.is_action_just_pressed("Quick Select"):
 		var occupant := context.get_building_from_mouse()
 		if occupant:
@@ -39,12 +43,15 @@ func _pick_up_building(building: Node) -> void:
 	if building is OreNode:
 		context.pending_data = building.data
 		context.ore_node_scene = context.ORE_NODE_SCENE
+	elif building is Belt:
+		return
 	else:
 		var facility := building as BaseFacility
 		context.pending_data = GameState.facility_registry.get(facility.facility_id)
 		context.facility_scene = context.pending_data.scene
 	
 	context.create_ghost(context.pending_data)
+	
 	building.queue_free()
 	context.pending_rotation = building.rotation
 	transitioned.emit(self, FacilityPlacementState.NAME)
@@ -55,6 +62,8 @@ func _quick_select(building: Node) -> void:
 			return
 		context.pending_data = building.data
 		context.ore_node_scene = context.ORE_NODE_SCENE
+	elif building is Belt:
+		return
 	else:
 		var facility := building as BaseFacility
 		context.pending_data = GameState.facility_registry.get(facility.facility_id)

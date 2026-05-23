@@ -2,6 +2,10 @@ extends Node2D
 
 var context: PlacementContext
 
+const PRODUCING_FACILITY_SCENE = preload("res://Objects/Scenes/Facilities/producing_facility.tscn")
+const CONSUMING_FACILITY_SCENE = preload("res://Objects/Scenes/Consuming Facilities/consuming_facility.tscn")
+const ORE_NODE_SCENE = preload("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
+
 @onready var state_machine: StateMachine = $StateMachine
 
 func _ready() -> void:
@@ -20,15 +24,11 @@ func _ready() -> void:
 
 func start_placement(data: FacilityData) -> void:
 	context.pending_data = data
-	if data is ProducingFacilityData:
-		context.facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
-		state_machine.on_child_transition(state_machine.current_state, FacilityPlacementState.NAME)
-	elif data is ConsumingFacilityData:
-		context.consuming_facility_scene = load("res://Objects/Scenes/Consuming Facilities/consuming_facility.tscn")
-		state_machine.on_child_transition(state_machine.current_state, FacilityPlacementState.NAME)
-	elif data is OreNodeData:
-		context.ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
-		state_machine.on_child_transition(state_machine.current_state, FacilityPlacementState.NAME)
+	if data is OreNodeData:
+		context.ore_node_scene = ORE_NODE_SCENE
+	else:
+		context.facility_scene = data.scene
+	state_machine.on_child_transition(state_machine.current_state, FacilityPlacementState.NAME)
 
 func _on_inventory_changed(resource_id: String, new_count: int) -> void:
 	if context.pending_data and resource_id == context.pending_data.id and new_count <= 0:

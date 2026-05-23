@@ -10,6 +10,24 @@ var unlocked_buildings: Dictionary = {
 	"constructor":	false,
 }
 
+var facility_registry: Dictionary = {}
+
+func _ready() -> void:
+	_load_facility_registry()
+
+func _load_facility_registry() -> void:
+	var paths := [
+		"res://Scripts/Resources/Facility Data/extractor_data.tres",
+		"res://Scripts/Resources/Facility Data/sink_data.tres",
+	]
+	for path in paths:
+		if ResourceLoader.exists(path):
+			var data: FacilityData = load(path)
+			facility_registry[data.id] = data
+
+func register_facility(data: FacilityData) -> void:
+	facility_registry[data.id] = data
+
 signal building_unlocked(building_id: String)
 
 func unlock_building(building_id: String) -> void:
@@ -56,13 +74,13 @@ func has_node_in_inventory(node_id: String) -> bool:
 
 ## Coins
 
-var _total_coins: float = 30.0
+var _total_coins: int = 30.0
 
-signal coins_changed(new_amount: float)
+signal coins_changed(new_amount: int)
 
-func add_coins(amount: float) -> void:
+func add_coins(amount: int) -> void:
 	_total_coins += amount
 	coins_changed.emit(_total_coins)
 
-func get_total_coins() -> float:
+func get_total_coins() -> int:
 	return _total_coins

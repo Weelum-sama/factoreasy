@@ -42,16 +42,12 @@ func _try_place() -> void:
 		_place_facility(cell)
 
 func _place_facility(cell: Vector2i) -> void:
-	var building: Node
-	if context.pending_data is ProducingFacilityData:
-		building = context.facility_scene.instantiate()
-	elif context.pending_data is ConsumingFacilityData:
-		building = context.consuming_facility_scene.instantiate()
-	else:
-		push_error("Unknown facility data type")
+	if context.facility_scene == null:
+		push_error("No facility scene set")
 		return
 	
-	building.facility_data = context.pending_data
+	var building: BaseFacility = context.facility_scene.instantiate()
+	building.facility_id = context.pending_data.id
 	building.rotation = context.ghost.rotation
 	context.ghost_parent.get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):

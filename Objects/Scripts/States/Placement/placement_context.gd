@@ -34,12 +34,10 @@ func create_ghost(data: FacilityData) -> void:
 	destroy_ghost()
 	ghost = Sprite2D.new()
 	ghost.rotation = pending_rotation
-	print("ghost rotation before add_child: ", ghost.rotation)
 	ghost.visible = false
 	if data.texture:
 		ghost.texture = data.texture
 	ghost_parent.add_child(ghost)
-	print("ghost rotation after add_child: ", ghost.rotation)
 
 func destroy_ghost() -> void:
 	if ghost:

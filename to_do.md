@@ -17,8 +17,6 @@
 - ~~shop window~~
 - ~~press and hold move building~~
 - ~~move selection~~
-- control legend ui
-- state machine facilities
 
 ## make placeholder sprites:
 - ~~extractor texture~~
@@ -28,3 +26,4 @@
 ### nice to have
 - drag controls for camera
 - drag select multiple buildings
+- control legend ui

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FacilityData" format=3 uid="uid://ji3m4tnfidcm"]
+
+[ext_resource type="PackedScene" uid="uid://bos1r7mqlvcen" path="res://Objects/Scenes/Facilities/sink.tscn" id="1_q54lo"]
+[ext_resource type="Script" uid="uid://eig1n7gm2m4x" path="res://Scripts/Resources/facility_data.gd" id="2_q54lo"]
+[ext_resource type="Texture2D" uid="uid://bgxrsw51br3ux" path="res://Assets/Sprites/Buildings/sink.png" id="3_gnhob"]
+
+[resource]
+script = ExtResource("2_q54lo")
+id = "sink"
+display_name = "sink"
+texture = ExtResource("3_gnhob")
+scene = ExtResource("1_q54lo")
+building_id = "sink"
+metadata/_custom_type_script = "uid://bcg45j731gvyk"

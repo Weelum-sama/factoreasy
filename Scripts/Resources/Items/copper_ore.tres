@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_obb2d")
 name = "copper_ore"
-sell_value = 2.0
+sell_value = 5
 metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

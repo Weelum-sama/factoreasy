@@ -51,6 +51,8 @@ func _pick_up_building(building: Node) -> void:
 
 func _quick_select(building: Node) -> void:
 	if building is OreNode:
+		if not GameState.has_node_in_inventory(building.data.id):
+			return
 		context.pending_data = building.data
 		context.ore_node_scene = context.ORE_NODE_SCENE
 	else:

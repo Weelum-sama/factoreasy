@@ -9,12 +9,10 @@ func _try_exctract() -> void:
 	
 	var behind_cell := cell + _get_behind_offset()
 	var occupant := GridManager.get_cell_occupant(behind_cell)
-	print("behind cell: ", behind_cell, " occupant: ", occupant)
 	
 	if occupant is OreNode:
 		var item : Item = occupant.extract_item()
 		output_buffer[item] = output_buffer.get(item, 0) + 1
-		print("extracted: ", item.name, " buffer: ", output_buffer)
 
 func _get_facing_offset() -> Vector2i:
 	var angle := fmod(rotation - PI / 2 + TAU, TAU)

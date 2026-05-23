@@ -11,6 +11,9 @@ func _ready() -> void:
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_child_transition)
+			child.set_process_unhandled_input(false)
+			child.set_process(false)
+			child.set_physics_process(false)
 	
 	if initial_state:
 		initial_state.enter()
@@ -28,11 +31,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if current_state:
 		current_state._unhandled_input(event)
 
-func on_child_transition(state, new_state_name) -> void:
-	if state != current_state:
+func on_child_transition(from_state: State, new_state_name: String) -> void:
+	if from_state != current_state:
 		return
 	
-	var new_state = states.get(new_state_name.to_lower())
+	var new_state = states.get(new_state_name)
 	if !new_state:
 		return
 	

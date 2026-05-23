@@ -1,12 +1,12 @@
 extends PlacementState
 class_name SelectionState
 
-func exit() -> void:
-	context.clear_selection()
+const NAME = "selection"
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Toggle Select") or Input.is_action_just_pressed("Cancel"):
-		transitioned.emit(self, "defaultstate")
+		context.clear_selection()
+		transitioned.emit(self, DefaultState.NAME)
 		return
 	
 	if Input.is_action_just_released("Confirm"):
@@ -27,10 +27,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if not context.selected_buildings.is_empty():
 		if Input.is_action_just_pressed("Move Selection"):
-			transitioned.emit(self, "groupmovementstate")
+			transitioned.emit(self, GroupMovementState.NAME)
 		if Input.is_action_just_pressed("Stash"):
 			for building in context.selected_buildings:
 				GridManager.remove(GridManager.world_to_cell(building.global_position))
 				building.queue_free()
 			context.selected_buildings.clear()
-			transitioned.emit(self, "defaultstate")
+			transitioned.emit(self, DefaultState.NAME)

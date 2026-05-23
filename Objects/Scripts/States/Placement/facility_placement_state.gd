@@ -1,6 +1,8 @@
 extends PlacementState
 class_name FacilityPlacementState
 
+const NAME = "facilityplacement"
+
 func enter() -> void:
 	context.create_ghost(context.pending_data)
 
@@ -25,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_released("Confirm"):
 		_try_place()
 	elif Input.is_action_just_released("Cancel"):
-		transitioned.emit(self, "defaultstate")
+		transitioned.emit(self, DefaultState.NAME)
 	if Input.is_action_just_pressed("Rotate Building"):
 		if context.ghost:
 			context.ghost.rotate(PI / 2.0)

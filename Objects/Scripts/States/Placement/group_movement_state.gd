@@ -1,8 +1,11 @@
 extends PlacementState
 class_name GroupMovementState
 
+const NAME = "groupmovement"
+
 func enter() -> void:
 	var center_point := Vector2i.ZERO
+	var building_count = context.selected_buildings.size()
 	for building in context.selected_buildings:
 		center_point += GridManager.world_to_cell(building.global_position)
 	center_point /= context.selected_buildings.size()
@@ -47,13 +50,15 @@ func _try_place_group() -> void:
 	for i in context.selected_buildings.size():
 		GridManager.place(cursor_cell + context.group_move_offsets[i], context.selected_buildings[i])
 		context.selected_buildings[i].modulate = Color.WHITE
-	transitioned.emit(self, "selectionstate")
+	context.clear_selection()
+	transitioned.emit(self, SelectionState.NAME)
 
 func _cancel_group_move() -> void:
 	for i in context.selected_buildings.size():
 		GridManager.place(context.group_move_origins[i], context.selected_buildings[i])
 		context.selected_buildings[i].rotation = context.group_origin_rotations[i]
-		context.selected_buildings[i].modulate = Color.WHITE
+		context.selected_buildings[i].modulate = Color.SKY_BLUE
+	transitioned.emit(self, SelectionState.NAME)
 
 func _rotate_group() -> void:
 	for i in context.group_move_offsets.size():

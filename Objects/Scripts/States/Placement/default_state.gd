@@ -34,34 +34,30 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _pick_up_building(building: Node) -> void:
 	var cell := GridManager.world_to_cell(building.global_position)
-	print("building rotation: ", (building as Node2D).rotation)
 	GridManager.remove(cell)
-	if building is ProducingFacility:
-		context.facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
-		context.pending_data = building.facility_data
-	elif building is ConsumingFacility:
-		context.consuming_facility_scene = load("res://Objects/Scenes/Consuming Facilities/consuming_facility.tscn")
-		context.pending_data = building.facility_data
-	elif building is OreNode:
-		context.ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
+	
+	if building is OreNode:
 		context.pending_data = building.data
+		context.ore_node_scene = context.ORE_NODE_SCENE
+	else:
+		var facility := building as BaseFacility
+		context.pending_data = GameState.facility_registry.get(facility.facility_id)
+		context.facility_scene = context.pending_data.scene
+	
 	context.create_ghost(context.pending_data)
 	building.queue_free()
 	context.pending_rotation = building.rotation
 	transitioned.emit(self, FacilityPlacementState.NAME)
 
 func _quick_select(building: Node) -> void:
-	if building is ProducingFacility:
-		context.facility_scene = load("res://Objects/Scenes/Facilities/producing_facility.tscn")
-		context.pending_data = building.facility_data
-	elif building is ConsumingFacility:
-		context.consuming_facility_scene = load("res://Objects/Scenes/Consuming Facilities/consuming_facility.tscn")
-		context.pending_data = building.facility_data
-	elif building is OreNode:
-		context.ore_node_scene = load("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
+	if building is OreNode:
 		context.pending_data = building.data
+		context.ore_node_scene = context.ORE_NODE_SCENE
 	else:
-		return
+		var facility := building as BaseFacility
+		context.pending_data = GameState.facility_registry.get(facility.facility_id)
+		context.facility_scene = context.pending_data.scene
+	
 	context.create_ghost(context.pending_data)
 	context.pending_rotation = building.rotation
 	transitioned.emit(self, FacilityPlacementState.NAME)

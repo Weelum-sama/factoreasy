@@ -10,6 +10,7 @@ var pending_rotation: float = 0.0
 var pending_data: FacilityData = null
 var facility_scene: PackedScene = null
 var consuming_facility_scene: PackedScene = null
+const ORE_NODE_SCENE = preload("res://Objects/Scenes/Ore Nodes/ore_node.tscn")
 var ore_node_scene: PackedScene = null
 
 # Selection

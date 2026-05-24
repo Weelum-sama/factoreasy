@@ -21,8 +21,6 @@ func _tick() -> void:
 
 func _try_pull_from_facilities() -> void:
 	for cell in belts:
-		if not is_instance_valid(cell):
-			continue
 		var belt: Belt = belts[cell]
 		if not is_instance_valid(belt):
 			continue
@@ -40,8 +38,6 @@ func _try_pull_from_facilities() -> void:
 func _move_items() -> void:
 	var moves: Dictionary = {}
 	for cell in belts:
-		if not is_instance_valid(cell):
-			continue
 		var belt: Belt = belts[cell]
 		if belt.belt_item == null:
 			continue
@@ -55,8 +51,6 @@ func _move_items() -> void:
 
 func _try_push_to_facilities() -> void:
 	for cell in belts:
-		if not is_instance_valid(cell):
-			continue
 		var belt: Belt = belts[cell]
 		if belt.belt_item == null:
 			continue

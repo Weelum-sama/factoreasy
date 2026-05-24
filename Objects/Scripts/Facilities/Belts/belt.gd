@@ -12,7 +12,7 @@ func get_output_cell() -> Vector2i:
 	return GridManager.world_to_cell(global_position) + Util.get_facing_offset(rotation)
 
 func get_input_cell() -> Vector2i:
-	return GridManager.world_to_cell(global_position) - Util.get_behind_offset(rotation)
+	return GridManager.world_to_cell(global_position) - Util.get_facing_offset(rotation)
 
 func cleanup() -> void:
 	BeltManager.unregister_belt(GridManager.world_to_cell(global_position))

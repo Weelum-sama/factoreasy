@@ -1,12 +1,12 @@
 extends Node2D
 
 func _ready() -> void:
+	z_index = 1
 	BeltManager.belt_items_updated.connect(queue_redraw)
 
 func _draw() -> void:
+	print("BeltRenderer global_position: ", global_position)
 	for cell in BeltManager.belts:
-		if not is_instance_valid(cell):
-			continue
 		var belt: Belt = BeltManager.belts[cell]
 		if belt.belt_item == null or belt.belt_item.item == null:
 			continue

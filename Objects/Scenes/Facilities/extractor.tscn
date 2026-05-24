@@ -3,17 +3,9 @@
 [ext_resource type="Script" uid="uid://biwacohg4pb53" path="res://Objects/Scripts/Facilities/extractor.gd" id="1_38wwm"]
 [ext_resource type="Texture2D" uid="uid://j41c63uucykn" path="res://Assets/Sprites/Buildings/extractor.png" id="2_cywyw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_junt7"]
-size = Vector2(32, 32)
-
 [node name="Extractor" type="Node2D" unique_id=536789426]
 script = ExtResource("1_38wwm")
 facility_id = "extractor"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=874403451]
 texture = ExtResource("2_cywyw")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=835514954]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1371952692]
-shape = SubResource("RectangleShape2D_junt7")

@@ -14,6 +14,7 @@ func get_data() -> FacilityData:
 	return _data_cache
 
 func _ready() -> void:
+	z_index = 2
 	TickManager.tick_occurred.connect(tick)
 
 func tick() -> void:

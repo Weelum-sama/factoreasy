@@ -127,7 +127,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 15.0
+"speed": 34.0
 }]
 
 [node name="Belt" type="Node2D" unique_id=287387431]

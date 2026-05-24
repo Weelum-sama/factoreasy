@@ -1,8 +1,9 @@
 extends Node
 
-const TICK_RATE: float = 0.5
+const TICK_RATE: float = 1.0
 
 var _timer: float = 0.0
+
 var _pending_coins: int = 0
 
 signal tick_occurred
@@ -20,6 +21,9 @@ func _run_tick() -> void:
 		coins_accumulated.emit(_pending_coins)
 		GameState.add_coins(_pending_coins)
 		_pending_coins = 0
+
+func get_tick_progress() -> float:
+	return _timer / TICK_RATE
 
 func add_pending_coins(amount: int) -> void:
 	_pending_coins += amount

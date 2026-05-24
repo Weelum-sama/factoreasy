@@ -5,7 +5,7 @@ var context: PlacementContext
 @onready var state_machine: StateMachine = $StateMachine
 
 func _ready() -> void:
-	z_index = 2
+	z_index = 3
 	context = PlacementContext.new()
 	context.ghost_parent = self
 	

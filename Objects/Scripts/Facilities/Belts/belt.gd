@@ -2,6 +2,7 @@ extends Node2D
 class_name Belt
 
 var belt_item: BeltItem = null
+var is_delivering: bool = false
 @export var items_per_minute: float = 30.0
 
 func _ready() -> void:

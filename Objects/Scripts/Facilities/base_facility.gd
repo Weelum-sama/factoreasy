@@ -43,5 +43,6 @@ func peek_output() -> Item:
 	return null
 
 func cleanup() -> void:
+	BeltManager.cancel_deliveries_to(self)
 	GridManager.remove(GridManager.world_to_cell(global_position))
 	queue_free()

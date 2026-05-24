@@ -1,6 +1,7 @@
 extends Node2D
 
 var belts: Dictionary = {}
+var _pending_deliveries: Array = []
 
 signal belt_items_updated
 
@@ -67,11 +68,29 @@ func _try_push_to_facilities() -> void:
 			continue
 		if belt.belt_item.progress < 1.0:
 			continue
-		var target := GridManager.get_cell_occupant(belt.get_output_cell())
+		var output_cell := belt.get_output_cell()
+		var target := GridManager.get_cell_occupant(output_cell)
 		if target is BaseFacility:
-			target.receive_item(belt.belt_item.item)
+			_pending_deliveries.append({
+				"from_cell": cell,
+				"to_cell": output_cell,
+				"item": belt.belt_item.item,
+				"progress": 0.0,
+				"facility": target
+			})
 			belt.belt_item = null
 		continue
+
+func _get_belt_speed_for_cell(cell: Vector2i) -> float:
+	var belt: Belt = belts.get(cell)
+	if belt:
+		return belt.get_items_per_second()
+	return 1.0
+
+func cancel_deliveries_to(facility: BaseFacility) -> void:
+	_pending_deliveries = _pending_deliveries.filter(
+		func(d): return d.facility != facility
+	)
 
 func _process(delta: float) -> void:
 	for cell in belts:
@@ -82,6 +101,16 @@ func _process(delta: float) -> void:
 			belt.belt_item.progress + delta * belt.get_items_per_second(),
 			 1.0
 		)
+	
+	var completed := []
+	for delivery in _pending_deliveries:
+		delivery.progress = min(delivery.progress + delta * _get_belt_speed_for_cell(delivery.from_cell), 1.0)
+		if delivery.progress >= 1.0:
+			if is_instance_valid(delivery.facility):
+				delivery.facility.receive_item(delivery.item)
+			completed.append(delivery)
+	for delivery in completed:
+		_pending_deliveries.erase(delivery)
 	
 	_move_items()
 	_try_push_to_facilities()

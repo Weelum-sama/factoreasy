@@ -8,6 +8,9 @@
 - ~~strange icon stretch on shop items~~
 - ~~selected buildings rotate on their own axis, shouldn't rotate unless moving~~
 - ui container misalignment
+- belts must be rotateable when placing single belt
+- belts must synchronise to animation when placed (the animation only starts when all other animations start)
+- buildings and belts must be movable and still function
 
 ## implement:
 - ~~rotate during placement~~
@@ -17,6 +20,11 @@
 - ~~shop window~~
 - ~~press and hold move building~~
 - ~~move selection~~
+- drag and hold select
+- clogged belts stop animating
+- increasing prices of nodes based on number bought
+- research and new facilities
+- ore node visual indicator for amount in inventory
 
 ## make placeholder sprites:
 - ~~extractor texture~~

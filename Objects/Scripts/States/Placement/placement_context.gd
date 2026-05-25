@@ -15,6 +15,8 @@ var ore_node_scene: PackedScene = null
 
 # Selection
 var selected_buildings: Array[Node] = []
+var selection_box_start: Vector2 = Vector2.ZERO
+var selection_box_active: bool = false
 
 # Group move
 var group_move_offsets: Array[Vector2i] = []

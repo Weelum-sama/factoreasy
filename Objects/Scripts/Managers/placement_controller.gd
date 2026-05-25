@@ -19,6 +19,14 @@ func _ready() -> void:
 	nodebar.placement_requested.connect(start_placement)
 	GameState.inventory_changed.connect(_on_inventory_changed)
 
+func _draw() -> void:
+	if not context.selection_box_active:
+		return
+	var mouse := get_global_mouse_position()
+	var rect := Rect2(context.selection_box_start, Vector2.ZERO).expand(mouse)
+	draw_rect(rect, Color(0.5, 0.8, 1.0, 0.15), true) # Fill
+	draw_rect(rect, Color(0.5, 0.8, 1.0, 0.8), false) # Border
+
 func start_placement(data: FacilityData) -> void:
 	context.pending_data = data
 	if data is OreNodeData:

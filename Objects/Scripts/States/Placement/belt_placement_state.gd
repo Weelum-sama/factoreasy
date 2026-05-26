@@ -30,14 +30,14 @@ func update(_delta: float) -> void:
 		return
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Cancel"):
+	if event.is_action_pressed("Cancel"):
 		transitioned.emit(self, DefaultState.NAME)
 		return
-	if Input.is_action_just_pressed("Confirm"):
+	if event.is_action_pressed("Confirm"):
 		var cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
 		_drag_start = cell
 		_is_dragging = true
-	if Input.is_action_just_released("Confirm"):
+	if event.is_action_released("Confirm"):
 		if _is_dragging:
 			_place_belts()
 		_is_dragging = false

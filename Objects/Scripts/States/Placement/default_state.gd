@@ -15,20 +15,20 @@ func update(_delta: float) -> void:
 			context.hold_timer = 0.0
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Toggle Select"):
+	if event.is_action_pressed("Toggle Select"):
 		transitioned.emit(self, SelectionState.NAME)
 		return
-	
-	if Input.is_action_just_pressed("Toggle Belt"):
+		
+	if event.is_action_pressed("Toggle Belt"):
 		transitioned.emit(self, BeltPlacementState.NAME)
 		return
 	
-	if Input.is_action_just_pressed("Quick Select"):
+	if event.is_action_pressed("Quick Select"):
 		var occupant := context.get_building_from_mouse()
 		if occupant:
 			_quick_select(occupant)
 	
-	if Input.is_action_pressed("Confirm"):
+	if event.is_action_pressed("Confirm"):
 		var occupant := context.get_building_from_mouse()
 		if occupant:
 			context.hold_candidate = occupant

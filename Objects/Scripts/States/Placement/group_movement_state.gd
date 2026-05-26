@@ -36,11 +36,11 @@ func update(_delta: float) -> void:
 		building.modulate = Color(1, 0.3, 0.3, 0.5) if not GridManager.is_cell_empty(target_cell) else Color(1, 1, 1, 0.5)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Rotate Building"):
+	if event.is_action_pressed("Rotate Building"):
 		_rotate_group()
-	if Input.is_action_just_released("Confirm"):
+	if event.is_action_released("Confirm"):
 		_try_place_group()
-	if Input.is_action_just_pressed("Cancel"):
+	if event.is_action_pressed("Cancel"):
 		_cancel_group_move()
 
 func _try_place_group() -> void:

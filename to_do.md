@@ -10,6 +10,7 @@
 - ui container misalignment
 - belts must be rotateable when placing single belt
 - belts must synchronise to animation when placed (the animation only starts when all other animations start)
+- belts should not take or push items from side of facilities
 - buildings and belts must be movable and still function
 
 ## implement:
@@ -20,11 +21,13 @@
 - ~~shop window~~
 - ~~press and hold move building~~
 - ~~move selection~~
-- drag and hold select
+- ~~drag and hold select~~
 - clogged belts stop animating
+- add pathfinding algorithm to belt placement, not just straight lines
 - increasing prices of nodes based on number bought
 - research and new facilities
 - ore node visual indicator for amount in inventory
+- control legend ui
 
 ## make placeholder sprites:
 - ~~extractor texture~~
@@ -33,5 +36,4 @@
 
 ### nice to have
 - drag controls for camera
-- drag select multiple buildings
-- control legend ui
+- ~~drag select multiple buildings~~

@@ -26,11 +26,11 @@ func update(_delta: float) -> void:
 	context.ghost.modulate = Color(1, 1, 1, 0.6) if GridManager.is_cell_empty(cell) else Color(1, 0.3, 0.3, 0.6)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_released("Confirm"):
+	if event.is_action_released("Confirm"):
 		_try_place()
-	elif Input.is_action_just_released("Cancel"):
+	elif event.is_action_pressed("Cancel"):
 		transitioned.emit(self, DefaultState.NAME)
-	if Input.is_action_just_pressed("Rotate Building"):
+	if event.is_action_pressed("Rotate Building"):
 		if context.ghost:
 			context.ghost.rotate(PI / 2.0)
 

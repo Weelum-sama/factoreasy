@@ -36,3 +36,10 @@ func get_facing_offset(rotation: float) -> Vector2i:
 func get_behind_offset(rotation: float) -> Vector2i:
 	var facing := get_facing_offset(rotation)
 	return Vector2i(-facing.x, -facing.y)
+
+func rotate_offset(offset: Vector2i, angle: float) -> Vector2i:
+	var steps := roundi(angle / (PI / 2.0)) % 4
+	var result := offset
+	for i in steps:
+		result = Vector2i(-result.y, result.x)
+	return result

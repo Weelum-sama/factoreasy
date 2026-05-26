@@ -2,6 +2,8 @@ extends Node2D
 class_name BaseFacility
 
 @export var facility_id: String = ""
+@export var input_directions: Array[Vector2i] = [] # Leave empty for all sides
+@export var output_directions: Array[Vector2i] = [] # Leave empty for all sides
 
 var _data_cache: FacilityData = null
 
@@ -46,3 +48,19 @@ func cleanup() -> void:
 	BeltManager.cancel_deliveries_to(self)
 	GridManager.remove(GridManager.world_to_cell(global_position))
 	queue_free()
+
+func get_valid_input_cells() -> Array[Vector2i]:
+	var cell := GridManager.world_to_cell(global_position)
+	if input_directions.is_empty():
+		return [cell + Vector2i(1, 0), cell + Vector2i(-1, 0),
+				cell + Vector2i(0, 1), cell + Vector2i(0, -1)]
+	return input_directions.map(func(d): return cell + d)
+
+func get_valid_output_cells() -> Array[Vector2i]:
+	var cell := GridManager.world_to_cell(global_position)
+	if output_directions.is_empty():
+		return [cell + Vector2i(1, 0), cell + Vector2i(-1, 0),
+				cell + Vector2i(0, 1), cell + Vector2i(0, -1)]
+	return output_directions.map(func(d):
+		return cell + Util.rotate_offset(d, rotation)
+	)

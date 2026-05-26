@@ -8,9 +8,6 @@ var _drag_start: Vector2i = Vector2i(-1, -1)
 var _preview_cells: Array[Vector2i] = []
 var _is_dragging: bool = false
 
-func enter() -> void:
-	Util.set_current_placement_mode(Util.PLACEMENTMODE.BELT)
-
 func exit() -> void:
 	_clear_preview()
 	_drag_start = Vector2i(-1, -1)

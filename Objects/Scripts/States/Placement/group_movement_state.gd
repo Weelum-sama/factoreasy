@@ -4,7 +4,6 @@ class_name GroupMovementState
 const NAME = "groupmovement"
 
 func enter() -> void:
-	Util.set_current_placement_mode(Util.PLACEMENTMODE.GROUP_MOVE)
 	var center_point := Vector2i.ZERO
 	var building_count = context.selected_buildings.size()
 	for building in context.selected_buildings:

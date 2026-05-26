@@ -3,9 +3,6 @@ class_name DefaultState
 
 const NAME = "default"
 
-func enter() -> void:
-	Util.set_current_placement_mode(Util.PLACEMENTMODE.NONE)
-
 func update(_delta: float) -> void:
 	if context.hold_candidate != null:
 		context.hold_timer += _delta

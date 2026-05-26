@@ -22,16 +22,20 @@ metadata/_custom_type_script = "uid://b56uolshyq6ft"
 
 [node name="FacilityPlacement" type="Node" parent="StateMachine" unique_id=2047366522]
 script = ExtResource("3_030on")
+placement_mode = 2
 metadata/_custom_type_script = "uid://d33dsqtjwcs2f"
 
 [node name="Selection" type="Node" parent="StateMachine" unique_id=44679645]
 script = ExtResource("4_0r2m2")
+placement_mode = 1
 metadata/_custom_type_script = "uid://bu5befts6ax2t"
 
 [node name="GroupMovement" type="Node" parent="StateMachine" unique_id=777773560]
 script = ExtResource("5_qike3")
+placement_mode = 4
 metadata/_custom_type_script = "uid://blbti7lowpyre"
 
 [node name="BeltPlacement" type="Node" parent="StateMachine" unique_id=280123929]
 script = ExtResource("7_0r2m2")
+placement_mode = 5
 metadata/_custom_type_script = "uid://c4ffxb2v2n1aa"

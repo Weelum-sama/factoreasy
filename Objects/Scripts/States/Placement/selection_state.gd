@@ -7,9 +7,6 @@ var _drag_start: Vector2 = Vector2.ZERO
 var _drag_start_cell: Vector2i = Vector2i.ZERO
 var _unselect: bool = false
 
-func enter() -> void:
-	Util.set_current_placement_mode(Util.PLACEMENTMODE.SELECTION)
-
 func update(_delta: float) -> void:
 	if context.selection_box_active:
 		context.ghost_parent.queue_redraw()

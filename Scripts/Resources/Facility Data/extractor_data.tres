@@ -11,4 +11,6 @@ display_name = "extractor"
 texture = ExtResource("4_di7su")
 scene = ExtResource("1_nhpwp")
 building_id = "extractor"
+input_directions = Array[Vector2i]([Vector2i(0, 1)])
+output_directions = Array[Vector2i]([Vector2i(0, -1)])
 metadata/_custom_type_script = "uid://c84g06pexjov8"

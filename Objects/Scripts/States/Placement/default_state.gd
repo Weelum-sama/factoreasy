@@ -49,8 +49,8 @@ func _pick_up_building(building: Node) -> void:
 	
 	context.create_ghost(context.pending_data)
 	
-	building.queue_free()
 	context.pending_rotation = building.rotation
+	building.queue_free()
 	transitioned.emit(self, FacilityPlacementState.NAME)
 
 func _quick_select(building: Node) -> void:

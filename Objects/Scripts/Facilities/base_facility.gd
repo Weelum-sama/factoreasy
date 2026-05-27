@@ -54,13 +54,17 @@ func get_valid_input_cells() -> Array[Vector2i]:
 	if input_directions.is_empty():
 		return [cell + Vector2i(1, 0), cell + Vector2i(-1, 0),
 				cell + Vector2i(0, 1), cell + Vector2i(0, -1)]
-	return input_directions.map(func(d): return cell + d)
+	var results: Array[Vector2i] = []
+	for d in input_directions:
+		results.append(cell + Util.rotate_offset(d, rotation))
+	return results
 
 func get_valid_output_cells() -> Array[Vector2i]:
 	var cell := GridManager.world_to_cell(global_position)
 	if output_directions.is_empty():
 		return [cell + Vector2i(1, 0), cell + Vector2i(-1, 0),
 				cell + Vector2i(0, 1), cell + Vector2i(0, -1)]
-	return output_directions.map(func(d):
-		return cell + Util.rotate_offset(d, rotation)
-	)
+	var results: Array[Vector2i] = []
+	for d in output_directions:
+		results.append(cell + Util.rotate_offset(d, rotation))
+	return results

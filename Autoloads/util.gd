@@ -38,7 +38,7 @@ func get_behind_offset(rotation: float) -> Vector2i:
 	return Vector2i(-facing.x, -facing.y)
 
 func rotate_offset(offset: Vector2i, angle: float) -> Vector2i:
-	var steps := roundi(angle / (PI / 2.0)) % 4
+	var steps := (roundi(angle / (PI / 2.0)) % 4 + 4) % 4
 	var result := offset
 	for i in steps:
 		result = Vector2i(-result.y, result.x)

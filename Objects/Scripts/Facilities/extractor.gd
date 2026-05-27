@@ -7,8 +7,8 @@ func tick() -> void:
 func _try_exctract() -> void:
 	var cell := GridManager.world_to_cell(global_position)
 	
-	var behind_cell := cell + Util.get_behind_offset(rotation)
-	var occupant := GridManager.get_cell_occupant(behind_cell)
+	var behind_cell : Vector2i = cell + Util.get_behind_offset(rotation)
+	var occupant : Node = GridManager.get_cell_occupant(behind_cell)
 	
 	if occupant is OreNode:
 		var item : Item = occupant.extract_item()

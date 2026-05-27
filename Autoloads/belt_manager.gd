@@ -27,7 +27,7 @@ func _try_pull_from_facilities() -> void:
 		var input_cell := belt.get_input_cell()
 		var source := GridManager.get_cell_occupant(input_cell)
 		if source is BaseFacility:
-			if not source.get_valid_output_cells().has(input_cell):
+			if not source.get_valid_output_cells().has(cell):
 				continue
 			var item : Item = source.peek_output()
 			if item:
@@ -73,7 +73,7 @@ func _try_push_to_facilities() -> void:
 		var output_cell := belt.get_output_cell()
 		var target := GridManager.get_cell_occupant(output_cell)
 		if target is BaseFacility:
-			if not (target as BaseFacility).get_valid_input_cells().has(output_cell):
+			if not (target as BaseFacility).get_valid_input_cells().has(cell):
 				continue
 			_pending_deliveries.append({
 				"from_cell": cell,

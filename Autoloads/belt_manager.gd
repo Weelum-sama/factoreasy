@@ -96,6 +96,13 @@ func cancel_deliveries_to(facility: BaseFacility) -> void:
 		func(d): return d.facility != facility
 	)
 
+func update_deilivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
+	for delivery in _pending_deliveries:
+		if delivery.from_cell == old_cell:
+			delivery.from_cell += delta
+		if delivery.to_cell == old_cell:
+			delivery.to_cell += delta
+
 func _process(delta: float) -> void:
 	for cell in belts:
 		var belt: Belt = belts[cell]

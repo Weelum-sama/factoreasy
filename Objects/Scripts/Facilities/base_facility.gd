@@ -68,3 +68,8 @@ func get_valid_output_cells() -> Array[Vector2i]:
 	for d in data.output_directions:
 		results.append(cell + Util.rotate_offset(d, rotation))
 	return results
+
+func move_to(new_cell: Vector2i) -> void:
+	var old_cell := GridManager.world_to_cell(global_position)
+	GridManager.remove(old_cell)
+	GridManager.place(new_cell, self)

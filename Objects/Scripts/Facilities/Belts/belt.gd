@@ -23,6 +23,21 @@ func get_output_cell() -> Vector2i:
 func get_input_cell() -> Vector2i:
 	return GridManager.world_to_cell(global_position) - Util.get_facing_offset(rotation)
 
+func move_to(new_cell: Vector2i) -> void:
+	var old_cell := GridManager.world_to_cell(global_position)
+	var delta := new_cell - old_cell
+	
+	if belt_item != null:
+		belt_item.previous_cell += delta
+		belt_item.current_cell += delta
+	
+	BeltManager.update_deilivery_cells(old_cell, delta)
+	
+	BeltManager.unregister_belt(old_cell)
+	GridManager.remove(old_cell)
+	GridManager.place(new_cell, self)
+	BeltManager.register_belt(new_cell, self)
+
 func cleanup() -> void:
 	BeltManager.unregister_belt(GridManager.world_to_cell(global_position))
 	GridManager.remove(GridManager.world_to_cell(global_position))

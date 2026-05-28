@@ -34,24 +34,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		context.hold_timer = 0.0
 
 func _pick_up_building(building: Node) -> void:
-	var cell := GridManager.world_to_cell(building.global_position)
-	
-	if building is OreNode:
-		context.pending_data = building.data
-		context.ore_node_scene = context.ORE_NODE_SCENE
-	elif building is Belt:
-		return
-	else:
-		var facility := building as BaseFacility
-		context.pending_data = GameState.facility_registry.get(facility.facility_id)
-		context.facility_scene = context.pending_data.scene
-	
-	GridManager.remove(cell)
-	context.create_ghost(context.pending_data)
-	
-	context.pending_rotation = building.rotation
-	building.queue_free()
-	transitioned.emit(self, FacilityPlacementState.NAME)
+	context.entered_from_selection = false
+	context.selected_buildings = [building]
+	transitioned.emit(self, GroupMovementState.NAME)
 
 func _quick_select(building: Node) -> void:
 	if building is OreNode:

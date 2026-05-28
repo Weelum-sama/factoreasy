@@ -8,7 +8,8 @@
 - ~~strange icon stretch on shop items~~
 - ~~selected buildings rotate on their own axis, shouldn't rotate unless moving~~
 - ~~belts should not take or push items from side of facilities~~
-- buildings and belts must be movable and still function
+- ~~buildings and belts must be movable and still function~~
+- pick up building leniency
 - belts must be rotateable when placing single belt
 - belts must synchronise to animation when placed (the animation only starts when all other animations start)
 - ui container misalignment

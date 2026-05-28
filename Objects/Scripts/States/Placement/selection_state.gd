@@ -53,6 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if not context.selected_buildings.is_empty():
 		if event.is_action_pressed("Move Selection"):
+			context.entered_from_selection = true
 			transitioned.emit(self, GroupMovementState.NAME)
 		if event.is_action_pressed("Stash"):
 			for building in context.selected_buildings:

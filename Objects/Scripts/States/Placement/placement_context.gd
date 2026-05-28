@@ -19,6 +19,7 @@ var selection_box_start: Vector2 = Vector2.ZERO
 var selection_box_active: bool = false
 
 # Group move
+var entered_from_selection: bool = false
 var group_move_offsets: Array[Vector2i] = []
 var group_move_origins: Array[Vector2i] = []
 var group_origin_rotations: Array[float] = []
@@ -27,6 +28,7 @@ var group_origin_rotations: Array[float] = []
 var hold_timer: float = 0.0
 var hold_candidate: Node = null
 const HOLD_DURATION: float = 0.3
+var pickup_building: Node = null
 
 # Helpers
 func get_building_from_mouse() -> Node:

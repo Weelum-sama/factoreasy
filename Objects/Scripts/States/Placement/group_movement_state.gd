@@ -84,7 +84,10 @@ func _try_place_group() -> void:
 		building.modulate = Color.WHITE
 	
 	context.selected_buildings.clear()
-	transitioned.emit(self, SelectionState.NAME)
+	if context.entered_from_selection:
+		transitioned.emit(self, SelectionState.NAME)
+	else:
+		transitioned.emit(self, DefaultState.NAME)
 
 func _cancel_group_move() -> void:
 	for ghost in _ghosts:
@@ -94,7 +97,10 @@ func _cancel_group_move() -> void:
 	context.group_move_offsets.clear()
 	_group_rotation = 0
 	
-	transitioned.emit(self, SelectionState.NAME)
+	if context.entered_from_selection:
+		transitioned.emit(self, SelectionState.NAME)
+	else:
+		transitioned.emit(self, DefaultState.NAME)
 
 func _set_selected_buildings_visible(visible: bool = true) -> void:
 	for building in context.selected_buildings:

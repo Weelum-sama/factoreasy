@@ -7,36 +7,50 @@ const BELT_SCENE = preload("res://Objects/Scenes/Facilities/belt.tscn")
 var _drag_start: Vector2i = Vector2i(-1, -1)
 var _preview_cells: Array[Vector2i] = []
 var _is_dragging: bool = false
+var _single_rotation: float = 0.0
+var _single_ghost: Sprite2D = null
 
 func exit() -> void:
 	_clear_preview()
+	_free_single_ghost()
 	_drag_start = Vector2i(-1, -1)
 	_is_dragging = false
+	_single_rotation = 0.0
 
 func update(_delta: float) -> void:
 	var current_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
+	
+	if Input.is_action_pressed("Confirm") and current_cell != _drag_start:
+		_is_dragging = true
+	
 	if _is_dragging:
+		_free_single_ghost()
 		_update_preview(current_cell)
 	else:
 		_clear_preview()
-		_preview_cells = [current_cell]
-		var ghost := _create_belt_ghost(current_cell, 0)
-		context.ghost_parent.add_child(ghost)
-	
-	if not _is_dragging:
-		return
+		if _single_ghost == null:
+			_single_ghost = _create_belt_ghost(current_cell, 0)
+			context.ghost_parent.add_child(_single_ghost)
+		_single_ghost.position = GridManager.cell_center(current_cell)
+		_single_ghost.rotation = _single_rotation
+		_single_ghost.modulate = Color(1, 1, 1, 0.5) if GridManager.is_cell_empty(current_cell) else Color(1, 0.3, 0.3, 0.5)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Cancel"):
 		transitioned.emit(self, DefaultState.NAME)
 		return
+	if event.is_action_pressed("Rotate Building"):
+		_single_rotation += PI / 2.0
+		return
 	if event.is_action_pressed("Confirm"):
 		var cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
 		_drag_start = cell
-		_is_dragging = true
+		return
 	if event.is_action_released("Confirm"):
-		if _is_dragging:
-			_place_belts()
+		#if _is_dragging:
+		if _single_ghost:
+			_preview_cells.append(GridManager.world_to_cell(_single_ghost.position))
+		_place_belts()
 		_is_dragging = false
 		_drag_start = Vector2i(-1, -1)
 
@@ -66,13 +80,18 @@ func _clear_preview() -> void:
 			child.free()
 	_preview_cells.clear()
 
+func _free_single_ghost() -> void:
+	if _single_ghost:
+		_single_ghost.free()
+		_single_ghost = null
+
 func _place_belts() -> void:
 	for i in _preview_cells.size():
 		var cell := _preview_cells[i]
 		if not GridManager.is_cell_empty(cell):
 			continue
 		var belt: Belt = BELT_SCENE.instantiate()
-		belt.rotation = _get_belt_rotation(i)
+		belt.rotation = _single_rotation if _preview_cells.size() == 1 else _get_belt_rotation(i)
 		context.ghost_parent.get_tree().current_scene.add_child(belt)
 		GridManager.place(cell, belt)
 		belt.register()

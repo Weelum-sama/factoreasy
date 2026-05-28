@@ -29,7 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var occupant := context.get_building_from_mouse()
 		if occupant:
 			context.hold_candidate = occupant
-	else:
+	elif event.is_action_released("Confirm"):
 		context.hold_candidate = null
 		context.hold_timer = 0.0
 

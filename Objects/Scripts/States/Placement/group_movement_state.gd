@@ -44,7 +44,9 @@ func exit() -> void:
 	_ghosts.clear()
 	context.group_move_offsets.clear()
 	_group_rotation = 0
-	_set_selected_buildings_visible()
+	
+	for building in context.selected_buildings:
+		building.modulate = Color.SKY_BLUE
 
 func update(_delta: float) -> void:
 	var cursor_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())

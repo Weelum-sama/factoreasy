@@ -35,7 +35,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _pick_up_building(building: Node) -> void:
 	var cell := GridManager.world_to_cell(building.global_position)
-	GridManager.remove(cell)
 	
 	if building is OreNode:
 		context.pending_data = building.data
@@ -47,6 +46,7 @@ func _pick_up_building(building: Node) -> void:
 		context.pending_data = GameState.facility_registry.get(facility.facility_id)
 		context.facility_scene = context.pending_data.scene
 	
+	GridManager.remove(cell)
 	context.create_ghost(context.pending_data)
 	
 	context.pending_rotation = building.rotation

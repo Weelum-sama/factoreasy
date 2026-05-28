@@ -61,6 +61,9 @@ func get_valid_input_cells() -> Array[Vector2i]:
 func get_valid_output_cells() -> Array[Vector2i]:
 	var cell := GridManager.world_to_cell(global_position)
 	var data := get_data()
+	if not data:
+		var empty: Array[Vector2i] = [Vector2i.ZERO]
+		return empty
 	if data.output_directions.is_empty():
 		return [cell + Vector2i(1, 0), cell + Vector2i(-1, 0),
 				cell + Vector2i(0, 1), cell + Vector2i(0, -1)]

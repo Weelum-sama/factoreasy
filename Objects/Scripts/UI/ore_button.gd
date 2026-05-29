@@ -17,7 +17,7 @@ func setup(ore_data: OreNodeData, count: int) -> void:
 	update_count(count)
 
 func update_count(count: int) -> void:
-	count_label.text = "*%d*" % count
+	count_label.text = "x%d" % count
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

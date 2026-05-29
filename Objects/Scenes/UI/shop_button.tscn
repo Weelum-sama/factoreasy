@@ -3,6 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_2gku0"]
 [ext_resource type="Script" uid="uid://bbr6xfu7cdfyq" path="res://Objects/Scripts/UI/shop_button.gd" id="1_boux0"]
 [ext_resource type="Texture2D" uid="uid://tlo4baigibnv" path="res://Assets/Sprites/Buildings/iron_ore_node.png" id="2_2gku0"]
+[ext_resource type="Texture2D" uid="uid://bt6eq2ush7l01" path="res://Assets/Sprites/gear_coin.png" id="4_o78rd"]
 
 [node name="ShopButton" type="PanelContainer" unique_id=945987124]
 offset_right = 92.0
@@ -38,10 +39,23 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 16
 text = "Shop Item Name"
 
-[node name="CostLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1084435465]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=104131889]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1857463774]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_o78rd")
+stretch_mode = 4
+
+[node name="CostLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1084435465]
 unique_name_in_owner = true
 layout_mode = 2
-text = "100 coins"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "100 "
+vertical_alignment = 1

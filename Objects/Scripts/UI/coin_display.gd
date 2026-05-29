@@ -5,4 +5,4 @@ func _ready() -> void:
 	_on_coins_changed(GameState.get_total_coins())
 
 func _on_coins_changed(new_amount: int) -> void:
-	text = "Coins: %d" % new_amount
+	text = ": %d" % new_amount

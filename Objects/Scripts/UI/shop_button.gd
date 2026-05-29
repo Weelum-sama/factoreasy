@@ -14,7 +14,7 @@ func setup(ore_data: OreNodeData, cost: int) -> void:
 	if data.texture:
 		icon.texture = data.texture
 	name_label.text = data.display_name
-	cost_label.text = "%d coins" % cost
+	cost_label.text = "x%d" % cost
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

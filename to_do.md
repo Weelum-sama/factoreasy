@@ -11,6 +11,8 @@
 - ~~buildings and belts must be movable and still function~~
 - ~~pick up building leniency~~
 - ~~belts must be rotateable when placing single belt~~
+- clicking on facility button while in facility mode crashes game
+- buttons extend based on label lengths
 - belts must synchronise to animation when placed (the animation only starts when all other animations start)
 - ui container misalignment
 
@@ -23,8 +25,8 @@
 - ~~press and hold move building~~
 - ~~move selection~~
 - ~~drag and hold select~~
-- buttons are spawned from packed scene for easier control of visuals
-- ore node visual indicator for amount in inventory
+- ~~buttons are spawned from packed scene for easier control of visuals~~
+- ~~ore node visual indicator for amount in inventory~~
 - clogged belts stop animating
 - increasing prices of nodes based on number bought
 - research and new facilities

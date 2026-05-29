@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ev2645usqy3s"]
+
+[ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_tamqc"]
+[ext_resource type="Script" uid="uid://cccwhp84250fy" path="res://Objects/Scripts/UI/facility_button.gd" id="1_wr22d"]
+[ext_resource type="Texture2D" uid="uid://j41c63uucykn" path="res://Assets/Sprites/Buildings/extractor.png" id="2_wr22d"]
+
+[node name="FacilityButton" type="PanelContainer" unique_id=945987124]
+offset_right = 92.0
+offset_bottom = 103.0
+theme_override_styles/panel = ExtResource("1_tamqc")
+script = ExtResource("1_wr22d")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=56086012]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1964949759]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=798104025]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+accessibility_name = "Icon"
+texture = ExtResource("2_wr22d")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1514448789]
+unique_name_in_owner = true
+layout_mode = 2
+accessibility_name = "NameLabel"
+text = "Facility Name"
+horizontal_alignment = 1
+vertical_alignment = 1

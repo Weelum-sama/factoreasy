@@ -4,6 +4,8 @@ signal placement_requested(data: OreNodeData)
 
 var _slots: Dictionary = {}
 
+const ORE_BUTTON = preload("res://Objects/Scenes/UI/ore_button.tscn")
+
 func _ready() -> void:
 	GameState.node_unlocked.connect(_on_node_unlocked)
 	GameState.inventory_changed.connect(_on_inventory_changed)
@@ -36,23 +38,18 @@ func _load_node_data(node_id: String) -> OreNodeData:
 	return null
 
 func _add_slot(data: OreNodeData) -> void:
-	var button := TextureButton.new()
-	button.custom_minimum_size = Vector2(64, 64)
-	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT
-	button.texture_normal = data.texture
-	button.focus_mode = Control.FOCUS_NONE
-	button.tooltip_text = data.display_name
-	button.pressed.connect(func():
+	var button: OreButton = ORE_BUTTON.instantiate()
+	$PanelContainer/SlotContainer.add_child(button)
+	var count: int = GameState.node_inventory.get(data.id, 0)
+	button.setup(data, count)
+	button.pressed.connect(func(_d):
 		if GameState.has_node_in_inventory(data.id):
 			placement_requested.emit(data)
 	)
-	$PanelContainer/SlotContainer.add_child(button)
 	_slots[data.id] = button
 
 func _update_slot_label(node_id: String, new_count: int) -> void:
-	var button: TextureButton = _slots.get(node_id)
+	var button: OreButton = _slots.get(node_id)
 	if button:
+		button.update_count(new_count)
 		button.modulate = Color(1, 1, 1, 1) if new_count > 0 else Color(1, 1, 1, 0.4)
-		var data: OreNodeData = _load_node_data(node_id)
-		if data:
-			button.tooltip_text = "%s\nx%d" % [data.display_name, new_count]

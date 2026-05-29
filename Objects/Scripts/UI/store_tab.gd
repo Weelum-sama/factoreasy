@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+const SHOP_BUTTON = preload("res://Objects/Scenes/UI/shop_button.tscn")
 
 func _ready() -> void:
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -18,35 +19,14 @@ func _refresh() -> void:
 			_add_entry(load(path))
 
 func _add_entry(data: OreNodeData) -> void:
-	var row := HBoxContainer.new()
-	var icon := TextureRect.new()
-	
-	if data.texture:
-		icon.texture = data.texture
-	icon.custom_minimum_size = Vector2(32, 32)
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	
-	var label := Label.new()
-	label.text = "%s\n%d coins" % [data.display_name, data.cost]
-	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	
-	var button := Button.new()
-	button.text = "buy"
-	button.focus_mode = Control.FOCUS_NONE
-	button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	button.pressed.connect(func():
+	var button: ShopButton = SHOP_BUTTON.instantiate()
+	add_child(button)
+	button.setup(data, data.cost)
+	button.pressed.connect(func(_d):
 		if GameState.get_total_coins() >= data.cost:
 			GameState.add_coins(-data.cost)
 			GameState.add_node_to_inventory(data.id)
 			)
-	
-	row.add_child(icon)
-	row.add_child(label)
-	row.add_child(button)
-	add_child(row)
 
 func _on_coins_changed(new_amount: float) -> void:
 	_refresh()

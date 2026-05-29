@@ -2,6 +2,8 @@ extends Control
 
 signal placement_requested(data: FacilityData)
 
+const FACILITY_BUTTON = preload("res://Objects/Scenes/UI/facility_button.tscn")
+
 func _ready() -> void:
 	GameState.building_unlocked.connect(_on_building_unlocked)
 	_refresh_toolbar()
@@ -32,13 +34,9 @@ func _load_facility_data(building_id: String) -> FacilityData:
 	return null
 
 func _add_slot(data: FacilityData) -> void:
-	var button := TextureButton.new()
-	button.custom_minimum_size = Vector2(64, 64)
-	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT
-	button.focus_mode = Control.FOCUS_NONE
-	button.texture_normal = data.texture
-	button.tooltip_text = data.display_name
-	button.pressed.connect(func():
+	var button: FacilityButton = FACILITY_BUTTON.instantiate()
+	$PanelContainer/SlotContainer.add_child(button)
+	button.setup(data)
+	button.pressed.connect(func(_d):
 		placement_requested.emit(data)
 	)
-	$PanelContainer/SlotContainer.add_child(button)

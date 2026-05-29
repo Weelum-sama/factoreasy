@@ -23,6 +23,7 @@
 - ~~press and hold move building~~
 - ~~move selection~~
 - ~~drag and hold select~~
+- buttons are spawned from packed scene for easier control of visuals
 - ore node visual indicator for amount in inventory
 - clogged belts stop animating
 - increasing prices of nodes based on number bought
@@ -30,8 +31,8 @@
 - control legend ui
 - add pathfinding algorithm to belt placement, not just straight lines
 - building limit / limited build space (increasing limit in research tab)
-- buttons are spawned from packed scene for easier control of visuals
 - context menus for facilities on click
+- copy selection feature
 
 ## make placeholder sprites:
 - ~~extractor texture~~

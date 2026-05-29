@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://ovbqymrmgrdo"]
+
+[ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_fbhrr"]
+[ext_resource type="Script" uid="uid://iphmvyyi5gwt" path="res://Objects/Scripts/UI/ore_button.gd" id="1_ioo2l"]
+[ext_resource type="Texture2D" uid="uid://tlo4baigibnv" path="res://Assets/Sprites/Buildings/iron_ore_node.png" id="1_vf4f0"]
+
+[node name="OreButton" type="PanelContainer" unique_id=945987124]
+offset_right = 92.0
+offset_bottom = 103.0
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_fbhrr")
+script = ExtResource("1_ioo2l")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2047357897]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2033040868]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=485308461]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Control" unique_id=1325542288]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+accessibility_name = "Icon"
+texture = ExtResource("1_vf4f0")
+stretch_mode = 5
+
+[node name="CountLabel" type="Label" parent="MarginContainer/VBoxContainer/Control" unique_id=824389932]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+accessibility_name = "CountLabel"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "*0*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=431537517]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+accessibility_name = "NameLabel"
+text = "Ore"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -2,15 +2,19 @@ extends VBoxContainer
 
 const SHOP_BUTTON = preload("res://Objects/Scenes/UI/shop_button.tscn")
 
+var _buttons: Dictionary = {}
+
 func _ready() -> void:
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.node_unlocked.connect(_on_node_unlocked)
+	GameState.node_purchased.connect(_on_purchase)
 	_refresh()
 
 func _refresh() -> void:
 	for child in get_children():
 		child.queue_free()
+	_buttons.clear()
 	for node_id in GameState.unlocked_nodes:
 		if not GameState.unlocked_nodes[node_id]:
 			continue
@@ -21,18 +25,24 @@ func _refresh() -> void:
 func _add_entry(data: OreNodeData) -> void:
 	var button: ShopButton = SHOP_BUTTON.instantiate()
 	add_child(button)
-	button.setup(data, data.cost)
+	button.setup(data, data.cost, GameState.total_nodes_owned[data.id])
 	button.pressed.connect(func(_d):
 		if GameState.get_total_coins() >= data.cost:
 			GameState.add_coins(-data.cost)
-			GameState.add_node_to_inventory(data.id)
+			GameState.purchase_node(data.id)
 			)
+	_buttons[data.id] = button
 
 func _on_coins_changed(new_amount: float) -> void:
-	_refresh()
+	for node_id in _buttons:
+		var button: ShopButton = _buttons[node_id]
+		button.update_affordability(new_amount >= button.data.cost)
 
 func _on_node_unlocked(_id: String) -> void:
 	_refresh()
+
+func _on_purchase(node_id: String, amount: int) -> void:
+	_buttons[node_id].update_label_owned(GameState.total_nodes_owned[node_id])
 
 ### TESTING PURPOSES
 func _process(delta: float) -> void:

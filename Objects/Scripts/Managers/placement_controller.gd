@@ -33,6 +33,9 @@ func start_placement(data: FacilityData) -> void:
 		context.ore_node_scene = context.ORE_NODE_SCENE
 	else:
 		context.facility_scene = data.scene
+	if state_machine.current_state is FacilityPlacementState:
+		state_machine.current_state.switch_requested.emit()
+		return
 	state_machine.on_child_transition(state_machine.current_state, FacilityPlacementState.NAME)
 
 func _on_inventory_changed(resource_id: String, new_count: int) -> void:

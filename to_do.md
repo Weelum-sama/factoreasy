@@ -11,7 +11,7 @@
 - ~~buildings and belts must be movable and still function~~
 - ~~pick up building leniency~~
 - ~~belts must be rotateable when placing single belt~~
-- clicking on facility button while in facility mode crashes game
+- ~~clicking on facility button while in facility mode crashes game~~
 - buttons extend based on label lengths
 - belts must synchronise to animation when placed (the animation only starts when all other animations start)
 - ui container misalignment

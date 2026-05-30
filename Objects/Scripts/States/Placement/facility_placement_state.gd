@@ -3,11 +3,16 @@ class_name FacilityPlacementState
 
 const NAME = "facilityplacement"
 
+signal switch_requested
+
 func enter() -> void:
 	super.enter()
 	context.create_ghost(context.pending_data)
+	switch_requested.connect(_switch_facility)
 
 func exit() -> void:
+	if switch_requested.is_connected(_switch_facility):
+		switch_requested.disconnect(_switch_facility)
 	context.destroy_ghost()
 	context.pending_data = null
 	context.facility_scene = null
@@ -62,3 +67,6 @@ func _place_ore_node(cell: Vector2i) -> void:
 	if not GridManager.place(cell, node):
 		return
 	GameState.consume_node_from_inventory(context.pending_data.id)
+
+func _switch_facility() -> void:
+	context.create_ghost(context.pending_data)

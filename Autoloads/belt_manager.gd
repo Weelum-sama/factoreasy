@@ -75,6 +75,8 @@ func _try_push_to_facilities() -> void:
 		if target is BaseFacility:
 			if not (target as BaseFacility).get_valid_input_cells().has(cell):
 				continue
+			if not (target as BaseFacility).can_receive_item():
+				continue
 			_pending_deliveries.append({
 				"from_cell": cell,
 				"to_cell": output_cell,
@@ -103,6 +105,19 @@ func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 		if delivery.to_cell == old_cell:
 			delivery.to_cell += delta
 
+func _is_output_blocked(belt: Belt) -> bool:
+	var output_cell := belt.get_output_cell()
+	
+	var target_belt: Belt = belts.get(output_cell)
+	if target_belt != null:
+		return target_belt.belt_item != null
+	
+	var target := GridManager.get_cell_occupant(output_cell)
+	if target is BaseFacility:
+		return not target.can_receive_item()
+	
+	return true
+
 func _process(delta: float) -> void:
 	for cell in belts:
 		var belt: Belt = belts[cell]
@@ -112,6 +127,11 @@ func _process(delta: float) -> void:
 			belt.belt_item.progress + delta * belt.get_items_per_second(),
 			 1.0
 		)
+		
+		if belt.belt_item.progress >= 1.0:
+			belt.set_belt_state(Util.BELTSTATE.CLOGGED if _is_output_blocked(belt) else Util.BELTSTATE.WORKING)
+		else:
+			belt.set_belt_state(Util.BELTSTATE.WORKING)
 	
 	var completed := []
 	for delivery in _pending_deliveries:

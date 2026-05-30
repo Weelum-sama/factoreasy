@@ -88,3 +88,15 @@ func move_to(new_cell: Vector2i) -> void:
 	var old_cell := GridManager.world_to_cell(global_position)
 	GridManager.remove(old_cell)
 	GridManager.place(new_cell, self)
+
+func can_receive_item() -> bool:
+	var total := 0
+	for count in input_buffer.values():
+		total += count
+	return total < MAX_BUFFER
+
+func can_produce() -> bool:
+	var total := 0
+	for count in output_buffer.values():
+		total += count
+	return total < MAX_BUFFER

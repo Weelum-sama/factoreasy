@@ -4,8 +4,8 @@ class_name FacilityPlacementState
 const NAME = "facilityplacement"
 
 func enter() -> void:
+	super.enter()
 	context.create_ghost(context.pending_data)
-	#context.pending_rotation = 0.0
 
 func exit() -> void:
 	context.destroy_ghost()

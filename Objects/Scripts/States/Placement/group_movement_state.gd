@@ -7,6 +7,7 @@ var _ghosts: Array[Sprite2D] = []
 var _group_rotation: int = 0
 
 func enter() -> void:
+	super.enter()
 	_group_rotation = 0
 	var centroid := Vector2i.ZERO
 	_set_selected_buildings_visible(false)

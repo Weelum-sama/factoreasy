@@ -8,6 +8,18 @@ var _data_cache: FacilityData = null
 var input_buffer: Dictionary = {}
 var output_buffer: Dictionary = {}
 
+const MAX_BUFFER: int = 99
+
+var facility_state: Util.FACILITYSTATE = Util.FACILITYSTATE.IDLE
+
+signal state_changed(new_state: Util.FACILITYSTATE)
+
+func _set_state(new_state: Util.FACILITYSTATE) -> void:
+	if facility_state == new_state:
+		return
+	facility_state = new_state
+	state_changed.emit(new_state)
+
 func get_data() -> FacilityData:
 	if _data_cache == null:
 		_data_cache = GameState.facility_registry.get(facility_id)

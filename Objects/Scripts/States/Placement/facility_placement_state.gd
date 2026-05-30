@@ -16,7 +16,6 @@ func exit() -> void:
 	context.destroy_ghost()
 	context.pending_data = null
 	context.facility_scene = null
-	context.consuming_facility_scene = null
 	context.ore_node_scene = null
 
 func update(_delta: float) -> void:

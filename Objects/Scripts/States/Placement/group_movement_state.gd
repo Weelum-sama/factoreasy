@@ -79,10 +79,7 @@ func _try_place_group() -> void:
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
 		var building := context.selected_buildings[i]
-		if building is Belt:
-			building.move_to(target_cell)
-		else:
-			building.move_to(target_cell)
+		building.move_to(target_cell)
 		building.rotation = _ghosts[i].rotation
 		building.modulate = Color.WHITE
 	

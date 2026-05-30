@@ -1,4 +1,4 @@
-extends BaseFacility
+extends Node2D
 class_name OreNode
 
 @export var data: OreNodeData

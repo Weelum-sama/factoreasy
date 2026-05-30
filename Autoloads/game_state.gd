@@ -33,7 +33,7 @@ signal building_unlocked(building_id: String)
 func unlock_building(building_id: String) -> void:
 	if unlocked_buildings.has(building_id):
 		unlocked_buildings[building_id] = true
-		building_unlocked.emit("building_unlocked" ,building_id)
+		building_unlocked.emit(building_id)
 
 func is_building_unlocked(building_id: String) -> bool:
 	return unlocked_buildings.get(building_id)
@@ -86,7 +86,7 @@ func has_node_in_inventory(node_id: String) -> bool:
 
 ## Coins
 
-var _total_coins: int = 30.0
+var _total_coins: int = 30
 
 signal coins_changed(new_amount: int)
 

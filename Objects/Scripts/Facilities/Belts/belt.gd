@@ -2,7 +2,6 @@ extends Node2D
 class_name Belt
 
 var belt_item: BeltItem = null
-var is_delivering: bool = false
 @export var items_per_minute: float = 30.0
 
 func _ready() -> void:
@@ -31,7 +30,7 @@ func move_to(new_cell: Vector2i) -> void:
 		belt_item.previous_cell += delta
 		belt_item.current_cell += delta
 	
-	BeltManager.update_deilivery_cells(old_cell, delta)
+	BeltManager.update_delivery_cells(old_cell, delta)
 	
 	BeltManager.unregister_belt(old_cell)
 	GridManager.remove(old_cell)

@@ -21,8 +21,6 @@ var selection_box_active: bool = false
 # Group move
 var entered_from_selection: bool = false
 var group_move_offsets: Array[Vector2i] = []
-var group_move_origins: Array[Vector2i] = []
-var group_origin_rotations: Array[float] = []
 
 # Hold to pickup
 var hold_timer: float = 0.0

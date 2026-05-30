@@ -15,8 +15,8 @@ func setup(ore_data: OreNodeData, cost: int, owned: int) -> void:
 	if data.texture:
 		icon.texture = data.texture
 	name_label.text = data.display_name
-	cost_label.text = "x%d" % cost
-	owned_label.text = "%d" % owned
+	update_label_cost(cost)
+	update_label_owned(owned)
 
 func update_label_cost(cost: int) -> void:
 	cost_label.text = "x%d" % cost
@@ -25,7 +25,7 @@ func update_affordability(can_afford: bool) -> void:
 	modulate = Color.WHITE if can_afford else Color(1, 1, 1, 0.5)
 
 func update_label_owned(owned: int) -> void:
-	owned_label.text = "%d" % owned
+	owned_label.text = "owned: %d" % owned
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

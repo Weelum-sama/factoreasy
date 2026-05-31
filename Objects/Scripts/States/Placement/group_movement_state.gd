@@ -46,6 +46,8 @@ func exit() -> void:
 	context.group_move_offsets.clear()
 	_group_rotation = 0
 	
+	if not context.entered_from_selection:
+		return
 	for building in context.selected_buildings:
 		building.modulate = Color.SKY_BLUE
 
@@ -96,6 +98,7 @@ func _cancel_group_move() -> void:
 	_ghosts.clear()
 	context.group_move_offsets.clear()
 	_group_rotation = 0
+	_set_selected_buildings_visible()
 	
 	if context.entered_from_selection:
 		transitioned.emit(self, SelectionState.NAME)

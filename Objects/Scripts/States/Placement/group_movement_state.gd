@@ -78,11 +78,28 @@ func _try_place_group() -> void:
 		if occupant != null and not context.selected_buildings.has(occupant):
 			return
 	
+	for building in context.selected_buildings:
+		var cell := GridManager.world_to_cell(building.global_position)
+		GridManager.remove(cell)
+		if building is Belt:
+			BeltManager.unregister_belt(cell)
+	
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
 		var building := context.selected_buildings[i]
-		building.move_to(target_cell)
 		building.rotation = _ghosts[i].rotation
+		
+		if building is Belt:
+			var old_cell := GridManager.world_to_cell(building.global_position)
+			var delta := target_cell - old_cell
+			if building.belt_item != null:
+				building.belt_item.previous_cell += delta
+				building.belt_item.current_cell += delta
+			BeltManager.update_delivery_cells(old_cell, delta)
+			GridManager.place(target_cell, building)
+			BeltManager.register_belt(target_cell, building)
+		else:
+			GridManager.place(target_cell, building)
 		building.modulate = Color.WHITE
 	
 	context.selected_buildings.clear()

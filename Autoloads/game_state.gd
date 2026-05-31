@@ -46,12 +46,12 @@ var unlocked_nodes: Dictionary = {
 }
 
 var node_inventory: Dictionary = {
-	"iron_ore_node":		2,
+	"iron_ore_node":		0,
 	"copper_ore_node":		0,
 }
 
 var total_nodes_owned: Dictionary = {
-	"iron_ore_node":		2,
+	"iron_ore_node":		0,
 	"copper_ore_node":		0,
 }
 
@@ -84,9 +84,12 @@ func consume_node_from_inventory(resource_id: String, amount: int = 1) -> bool:
 func has_node_in_inventory(node_id: String) -> bool:
 	return node_inventory.get(node_id, 0) > 0
 
+func get_total_owned_of_ore(node_id: String) -> int:
+	return total_nodes_owned[node_id]
+
 ## Coins
 
-var _total_coins: int = 30
+var _total_coins: int = 50
 
 signal coins_changed(new_amount: int)
 

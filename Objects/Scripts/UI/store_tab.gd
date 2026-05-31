@@ -42,7 +42,9 @@ func _on_node_unlocked(_id: String) -> void:
 	_refresh()
 
 func _on_purchase(node_id: String, amount: int) -> void:
+	_buttons[node_id].data.update_purchase_cost()
 	_buttons[node_id].update_label_owned(GameState.total_nodes_owned[node_id])
+	_buttons[node_id].update_label_cost(_buttons[node_id].data.cost)
 
 ### TESTING PURPOSES
 func _process(delta: float) -> void:

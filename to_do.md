@@ -12,8 +12,9 @@
 - ~~pick up building leniency~~
 - ~~belts must be rotateable when placing single belt~~
 - ~~clicking on facility button while in facility mode crashes game~~
-- buttons extend based on label lengths
 - ~~belts must synchronise to animation when placed (the animation only starts when all other animations start)~~
+- group move sometimes skips part of the selected buildings
+- buttons extend based on label lengths
 - ui container misalignment
 
 ## implement:
@@ -28,7 +29,7 @@
 - ~~buttons are spawned from packed scene for easier control of visuals~~
 - ~~ore node visual indicator for amount in inventory~~
 - ~~clogged belts stop animating~~
-- increasing prices of nodes based on number bought
+- ~~increasing prices of nodes based on number bought~~
 - research and new facilities
 - control legend ui
 - add pathfinding algorithm to belt placement, not just straight lines

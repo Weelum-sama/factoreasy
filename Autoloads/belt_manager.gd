@@ -75,7 +75,7 @@ func _try_push_to_facilities() -> void:
 		if target is BaseFacility:
 			if not (target as BaseFacility).get_valid_input_cells().has(cell):
 				continue
-			if not (target as BaseFacility).can_receive_item():
+			if not (target as BaseFacility).can_receive_item(belt.belt_item.item):
 				continue
 			_pending_deliveries.append({
 				"from_cell": cell,
@@ -138,8 +138,8 @@ func _process(delta: float) -> void:
 		delivery.progress = min(delivery.progress + delta * _get_belt_speed_for_cell(delivery.from_cell), 1.0)
 		if delivery.progress >= 1.0:
 			if is_instance_valid(delivery.facility):
-				delivery.facility.receive_item(delivery.item)
-			completed.append(delivery)
+				if delivery.facility.receive_item(delivery.item):
+					completed.append(delivery)
 	for delivery in completed:
 		_pending_deliveries.erase(delivery)
 	

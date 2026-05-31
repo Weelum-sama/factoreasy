@@ -8,7 +8,7 @@ var _data_cache: FacilityData = null
 var input_buffer: Dictionary = {}
 var output_buffer: Dictionary = {}
 
-const MAX_BUFFER: int = 99
+const MAX_BUFFER: int = 5
 
 var facility_state: Util.FACILITYSTATE = Util.FACILITYSTATE.IDLE
 
@@ -21,8 +21,8 @@ func _set_state(new_state: Util.FACILITYSTATE) -> void:
 	state_changed.emit(new_state)
 
 func get_data() -> FacilityData:
-	if _data_cache == null:
-		_data_cache = GameState.facility_registry.get(facility_id)
+	#if _data_cache == null:
+	_data_cache = GameState.facility_registry.get(facility_id)
 	return _data_cache
 
 func _ready() -> void:
@@ -33,6 +33,8 @@ func tick() -> void:
 	pass
 
 func receive_item(item: Item, amount: int = 1) -> bool:
+	if not can_receive_item(item):
+		return false
 	input_buffer[item] = input_buffer.get(item, 0) + amount
 	return true
 
@@ -79,7 +81,12 @@ func get_valid_output_cells() -> Array[Vector2i]:
 		results.append(cell + Util.rotate_offset(d, rotation))
 	return results
 
-func can_receive_item() -> bool:
+func can_receive_item(item: Item = null) -> bool:
+	var data := get_data()
+	if item != null and data is ProcessingFacilityData:
+		var valid := (data as ProcessingFacilityData).is_valid_input(item)
+		if not data.is_valid_input(item):
+			return false
 	var total := 0
 	for count in input_buffer.values():
 		total += count

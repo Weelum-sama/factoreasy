@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://3bnqri0lrqp0"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_fahc2"]
+[ext_resource type="Resource" uid="uid://dxasqngfyomyq" path="res://Scripts/Resources/Recipes/Ingredients/Output/iron_ore_output.tres" id="2_cf00k"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_iaobg"]
+
+[resource]
+script = ExtResource("2_iaobg")
+output = ExtResource("2_cf00k")
+metadata/_custom_type_script = "uid://c2rsbilpyoifr"

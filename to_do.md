@@ -41,7 +41,8 @@
 - ~~extractor texture~~
 - ~~iron ore node texture~~
 - ~~sink texture~~
+- ~~smelter texture~~
 
 ### nice to have
-- drag controls for camera
 - ~~drag select multiple buildings~~
+- drag controls for camera

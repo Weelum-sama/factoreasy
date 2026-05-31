@@ -13,7 +13,7 @@
 - ~~belts must be rotateable when placing single belt~~
 - ~~clicking on facility button while in facility mode crashes game~~
 - buttons extend based on label lengths
-- belts must synchronise to animation when placed (the animation only starts when all other animations start)
+- ~~belts must synchronise to animation when placed (the animation only starts when all other animations start)~~
 - ui container misalignment
 
 ## implement:
@@ -27,7 +27,7 @@
 - ~~drag and hold select~~
 - ~~buttons are spawned from packed scene for easier control of visuals~~
 - ~~ore node visual indicator for amount in inventory~~
-- clogged belts stop animating
+- ~~clogged belts stop animating~~
 - increasing prices of nodes based on number bought
 - research and new facilities
 - control legend ui

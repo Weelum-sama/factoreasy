@@ -1,4 +1,4 @@
-extends Node2D
+extends Placeable
 class_name OreNode
 
 @export var data: OreNodeData

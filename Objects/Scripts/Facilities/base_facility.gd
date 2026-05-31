@@ -1,4 +1,4 @@
-extends Node2D
+extends Placeable
 class_name BaseFacility
 
 @export var facility_id: String = ""
@@ -54,11 +54,6 @@ func peek_output() -> Item:
 			return item
 	return null
 
-func cleanup() -> void:
-	BeltManager.cancel_deliveries_to(self)
-	GridManager.remove(GridManager.world_to_cell(global_position))
-	queue_free()
-
 func get_valid_input_cells() -> Array[Vector2i]:
 	var cell := GridManager.world_to_cell(global_position)
 	var data := get_data()
@@ -83,11 +78,6 @@ func get_valid_output_cells() -> Array[Vector2i]:
 	for d in data.output_directions:
 		results.append(cell + Util.rotate_offset(d, rotation))
 	return results
-
-func move_to(new_cell: Vector2i) -> void:
-	var old_cell := GridManager.world_to_cell(global_position)
-	GridManager.remove(old_cell)
-	GridManager.place(new_cell, self)
 
 func can_receive_item() -> bool:
 	var total := 0

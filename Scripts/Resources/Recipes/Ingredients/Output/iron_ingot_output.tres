@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://dnm7b5e6nq514"]
 
-[ext_resource type="Resource" uid="uid://dlqxkax0bbvxq" path="res://Scripts/Resources/Items/iron_ingot.tres" id="1_fagy6"]
+[ext_resource type="Resource" uid="uid://dlqxkax0bbvxq" path="res://Scripts/Resources/Items/Ingots/iron_ingot.tres" id="1_fagy6"]
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_s3vov"]
 
 [resource]

@@ -6,7 +6,7 @@ var unlocked_buildings: Dictionary = {
 	"extractor":	true,
 	"conveyor":		true,
 	"sink":			true,
-	"smelter":		false,
+	"smelter":		true,
 	"constructor":	false,
 }
 
@@ -19,6 +19,7 @@ func _load_facility_registry() -> void:
 	var paths := [
 		"res://Scripts/Resources/Facility Data/extractor_data.tres",
 		"res://Scripts/Resources/Facility Data/sink_data.tres",
+		"res://Scripts/Resources/Facility Data/smelter_data.tres",
 	]
 	for path in paths:
 		if ResourceLoader.exists(path):

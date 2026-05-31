@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://djfadk1ijsscl"]
+
+[ext_resource type="Script" uid="uid://xejqkb25uct7" path="res://Objects/Scripts/Facilities/smelter.gd" id="1_0swjs"]
+[ext_resource type="Texture2D" uid="uid://cjgsdv1wkgsk4" path="res://Assets/Sprites/Buildings/smelter.png" id="1_pubtu"]
+
+[node name="Smelter" type="Node2D" unique_id=536789426]
+script = ExtResource("1_0swjs")
+facility_id = "smelter"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=874403451]
+texture = ExtResource("1_pubtu")

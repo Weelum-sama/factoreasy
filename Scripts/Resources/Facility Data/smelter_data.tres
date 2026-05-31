@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://co3nqovkj5vjj"]
+
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_vbrvk"]
+[ext_resource type="Resource" uid="uid://84kcfht2jjpo" path="res://Scripts/Resources/Recipes/iron_ingot_recipe.tres" id="2_mosmq"]
+[ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="2_qqdcc"]
+[ext_resource type="PackedScene" uid="uid://djfadk1ijsscl" path="res://Objects/Scenes/Facilities/smelter.tscn" id="3_68nox"]
+[ext_resource type="Texture2D" uid="uid://cjgsdv1wkgsk4" path="res://Assets/Sprites/Buildings/smelter.png" id="5_6sth1"]
+
+[resource]
+script = ExtResource("2_qqdcc")
+recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq")])
+id = "smelter"
+display_name = "smelter"
+texture = ExtResource("5_6sth1")
+scene = ExtResource("3_68nox")
+building_id = "smelter"
+research_cost = 2000
+input_directions = Array[Vector2i]([Vector2i(0, 1)])
+output_directions = Array[Vector2i]([Vector2i(0, -1)])
+metadata/_custom_type_script = "uid://cwoqjapww8r0j"

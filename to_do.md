@@ -32,9 +32,9 @@
 - ~~increasing prices of nodes based on number bought~~
 - research and new facilities
 - control legend ui
-- add pathfinding algorithm to belt placement, not just straight lines
 - building limit / limited build space (increasing limit in research tab)
 - context menus for facilities on click
+- add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature
 
 ## make placeholder sprites:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8lral722bbn0"
-path="res://.godot/imported/iron_ingot.png-f21a2e680fcea898f91097486ca9cdc4.ctex"
+uid="uid://cjgsdv1wkgsk4"
+path="res://.godot/imported/smelter.png-ee8c34216b047fd96bf140cb3430dce2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Resources/iron_ingot.png"
-dest_files=["res://.godot/imported/iron_ingot.png-f21a2e680fcea898f91097486ca9cdc4.ctex"]
+source_file="res://Assets/Sprites/Buildings/smelter.png"
+dest_files=["res://.godot/imported/smelter.png-ee8c34216b047fd96bf140cb3430dce2.ctex"]
 
 [params]
 

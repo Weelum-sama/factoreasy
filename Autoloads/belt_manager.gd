@@ -100,10 +100,10 @@ func cancel_deliveries_to(facility: BaseFacility) -> void:
 
 func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 	for delivery in _pending_deliveries:
-		if delivery.from_cell == old_cell:
+		if delivery.from_cell == old_cell or delivery.to_cell == old_cell:
 			delivery.from_cell += delta
-		if delivery.to_cell == old_cell:
 			delivery.to_cell += delta
+			delivery.progress = 1.0
 
 func _is_output_blocked(belt: Belt) -> bool:
 	var output_cell := belt.get_output_cell()

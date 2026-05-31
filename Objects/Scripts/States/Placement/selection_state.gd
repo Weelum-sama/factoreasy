@@ -58,6 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("Stash"):
 			for building in context.selected_buildings:
 				building.cleanup()
+				BeltManager.cancel_deliveries_to(building)
 			context.selected_buildings.clear()
 			transitioned.emit(self, DefaultState.NAME)
 

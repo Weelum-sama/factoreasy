@@ -93,9 +93,9 @@ func _get_belt_speed_for_cell(cell: Vector2i) -> float:
 		return belt.get_items_per_second()
 	return 1.0
 
-func cancel_deliveries_to(facility: BaseFacility) -> void:
+func cancel_deliveries_to(placeable: Placeable) -> void:
 	_pending_deliveries = _pending_deliveries.filter(
-		func(d): return d.facility != facility
+		func(d): return d.facility != placeable
 	)
 
 func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:

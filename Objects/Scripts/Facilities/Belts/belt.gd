@@ -1,4 +1,4 @@
-extends Node2D
+extends Placeable
 class_name Belt
 
 var belt_item: BeltItem = null
@@ -47,8 +47,7 @@ func move_to(new_cell: Vector2i) -> void:
 	BeltManager.update_delivery_cells(old_cell, delta)
 	
 	BeltManager.unregister_belt(old_cell)
-	GridManager.remove(old_cell)
-	GridManager.place(new_cell, self)
+	super.move_to(new_cell)
 	BeltManager.register_belt(new_cell, self)
 
 func _sync_animation() -> void:

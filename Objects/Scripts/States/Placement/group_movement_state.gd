@@ -96,6 +96,7 @@ func _try_place_group() -> void:
 				building.belt_item.previous_cell += delta
 				building.belt_item.current_cell += delta
 			BeltManager.update_delivery_cells(old_cell, delta)
+			
 			GridManager.place(target_cell, building)
 			BeltManager.register_belt(target_cell, building)
 		else:

@@ -4,10 +4,10 @@ const TICK_RATE: float = 1.0
 
 var _timer: float = 0.0
 
-var _pending_coins: int = 0
+var _pending_coins: float = 0
 
 signal tick_occurred
-signal coins_accumulated(amount: int)
+signal coins_accumulated(amount: float)
 
 func _process(delta: float) -> void:
 	_timer += delta
@@ -25,5 +25,5 @@ func _run_tick() -> void:
 func get_tick_progress() -> float:
 	return _timer / TICK_RATE
 
-func add_pending_coins(amount: int) -> void:
+func add_pending_coins(amount: float) -> void:
 	_pending_coins += amount

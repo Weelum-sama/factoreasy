@@ -2,7 +2,7 @@ extends Label
 
 var _displayed_value: float = 0.0
 var _tween: Tween = null
-@export var tween_time: float = 0.3
+@export var tween_time: float = 1.0
 
 func _ready() -> void:
 	GameState.coins_changed.connect(_on_coins_changed)

@@ -14,8 +14,8 @@
 - ~~clicking on facility button while in facility mode crashes game~~
 - ~~belts must synchronise to animation when placed (the animation only starts when all other animations start)~~
 - ~~group move sometimes skips part of the selected buildings~~
-- item rendering stays after stash
-- make facility checks placable
+- ~~item rendering stays after stash~~
+- belts pushing onto occupied belts
 - buttons extend based on label lengths
 - ui container misalignment
 
@@ -37,6 +37,7 @@
 - building limit / limited build space (increasing limit in research tab)
 - context menus for facilities on click
 - add pathfinding algorithm to belt placement, not just straight lines
+- maluable belts (easy splitting and automatic bridges)
 - copy selection feature
 
 ## make placeholder sprites:

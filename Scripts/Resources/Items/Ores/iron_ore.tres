@@ -7,5 +7,5 @@
 script = ExtResource("1_2n4db")
 name = "iron ore"
 texture = ExtResource("2_crnsv")
-sell_value = 1
+sell_value = 0.5
 metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

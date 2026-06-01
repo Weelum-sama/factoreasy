@@ -90,13 +90,13 @@ func get_total_owned_of_ore(node_id: String) -> int:
 
 ## Coins
 
-var _total_coins: int = 50
+var _total_coins: float = 50
 
 signal coins_changed(new_amount: int)
 
-func add_coins(amount: int) -> void:
+func add_coins(amount: float) -> void:
 	_total_coins += amount
 	coins_changed.emit(_total_coins)
 
 func get_total_coins() -> int:
-	return _total_coins
+	return roundi(_total_coins)

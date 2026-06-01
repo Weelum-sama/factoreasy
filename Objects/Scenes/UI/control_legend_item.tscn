@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d18hijrx8ushv"]
+
+[ext_resource type="Script" uid="uid://dx7osj1if3xvv" path="res://Objects/Scripts/UI/control_legend_item.gd" id="1_jcxqm"]
+
+[node name="ControlLegendItem" type="PanelContainer" unique_id=797223444]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_jcxqm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=162593906]
+layout_mode = 2
+
+[node name="ActionLabel" type="Label" parent="HBoxContainer" unique_id=1989182105]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Action: "
+vertical_alignment = 1
+
+[node name="InputLabel" type="Label" parent="HBoxContainer" unique_id=480802525]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Input"

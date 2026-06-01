@@ -8,6 +8,10 @@
 [node name="SidebarUI" type="VBoxContainer" unique_id=1853947216]
 custom_minimum_size = Vector2(220, 0)
 anchors_preset = -1
+offset_left = -110.0
+offset_top = -33.5
+offset_right = 110.0
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
 focus_behavior_recursive = 1
@@ -28,7 +32,9 @@ script = ExtResource("2_tmd3e")
 [node name="TabContainer" type="TabContainer" parent="." unique_id=410335498]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/side_margin = 0
 current_tab = 0
+tab_focus_mode = 1
 
 [node name="store" type="ScrollContainer" parent="TabContainer" unique_id=1571925321]
 layout_mode = 2

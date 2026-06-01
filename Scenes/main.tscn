@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7a52a0f5nu5x" path="res://Objects/Scenes/UI/ore_node_bar_ui.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://dmsbd71at8nc7" path="res://Objects/Scenes/Managers/placement_controller.tscn" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://dsk3vvyg4h47c" path="res://Objects/Scenes/UI/mode_display.tscn" id="4_6bp64"]
+[ext_resource type="PackedScene" uid="uid://bm7yqk8qcxn72" path="res://Objects/Scenes/UI/control_legend_container.tscn" id="5_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://bosised3v815v" path="res://Objects/Scenes/Managers/belt_renderer.tscn" id="8_344ge"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
@@ -41,9 +42,21 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ModeDisplay" parent="CanvasLayer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer" unique_id=756639909]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2" unique_id=159007235]
+layout_mode = 2
+
+[node name="ModeDisplay" parent="CanvasLayer/MarginContainer2/VBoxContainer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
+clip_contents = false
+layout_mode = 2
+
+[node name="ControlLegendContainer" parent="CanvasLayer/MarginContainer2/VBoxContainer" unique_id=349626345 instance=ExtResource("5_ynf5e")]
+layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
 offset = Vector2(500, 320)

@@ -59,7 +59,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
-offset = Vector2(500, 320)
+position = Vector2(0, 1)
 ignore_rotation = false
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 25.0

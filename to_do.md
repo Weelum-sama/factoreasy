@@ -38,8 +38,8 @@
 - building limit / limited build space (increasing limit in research tab)
 - context menus for facilities on click
 - add pathfinding algorithm to belt placement, not just straight lines
-- maluable belts (easy splitting and automatic bridges)
 - copy selection feature
+- maluable belts (easy splitting and automatic bridges)
 
 ## make placeholder sprites:
 - ~~extractor texture~~

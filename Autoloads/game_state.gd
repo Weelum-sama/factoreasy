@@ -88,6 +88,21 @@ func has_node_in_inventory(node_id: String) -> bool:
 func get_total_owned_of_ore(node_id: String) -> int:
 	return total_nodes_owned[node_id]
 
+## Factory size
+
+const FACTORY_BASE_SIZE: int = 16
+const FACTORY_SIZE_PER_LEVEL: int = 4
+
+signal factory_size_changed
+
+func get_factory_size() -> int:
+	return FACTORY_BASE_SIZE + (upgrade_levels["factory"] - 1) * FACTORY_SIZE_PER_LEVEL
+
+func get_factory_bounds() -> Rect2i:
+	var size := get_factory_size()
+	var half := size / 2
+	return Rect2i(-half, -half, size, size)
+
 ## Coins
 
 var _total_coins: float = 50
@@ -100,3 +115,18 @@ func add_coins(amount: float) -> void:
 
 func get_total_coins() -> int:
 	return roundi(_total_coins)
+
+## Upgrades
+
+var upgrade_levels: Dictionary = {
+	"factory" : 1,
+	"belts" : 1,
+}
+
+func upgrade_level(upgrade: String, amount: int = 1) -> void:
+	upgrade_levels[upgrade] += amount
+	if upgrade == "factory":
+		factory_size_changed.emit()
+
+func get_upgrade_level(upgrade: String) -> int:
+	return upgrade_levels[upgrade]

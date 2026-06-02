@@ -1,11 +1,30 @@
 extends Node2D
 
+func _ready() -> void:
+	GameState.factory_size_changed.connect(queue_redraw)
+
 func _draw() -> void:
-	var cols := 30
-	var rows := 20
-	var cs := GridManager.CELL_SIZE
-	var color := Color(1, 1, 1, 0.06)
-	for x in range(cols + 1):
-		draw_line(Vector2(x * cs, 0), Vector2(x * cs, rows * cs), color)
-	for y in range(rows + 1):
-		draw_line(Vector2(0, y * cs), Vector2(cols * cs, y * cs), color)
+	var bounds := GameState.get_factory_bounds()
+	var cell_size := GridManager.CELL_SIZE
+	print("first vertical line: x=", bounds.position.x * cell_size, " from y=", bounds.position.y * cell_size, " to y=", bounds.end.y * cell_size)
+	print("first horizontal line: y=", bounds.position.y * cell_size, " from x=", bounds.position.x * cell_size, " to x=", bounds.end.x * cell_size)
+	var grid_color := Color(1, 1, 1, 0.1)
+	var border_color := Color(1, 1, 1, 0.4)
+	
+	for x in range(bounds.position.x, bounds.end.x + 1):
+		var screen_x := x * cell_size
+		var top := bounds.position.y * cell_size
+		var bottom := bounds.end.y * cell_size
+		draw_line(Vector2(screen_x, top), Vector2(screen_x, bottom), grid_color)
+	
+	for y in range(bounds.position.y, bounds.end.y + 1):
+		var screen_y := y * cell_size
+		var left := bounds.position.x * cell_size
+		var right := bounds.end.x * cell_size
+		draw_line(Vector2(left, screen_y), Vector2(right, screen_y), grid_color)
+	
+	var rect := Rect2i(
+		Vector2(bounds.position) * cell_size,
+		Vector2(bounds.size) * cell_size
+	)
+	draw_rect(rect, border_color, false, 2.0)

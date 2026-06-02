@@ -58,9 +58,10 @@ func update(_delta: float) -> void:
 		_ghosts[i].position = GridManager.cell_center(target_cell)
 		
 		var occupant := GridManager.get_cell_occupant(target_cell)
-		var is_free := occupant == null or context.selected_buildings.has(occupant)
+		var in_bounds := GridManager.is_cell_in_bounds(target_cell)
+		var is_free := in_bounds and (occupant == null or context.selected_buildings.has(occupant))
 		
-		_ghosts[i].modulate = Color(1, 0.3, 0.3, 0.5) if not is_free else Color(1, 1, 1, 0.5)
+		_ghosts[i].modulate = Color(1, 1, 1, 0.5) if is_free else Color(1, 0.3, 0.3, 0.5)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Rotate Building"):
@@ -76,6 +77,8 @@ func _try_place_group() -> void:
 		var target_cell := cursor_cell + context.group_move_offsets[i]
 		var occupant := GridManager.get_cell_occupant(target_cell)
 		if occupant != null and not context.selected_buildings.has(occupant):
+			return
+		if not GridManager.is_cell_in_bounds(target_cell):
 			return
 	
 	for building in context.selected_buildings:

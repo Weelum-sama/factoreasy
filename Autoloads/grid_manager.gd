@@ -25,7 +25,12 @@ func snap_to_grid(world_pos: Vector2) -> Vector2:
 
 ### Placement verification
 
+func is_cell_in_bounds(cell: Vector2i) -> bool:
+	return GameState.get_factory_bounds().has_point(cell)
+
 func is_cell_empty(cell: Vector2i) -> bool:
+	if not is_cell_in_bounds(cell):
+		return false
 	return not _grid.has(cell)
 
 ### Retrieving cell occupants

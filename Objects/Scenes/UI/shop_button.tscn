@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://jtlps3mbn621"]
+[gd_scene format=3 uid="uid://sjpl08xf6cam"]
 
 [ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_2gku0"]
 [ext_resource type="Script" uid="uid://bbr6xfu7cdfyq" path="res://Objects/Scripts/UI/shop_button.gd" id="1_boux0"]

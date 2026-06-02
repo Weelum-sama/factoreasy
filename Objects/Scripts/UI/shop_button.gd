@@ -1,5 +1,5 @@
 extends PanelContainer
-class_name  ShopButton
+class_name ShopButton
 
 signal pressed(data: FacilityData)
 

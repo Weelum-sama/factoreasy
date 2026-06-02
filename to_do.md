@@ -16,6 +16,7 @@
 - ~~group move sometimes skips part of the selected buildings~~
 - ~~item rendering stays after stash~~
 - ~~ui container misalignment~~
+- pick up building spawns visible ghost at world origin for one frame
 - belts pushing onto occupied belts
 - buttons extend based on label lengths
 
@@ -32,8 +33,8 @@
 - ~~ore node visual indicator for amount in inventory~~
 - ~~clogged belts stop animating~~
 - ~~increasing prices of nodes based on number bought~~
-- research and new facilities
-- control legend ui
+- ~~control legend ui~~
+- ~~research and new facilities~~
 - building limit / limited build space (increasing limit in research tab)
 - context menus for facilities on click
 - add pathfinding algorithm to belt placement, not just straight lines

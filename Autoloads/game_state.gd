@@ -6,7 +6,7 @@ var unlocked_buildings: Dictionary = {
 	"extractor":	true,
 	"conveyor":		true,
 	"sink":			true,
-	"smelter":		true,
+	"smelter":		false,
 	"constructor":	false,
 }
 

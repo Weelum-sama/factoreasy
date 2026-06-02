@@ -104,10 +104,7 @@ func _try_place_group() -> void:
 		building.modulate = Color.WHITE
 	
 	context.selected_buildings.clear()
-	if context.entered_from_selection:
-		transitioned.emit(self, SelectionState.NAME)
-	else:
-		transitioned.emit(self, DefaultState.NAME)
+	transitioned.emit(self, DefaultState.NAME)
 
 func _cancel_group_move() -> void:
 	for ghost in _ghosts:

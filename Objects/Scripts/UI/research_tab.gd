@@ -43,5 +43,4 @@ func _on_coins_changed(new_amount: float) -> void:
 		if not GameState.unlocked_buildings.get(building_id, false):
 			var button: ResearchButton = _buttons[building_id]
 			var can_afford: bool = new_amount >= button.data.research_cost
-			print("new amount: ", new_amount, " cost: ", button.data.research_cost," can afford: ", can_afford)
 			button.update_affordability(can_afford)

@@ -6,8 +6,6 @@ func _ready() -> void:
 func _draw() -> void:
 	var bounds := GameState.get_factory_bounds()
 	var cell_size := GridManager.CELL_SIZE
-	print("first vertical line: x=", bounds.position.x * cell_size, " from y=", bounds.position.y * cell_size, " to y=", bounds.end.y * cell_size)
-	print("first horizontal line: y=", bounds.position.y * cell_size, " from x=", bounds.position.x * cell_size, " to x=", bounds.end.x * cell_size)
 	var grid_color := Color(1, 1, 1, 0.1)
 	var border_color := Color(1, 1, 1, 0.4)
 	

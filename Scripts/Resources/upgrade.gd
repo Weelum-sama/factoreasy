@@ -1,5 +1,5 @@
 extends Resource
-class_name Upgrade
+class_name UpgradeData
 
 @export var id: String = ""
 @export var texture: Texture2D = null

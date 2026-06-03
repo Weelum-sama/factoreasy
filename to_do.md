@@ -16,6 +16,7 @@
 - ~~group move sometimes skips part of the selected buildings~~
 - ~~item rendering stays after stash~~
 - ~~ui container misalignment~~
+- ~~upgrade cost not updating~~
 - pick up building spawns visible ghost at world origin for one frame
 - belts pushing onto occupied belts
 - buttons extend based on label lengths
@@ -35,11 +36,11 @@
 - ~~increasing prices of nodes based on number bought~~
 - ~~control legend ui~~
 - ~~research and new facilities~~
-- building limit / limited build space (increasing limit in research tab)
+- ~~building limit / limited build space (increasing limit in research tab)~~
 - context menus for facilities on click
 - add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature
-- maluable belts (easy splitting and automatic bridges)
+- saving
 
 ## make placeholder sprites:
 - ~~extractor texture~~
@@ -50,3 +51,4 @@
 ### nice to have
 - ~~drag select multiple buildings~~
 - drag controls for camera
+- maluable belts (easy splitting and automatic bridges)

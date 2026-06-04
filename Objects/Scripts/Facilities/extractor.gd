@@ -20,14 +20,13 @@ func _try_exctract() -> void:
 	var ore_item := (occupant as OreNode).extract_item()
 	var matching_recipe: Recipe = null
 	for recipe in data.recipes:
-		print("recipe: ", recipe, "\nore_item:", ore_item)
 		if recipe.output.item == ore_item:
 			matching_recipe = recipe
-			continue
+			break
 		
-		if matching_recipe == null:
-			_set_state(Util.FACILITYSTATE.IDLE)
-			return
+	if matching_recipe == null:
+		_set_state(Util.FACILITYSTATE.IDLE)
+		return
 		
 	if output_buffer.get(ore_item, 0) >= MAX_BUFFER:
 		_set_state(Util.FACILITYSTATE.CLOGGED)

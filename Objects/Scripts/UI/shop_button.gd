@@ -15,7 +15,7 @@ func setup(ore_data: OreNodeData, cost: int, owned: int) -> void:
 	if data.texture:
 		icon.texture = data.texture
 	name_label.text = data.display_name
-	update_label_cost(cost)
+	update_label_cost(ore_data.cost)
 	update_label_owned(owned)
 
 func update_label_cost(cost: int) -> void:

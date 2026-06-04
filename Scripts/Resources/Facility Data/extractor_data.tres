@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_di7su"]
 [ext_resource type="PackedScene" uid="uid://dcqcj72xgytu6" path="res://Objects/Scenes/Facilities/extractor.tscn" id="1_nhpwp"]
 [ext_resource type="Resource" uid="uid://3bnqri0lrqp0" path="res://Scripts/Resources/Recipes/Ores/iron_ore_recipe.tres" id="2_ml11h"]
+[ext_resource type="Resource" uid="uid://fo4dd1mimuio" path="res://Scripts/Resources/Recipes/Ores/copper_ore_recipe.tres" id="3_8me0q"]
 [ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="3_ml11h"]
 [ext_resource type="Texture2D" uid="uid://j41c63uucykn" path="res://Assets/Sprites/Buildings/extractor.png" id="4_di7su"]
 
 [resource]
 script = ExtResource("3_ml11h")
-recipes = Array[ExtResource("1_di7su")]([ExtResource("2_ml11h")])
+recipes = Array[ExtResource("1_di7su")]([ExtResource("2_ml11h"), ExtResource("3_8me0q")])
 id = "extractor"
 display_name = "extractor"
 texture = ExtResource("4_di7su")

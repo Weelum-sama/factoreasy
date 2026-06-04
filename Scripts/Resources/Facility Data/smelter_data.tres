@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_vbrvk"]
 [ext_resource type="Resource" uid="uid://84kcfht2jjpo" path="res://Scripts/Resources/Recipes/iron_ingot_recipe.tres" id="2_mosmq"]
 [ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="2_qqdcc"]
+[ext_resource type="Resource" uid="uid://b8kaqnqcwyvu" path="res://Scripts/Resources/Recipes/copper_ingot_recipe.tres" id="3_6sth1"]
 [ext_resource type="PackedScene" uid="uid://djfadk1ijsscl" path="res://Objects/Scenes/Facilities/smelter.tscn" id="3_68nox"]
 [ext_resource type="Texture2D" uid="uid://cjgsdv1wkgsk4" path="res://Assets/Sprites/Buildings/smelter.png" id="5_6sth1"]
 
 [resource]
 script = ExtResource("2_qqdcc")
-recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq")])
+recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq"), ExtResource("3_6sth1")])
 id = "smelter"
 display_name = "smelter"
 texture = ExtResource("5_6sth1")

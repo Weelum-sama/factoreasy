@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cmlupcgjkpy6m"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_u854i"]
+[ext_resource type="Texture2D" uid="uid://cbxf270e2rhk8" path="res://Assets/Sprites/Resources/copper_ingot.png" id="2_506tv"]
+
+[resource]
+script = ExtResource("1_u854i")
+name = "copper ingot"
+texture = ExtResource("2_506tv")
+sell_value = 12.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

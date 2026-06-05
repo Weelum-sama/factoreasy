@@ -9,9 +9,11 @@ func tick() -> void:
 	if data == null or data.recipes.is_empty():
 		return
 	
-	var recipe: Recipe = data.recipes[0]
-	
 	if _is_producing:
+		var recipe := get_current_recipe()
+		if recipe == null:
+			_is_producing = false
+			return
 		_production_timer += TickManager.TICK_RATE
 		_set_state(Util.FACILITYSTATE.PRODUCING)
 		if _production_timer >= recipe.production_time:
@@ -19,6 +21,8 @@ func tick() -> void:
 			_is_producing = false
 			_complete_production(recipe)
 	else:
+		set_current_recipe()
+		var recipe := get_current_recipe()
 		if output_buffer.get(recipe.output.item, 0) >= MAX_BUFFER:
 			_set_state(Util.FACILITYSTATE.CLOGGED)
 			return

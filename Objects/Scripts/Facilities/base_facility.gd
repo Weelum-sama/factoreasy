@@ -12,6 +12,8 @@ const MAX_BUFFER: int = 5
 
 var facility_state: Util.FACILITYSTATE = Util.FACILITYSTATE.IDLE
 
+var _current_recipe: Recipe = null
+
 signal state_changed(new_state: Util.FACILITYSTATE)
 
 func _set_state(new_state: Util.FACILITYSTATE) -> void:
@@ -82,11 +84,19 @@ func get_valid_output_cells() -> Array[Vector2i]:
 	return results
 
 func can_receive_item(item: Item = null) -> bool:
-	var data := get_data()
-	if item != null and data is ProcessingFacilityData:
-		var valid := (data as ProcessingFacilityData).is_valid_input(item)
-		if not data.is_valid_input(item):
+	if item != null and get_data() is ProcessingFacilityData:
+		if not is_input_valid(item):
 			return false
+	
+	if _current_recipe != null:
+		var belongs := false
+		for ingredient in _current_recipe.input:
+			if ingredient.item == item:
+				belongs = true
+				break
+			if not belongs:
+				return false
+	
 	var total := 0
 	for count in input_buffer.values():
 		total += count
@@ -97,3 +107,32 @@ func can_produce() -> bool:
 	for count in output_buffer.values():
 		total += count
 	return total < MAX_BUFFER
+
+func is_input_valid(item: Item) -> bool:
+	var data := get_data() as ProcessingFacilityData
+	if data == null:
+		return false
+	for recipe in data.recipes:
+		for ingredient in recipe.input:
+			if ingredient.item == item:
+				return true
+	return false
+
+func set_current_recipe() -> void:
+	var data := get_data() as ProcessingFacilityData
+	if data == null:
+		_current_recipe = null
+		return
+	for recipe in data.recipes:
+		if recipe.can_produce(input_buffer):
+			_current_recipe = recipe
+			return
+	for recipe in data.recipes:
+		for ingredient in recipe.input:
+			if input_buffer.get(ingredient.item, 0) > 0:
+				_current_recipe = recipe
+				return
+	_current_recipe = null
+
+func get_current_recipe() -> Recipe:
+	return _current_recipe

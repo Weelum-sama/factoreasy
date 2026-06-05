@@ -18,13 +18,13 @@ func _try_exctract() -> void:
 		return
 	
 	var ore_item := (occupant as OreNode).extract_item()
-	var matching_recipe: Recipe = null
+	_current_recipe = null
 	for recipe in data.recipes:
 		if recipe.output.item == ore_item:
-			matching_recipe = recipe
+			_current_recipe = recipe
 			break
 		
-	if matching_recipe == null:
+	if _current_recipe == null:
 		_set_state(Util.FACILITYSTATE.IDLE)
 		return
 		

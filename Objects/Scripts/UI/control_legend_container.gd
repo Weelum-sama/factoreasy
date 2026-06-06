@@ -5,35 +5,25 @@ const CONTROL_LEGEND_ITEM = preload("res://Objects/Scenes/UI/control_legend_item
 
 var _current_items: Array[Node]
 
-const inputs: Dictionary = {
+
+
+const universal_inputs: Dictionary = {
 	"move camera: ": "WASD/arrows",
 	"zoom: ": "scroll in/out",
 	"rotate camera: ": "ctrl+R",
 	"confirm: ": "left mouse button",
 	"cancel: ": "right mouse button / ESC",
-	"quick select: ": "middle mouse button",
-	"rotate: ": "R",
-	"select: ": "TAB",
-	"select all: ": "Q",
-	"stash: ": "F",
-	"move selection: ": "M",
-	"belt: ": "E",
 }
 
 const default_inputs: Dictionary = {
-	"move camera: ": "WASD/arrows",
-	"zoom: ": "scroll in/out",
-	"rotate camera: ": "ctrl+R",
 	"quick copy: ": "middle mouse button",
-	"selectmode: ": "TAB",
+	"quick move": "hold left mouse button",
+	"enter selectmode: ": "TAB",
 	"place belts: ": "E",
 }
 
 const selection_inputs: Dictionary = {
 	"leave selectmode: ": "TAB/right mouse button/ESC",
-	"move camera: ": "WASD/arrows",
-	"zoom: ": "scroll in/out",
-	"rotate camera: ": "ctrl+R",
 	"select/deselect: ": "left mouse button",
 	"deselect": "hold ctrl + left mouse button",
 	"select all: ": "Q",
@@ -43,27 +33,18 @@ const selection_inputs: Dictionary = {
 
 const placement_inputs: Dictionary = {
 	"leave placementmode: ": "right mouse button/ESC",
-	"move camera: ": "WASD/arrows",
-	"zoom: ": "scroll in/out",
-	"rotate camera: ": "ctrl+R",
 	"confirm placement: ": "left mouse button",
-	"rotate building: ": "E",
+	"rotate building: ": "R",
 }
 
 const group_move_inputs: Dictionary = {
 	"cancel movement: ": "TAB/right mouse button/ESC",
-	"move camera: ": "WASD/arrows",
-	"zoom: ": "scroll in/out",
-	"rotate camera: ": "ctrl+R",
 	"rotate selection: ": "R",
 	"confirm placement: ": "left mouse button",
 }
 
 const belt_inputs: Dictionary = {
 	"stop placing belts: ": "right mouse button/ESC",
-	"move camera: ": "WASD/arrows",
-	"zoom: ": "scroll in/out",
-	"rotate camera: ": "ctrl+R",
 	"place multiple: ": "drag left mouse button",
 	"rotate belt: ": "R",
 	"confirm placement: ": "left mouse button",

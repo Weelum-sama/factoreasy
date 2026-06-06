@@ -37,6 +37,7 @@
 - ~~control legend ui~~
 - ~~research and new facilities~~
 - ~~building limit / limited build space (increasing limit in research tab)~~
+- tutorial
 - context menus for facilities on click
 - add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature

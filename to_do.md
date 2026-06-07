@@ -18,6 +18,7 @@
 - ~~ui container misalignment~~
 - ~~upgrade cost not updating~~
 - pick up building spawns visible ghost at world origin for one frame
+- belts only move items every other tick
 - belts pushing onto occupied belts
 - buttons extend based on label lengths
 
@@ -37,8 +38,10 @@
 - ~~control legend ui~~
 - ~~research and new facilities~~
 - ~~building limit / limited build space (increasing limit in research tab)~~
+- separate sprite for preview (showing in and output)
 - tutorial
 - context menus for facilities on click
+- assembler (more than 1 input)
 - add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature
 - saving

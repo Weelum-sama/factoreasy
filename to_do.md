@@ -38,13 +38,13 @@
 - ~~control legend ui~~
 - ~~research and new facilities~~
 - ~~building limit / limited build space (increasing limit in research tab)~~
+- ~~saving~~
 - separate sprite for preview (showing in and output)
 - tutorial
 - context menus for facilities on click
 - assembler (more than 1 input)
 - add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature
-- saving
 
 ## make placeholder sprites:
 - ~~extractor texture~~

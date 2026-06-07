@@ -55,3 +55,8 @@ func place(cell: Vector2i, building: Node) -> bool:
 
 func remove(cell: Vector2i) -> void:
 	_grid.erase(cell)
+
+### Grid
+
+func get_full_grid() -> Dictionary:
+	return _grid

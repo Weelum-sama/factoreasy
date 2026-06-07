@@ -21,6 +21,9 @@ func _load_facility_registry() -> void:
 		"res://Scripts/Resources/Facility Data/extractor_data.tres",
 		"res://Scripts/Resources/Facility Data/sink_data.tres",
 		"res://Scripts/Resources/Facility Data/smelter_data.tres",
+		
+		"res://Scripts/Resources/Node Data/iron_ore_node_data.tres",
+		"res://Scripts/Resources/Node Data/copper_ore_node_data.tres",
 	]
 	for path in paths:
 		if ResourceLoader.exists(path):
@@ -44,7 +47,7 @@ func is_building_unlocked(building_id: String) -> bool:
 
 var unlocked_nodes: Dictionary = {
 	"iron_ore_node":		true,
-	"copper_ore_node":		true,
+	"copper_ore_node":		false,
 }
 
 var node_inventory: Dictionary = {
@@ -134,41 +137,56 @@ func get_upgrade_level(upgrade: String) -> int:
 
 ## Saving / Loading
 
-const SAVE_PATH := "user://savegame.json"
+signal grid_load_requested(grid_data: GridData)
+
+const SAVE_PATH_STATE := "user://game_state.tres"
+const SAVE_PATH_GRID  := "user://grid_data.tres"
 
 func save_game() -> void:
-	var data := {
-		"unlocked_buildings": unlocked_buildings,
-		"node_inventory": node_inventory,
-		"total_nodes_owned": total_nodes_owned,
-		"unlocked_nodes": unlocked_nodes,
-		"total_coins": _total_coins,
-		"upgrade_levels": upgrade_levels,
-	}
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(data, "\t"))
-		file.close()
+	var state := GameStateData.new()
+	state.unlocked_buildings = unlocked_buildings.duplicate()
+	state.unlocked_nodes = unlocked_nodes.duplicate()
+	state.node_inventory = node_inventory
+	state.total_nodes_owned = total_nodes_owned.duplicate()
+	state.total_coins = _total_coins
+	state.upgrade_levels = upgrade_levels.duplicate()
+	ResourceSaver.save(state, SAVE_PATH_STATE)
+	
+	var grid := GridData.new()
+	var existing_grid := GridManager.get_full_grid()
+	for cell in existing_grid:
+		var occupant: Node = existing_grid[cell]
+		var entry := { "cell": cell, "rotation": occupant.rotation }
+		if occupant is Belt:
+			entry["type"] = "belt"
+		elif occupant is OreNode:
+			entry["type"] = occupant.data.id
+		elif occupant is BaseFacility:
+			entry["type"] = occupant.facility_id
+		else:
+			continue
+		grid.entries.append(entry)
+	ResourceSaver.save(grid, SAVE_PATH_GRID)
 
 func load_game() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
-		return
-	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if not file:
-		return
-	var json := JSON.new()
-	var err := json.parse(file.read_as_string())
-	file.close()
-	if err != OK:
-		push_error("Failed to parse save file")
-		return
-	var data: Dictionary = json.get_data()
-	unlocked_buildings = data.get("unlocked_buildings", unlocked_buildings)
-	node_inventory = data.get("node_inventory", node_inventory)
-	total_nodes_owned = data.get("total_nodes_owned", total_nodes_owned)
-	unlocked_nodes = data.get("unlocked_nodes", unlocked_nodes)
-	_total_coins = data.get("total_coins", _total_coins)
-	upgrade_levels = data.get("upgrade_levels", upgrade_levels)
+	if ResourceLoader.exists(SAVE_PATH_STATE):
+		var state: GameStateData = ResourceLoader.load(SAVE_PATH_STATE)
+		unlocked_buildings = state.unlocked_buildings.duplicate()
+		node_inventory     = state.node_inventory.duplicate()
+		total_nodes_owned  = state.total_nodes_owned.duplicate()
+		unlocked_nodes     = state.unlocked_nodes.duplicate()
+		_total_coins       = state.total_coins
+		upgrade_levels     = state.upgrade_levels.duplicate()
+	
+	if ResourceLoader.exists(SAVE_PATH_GRID):
+		var grid: GridData = ResourceLoader.load(SAVE_PATH_GRID)
+		call_deferred("emit_signal", "grid_load_requested", grid)
+
+func reset_save_data() -> void:
+	if ResourceLoader.exists(SAVE_PATH_STATE):
+		DirAccess.remove_absolute(SAVE_PATH_STATE)
+	if ResourceLoader.exists(SAVE_PATH_GRID):
+		DirAccess.remove_absolute(SAVE_PATH_GRID)
 
 ## Pause
 

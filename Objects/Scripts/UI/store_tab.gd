@@ -52,3 +52,4 @@ func _on_purchase(node_id: String, amount: int) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Test"):
 		GameState.add_coins(1000)
+		GameState.reset_save_data()

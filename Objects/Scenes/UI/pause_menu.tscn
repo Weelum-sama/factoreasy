@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://hqp3su2ippw6"]
+
+[ext_resource type="Script" uid="uid://fchf1poso58h" path="res://Objects/Scripts/UI/pause_menu.gd" id="1_tmpkm"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1495478638]
+layer = 10
+script = ExtResource("1_tmpkm")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=1447877578]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="Panel" parent="." unique_id=219714620]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -80.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=143778878]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=907835863]
+layout_mode = 2
+text = "paused"
+horizontal_alignment = 1
+
+[node name="SaveButton" type="Button" parent="Panel/VBoxContainer" unique_id=1596144388]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+text = "save game"
+
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer" unique_id=701611669]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+text = "resume"

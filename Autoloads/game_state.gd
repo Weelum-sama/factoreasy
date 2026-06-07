@@ -14,6 +14,7 @@ var facility_registry: Dictionary = {}
 
 func _ready() -> void:
 	_load_facility_registry()
+	load_game()
 
 func _load_facility_registry() -> void:
 	var paths := [
@@ -130,3 +131,45 @@ func upgrade_level(upgrade: String, amount: int = 1) -> void:
 
 func get_upgrade_level(upgrade: String) -> int:
 	return upgrade_levels[upgrade]
+
+## Saving / Loading
+
+const SAVE_PATH := "user://savegame.json"
+
+func save_game() -> void:
+	var data := {
+		"unlocked_buildings": unlocked_buildings,
+		"node_inventory": node_inventory,
+		"total_nodes_owned": total_nodes_owned,
+		"unlocked_nodes": unlocked_nodes,
+		"total_coins": _total_coins,
+		"upgrade_levels": upgrade_levels,
+	}
+	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(data, "\t"))
+		file.close()
+
+func load_game() -> void:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if not file:
+		return
+	var json := JSON.new()
+	var err := json.parse(file.read_as_string())
+	file.close()
+	if err != OK:
+		push_error("Failed to parse save file")
+		return
+	var data: Dictionary = json.get_data()
+	unlocked_buildings = data.get("unlocked_buildings", unlocked_buildings)
+	node_inventory = data.get("node_inventory", node_inventory)
+	total_nodes_owned = data.get("total_nodes_owned", total_nodes_owned)
+	unlocked_nodes = data.get("unlocked_nodes", unlocked_nodes)
+	_total_coins = data.get("total_coins", _total_coins)
+	upgrade_levels = data.get("upgrade_levels", upgrade_levels)
+
+## Pause
+
+signal game_paused(paused: bool)

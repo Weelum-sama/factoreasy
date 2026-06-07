@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bej5sh4ue04tg"]
 
 [ext_resource type="PackedScene" uid="uid://cm4w6k4o5beg4" path="res://Objects/Scenes/UI/sidebar_ui.tscn" id="1_21xkr"]
+[ext_resource type="Script" uid="uid://d2o4tqqipdjw0" path="res://Scripts/main.gd" id="1_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://hqp3su2ippw6" path="res://Objects/Scenes/UI/pause_menu.tscn" id="1_hptm8"]
 [ext_resource type="Script" uid="uid://dkehjj0iwcq5m" path="res://Scripts/grid_debug.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://b2cabtjf4lkoa" path="res://Objects/Scenes/UI/tool_bar_ui.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://m26gseop6vq3" path="res://Scripts/camera_script.gd" id="2_jjvhh"]
@@ -11,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bosised3v815v" path="res://Objects/Scenes/Managers/belt_renderer.tscn" id="8_344ge"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
+script = ExtResource("1_d1ilt")
+
+[node name="PauseMenu" parent="." unique_id=1495478638 instance=ExtResource("1_hptm8")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1757633803]
 

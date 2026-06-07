@@ -17,6 +17,7 @@
 - ~~item rendering stays after stash~~
 - ~~ui container misalignment~~
 - ~~upgrade cost not updating~~
+- smelters without input complete copper ingots (maybe only after saving?)
 - pick up building spawns visible ghost at world origin for one frame
 - belts only move items every other tick
 - belts pushing onto occupied belts
@@ -40,6 +41,7 @@
 - ~~building limit / limited build space (increasing limit in research tab)~~
 - ~~saving~~
 - separate sprite for preview (showing in and output)
+- moving belts should not have their items rendered
 - tutorial
 - context menus for facilities on click
 - assembler (more than 1 input)

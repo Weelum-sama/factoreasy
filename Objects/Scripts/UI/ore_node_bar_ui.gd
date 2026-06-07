@@ -47,6 +47,7 @@ func _add_slot(data: OreNodeData) -> void:
 			placement_requested.emit(data)
 	)
 	_slots[data.id] = button
+	GameState.inventory_changed.emit(data.id, GameState.node_inventory[data.id]) # Makes sure amount of ores in inventory are displayed from the start
 
 func _update_slot_label(node_id: String, new_count: int) -> void:
 	var button: OreButton = _slots.get(node_id)

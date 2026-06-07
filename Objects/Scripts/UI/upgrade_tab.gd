@@ -25,6 +25,7 @@ func _refresh() -> void:
 func _add_entry(data: UpgradeData) -> void:
 	var button: UpgradeButton = UPGRADE_BUTTON.instantiate()
 	add_child(button)
+	data.decide_upgrade_cost()
 	button.setup(data)
 	button.update_affordability(GameState.get_total_coins() >= button.data.get_cost(GameState.get_upgrade_level(data.upgrade_id)))
 	button.upgrade_pressed.connect(_on_upgrade_pressed)

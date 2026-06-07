@@ -15,6 +15,7 @@ var facility_registry: Dictionary = {}
 func _ready() -> void:
 	_load_facility_registry()
 	load_game()
+	coins_changed.emit(_total_coins) # Makes sure affordability updates on start
 
 func _load_facility_registry() -> void:
 	var paths := [

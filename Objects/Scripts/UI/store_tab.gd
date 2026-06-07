@@ -32,6 +32,8 @@ func _add_entry(data: OreNodeData) -> void:
 			GameState.purchase_node(data.id)
 			)
 	_buttons[data.id] = button
+	button.data.update_purchase_cost()
+	button.update_label_cost(button.data.cost)
 
 func _on_coins_changed(new_amount: float) -> void:
 	for node_id in _buttons:

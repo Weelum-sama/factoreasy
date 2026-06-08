@@ -94,8 +94,8 @@ func can_receive_item(item: Item = null) -> bool:
 			if ingredient.item == item:
 				belongs = true
 				break
-			if not belongs:
-				return false
+		if not belongs:
+			return false
 	
 	var total := 0
 	for count in input_buffer.values():

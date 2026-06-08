@@ -48,7 +48,7 @@ func is_building_unlocked(building_id: String) -> bool:
 
 var unlocked_nodes: Dictionary = {
 	"iron_ore_node":		true,
-	"copper_ore_node":		false,
+	"copper_ore_node":		true,
 }
 
 var node_inventory: Dictionary = {

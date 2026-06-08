@@ -39,7 +39,7 @@ func create_ghost(data: FacilityData) -> void:
 	ghost.rotation = pending_rotation
 	ghost.visible = false
 	if data.texture:
-		ghost.texture = data.texture
+		ghost.texture = data.preview_texture
 	ghost_parent.add_child(ghost)
 
 func destroy_ghost() -> void:

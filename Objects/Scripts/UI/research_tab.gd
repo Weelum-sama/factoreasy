@@ -25,7 +25,6 @@ func _add_entry(data: FacilityData, is_unlocked: bool) -> void:
 	var button: ResearchButton = RESEARCH_BUTTON.instantiate()
 	add_child(button)
 	button.setup(data, is_unlocked)
-	print(is_unlocked)
 	button.research_pressed.connect(_on_research_pressed)
 	_buttons[data.building_id] = button
 

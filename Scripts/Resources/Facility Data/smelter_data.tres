@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://co3nqovkj5vjj"]
 
+[ext_resource type="Texture2D" uid="uid://4p3l2bmlsg65" path="res://Assets/Sprites/Buildings/previews/smelter_preview.png" id="1_6sth1"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_vbrvk"]
 [ext_resource type="Resource" uid="uid://84kcfht2jjpo" path="res://Scripts/Resources/Recipes/iron_ingot_recipe.tres" id="2_mosmq"]
 [ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="2_qqdcc"]
@@ -13,6 +14,7 @@ recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq"), ExtResource("3_
 id = "smelter"
 display_name = "smelter"
 texture = ExtResource("5_6sth1")
+preview_texture = ExtResource("1_6sth1")
 scene = ExtResource("3_68nox")
 building_id = "smelter"
 research_cost = 500

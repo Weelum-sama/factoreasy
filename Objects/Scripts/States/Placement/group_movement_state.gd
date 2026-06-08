@@ -31,8 +31,8 @@ func enter() -> void:
 			ghost.texture = load("res://Assets/Sprites/Buildings/belt.png")
 		elif building is BaseFacility:
 			data = GameState.facility_registry.get(building.facility_id)
-		if data and data.texture:
-			ghost.texture = data.texture
+		if data and data.texture or data.preview_texture:
+			ghost.texture = data.texture if context.entered_from_selection else data.preview_texture
 		ghost.rotation = building.rotation
 		ghost.modulate = Color(1, 1, 1, 0.5)
 		context.ghost_parent.add_child(ghost)

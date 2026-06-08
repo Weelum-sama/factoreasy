@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://dp4jwnjueo5yt"]
 
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_di7su"]
+[ext_resource type="Texture2D" uid="uid://n6lha2pmdcdp" path="res://Assets/Sprites/Buildings/previews/extractor_preview.png" id="1_l2aq0"]
 [ext_resource type="PackedScene" uid="uid://dcqcj72xgytu6" path="res://Objects/Scenes/Facilities/extractor.tscn" id="1_nhpwp"]
 [ext_resource type="Resource" uid="uid://3bnqri0lrqp0" path="res://Scripts/Resources/Recipes/Ores/iron_ore_recipe.tres" id="2_ml11h"]
 [ext_resource type="Resource" uid="uid://fo4dd1mimuio" path="res://Scripts/Resources/Recipes/Ores/copper_ore_recipe.tres" id="3_8me0q"]
@@ -13,6 +14,7 @@ recipes = Array[ExtResource("1_di7su")]([ExtResource("2_ml11h"), ExtResource("3_
 id = "extractor"
 display_name = "extractor"
 texture = ExtResource("4_di7su")
+preview_texture = ExtResource("1_l2aq0")
 scene = ExtResource("1_nhpwp")
 building_id = "extractor"
 input_directions = Array[Vector2i]([Vector2i(0, 1)])

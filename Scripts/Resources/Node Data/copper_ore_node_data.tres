@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://clf413oig7m3m" path="res://Scripts/Resources/Items/Ores/copper_ore.tres" id="1_4hoad"]
 [ext_resource type="Script" uid="uid://c714qalhcrl15" path="res://Scripts/Resources/ore_node_data.gd" id="1_kj2l8"]
+[ext_resource type="Texture2D" uid="uid://bpf4d02c6bo8y" path="res://Assets/Sprites/Buildings/previews/copper_ore_node_preview.png" id="2_juryg"]
 [ext_resource type="Texture2D" uid="uid://g7hukscjnqxh" path="res://Assets/Sprites/Buildings/copper_ore_node.png" id="3_4hoad"]
 
 [resource]
@@ -11,5 +12,6 @@ base_cost = 100
 id = "copper_ore_node"
 display_name = "copper ore node"
 texture = ExtResource("3_4hoad")
+preview_texture = ExtResource("2_juryg")
 building_id = "copper_ore_node"
 metadata/_custom_type_script = "uid://c714qalhcrl15"

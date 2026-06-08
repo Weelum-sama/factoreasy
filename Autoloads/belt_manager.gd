@@ -4,6 +4,8 @@ var belts: Dictionary = {}
 var _pending_deliveries: Array = []
 
 signal belt_items_updated
+signal moving_belts(belts: Array[Belt])
+signal stop_moving_belts
 
 func _ready() -> void:
 	TickManager.tick_occurred.connect(_economy_tick)
@@ -97,6 +99,9 @@ func cancel_deliveries_to(placeable: Placeable) -> void:
 	_pending_deliveries = _pending_deliveries.filter(
 		func(d): return d.facility != placeable
 	)
+
+func get_current_pending_deliveries() -> Array:
+	return _pending_deliveries
 
 func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 	for delivery in _pending_deliveries:

@@ -31,7 +31,7 @@ func enter() -> void:
 			ghost.texture = load("res://Assets/Sprites/Buildings/belt.png")
 		elif building is BaseFacility:
 			data = GameState.facility_registry.get(building.facility_id)
-		if data and data.texture or data.preview_texture:
+		if data and data.texture and building is not Belt:
 			ghost.texture = data.texture if context.entered_from_selection else data.preview_texture
 		ghost.rotation = building.rotation
 		ghost.modulate = Color(1, 1, 1, 0.5)
@@ -107,9 +107,13 @@ func _try_place_group() -> void:
 		building.modulate = Color.WHITE
 	
 	context.selected_buildings.clear()
+	if _selected_buildings_contains_belt():
+		BeltManager.stop_moving_belts.emit()
 	transitioned.emit(self, DefaultState.NAME)
 
 func _cancel_group_move() -> void:
+	if _selected_buildings_contains_belt():
+		BeltManager.stop_moving_belts.emit()
 	for ghost in _ghosts:
 		if is_instance_valid(ghost):
 			ghost.free()
@@ -135,3 +139,9 @@ func _rotate_group() -> void:
 		context.group_move_offsets[i] = context.rotate_offset_90(context.group_move_offsets[i])
 	for ghost in _ghosts:
 		ghost.rotation += PI / 2.0
+
+func _selected_buildings_contains_belt() -> bool:
+	for building in context.selected_buildings:
+		if building is Belt:
+			return true
+	return false

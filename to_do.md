@@ -40,8 +40,8 @@
 - ~~research and new facilities~~
 - ~~building limit / limited build space (increasing limit in research tab)~~
 - ~~saving~~
-- separate sprite for preview (showing in and output)
-- moving belts should not have their items rendered
+- ~~separate sprite for preview (showing in and output)~~
+- ~~moving belts should not have their items rendered~~
 - tutorial
 - context menus for facilities on click
 - assembler (more than 1 input)

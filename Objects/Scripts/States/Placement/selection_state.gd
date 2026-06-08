@@ -54,6 +54,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not context.selected_buildings.is_empty():
 		if event.is_action_pressed("Move Selection"):
 			context.entered_from_selection = true
+			var belts: Array[Belt]
+			for building in context.selected_buildings:
+				if building is Belt:
+					belts.append(building)
+			if not belts.is_empty():
+				BeltManager.moving_belts.emit(belts)
+				
 			transitioned.emit(self, GroupMovementState.NAME)
 		if event.is_action_pressed("Stash"):
 			for building in context.selected_buildings:

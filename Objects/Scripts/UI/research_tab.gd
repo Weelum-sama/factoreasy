@@ -29,7 +29,7 @@ func _add_entry(data: FacilityData, is_unlocked: bool) -> void:
 	_buttons[data.building_id] = button
 
 func _on_research_pressed(data: FacilityData) -> void:
-	if GameState.get_total_coins() >= data.research_cost:
+	if GameState.get_total_coins() >= data.research_cost and not GameState.unlocked_buildings[data.id]:
 		GameState.add_coins(-data.research_cost)
 		GameState.unlock_building(data.building_id)
 

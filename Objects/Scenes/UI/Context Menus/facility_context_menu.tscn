@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dolvaaljroaxd"]
 
+[ext_resource type="Script" uid="uid://de8vnibq72y43" path="res://Objects/Scripts/UI/Context Menus/facility_context_menu.gd" id="1_t804g"]
 [ext_resource type="Texture2D" uid="uid://j41c63uucykn" path="res://Assets/Sprites/Buildings/extractor.png" id="2_nq40d"]
 [ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="2_sivqt"]
 
@@ -22,6 +23,7 @@ expand_margin_bottom = 4.0
 [node name="FacilityContextMenu" type="Control" unique_id=1027949]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_t804g")
 
 [node name="Panel" type="Panel" parent="." unique_id=511194525]
 custom_minimum_size = Vector2(130, 110)

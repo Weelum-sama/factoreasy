@@ -124,6 +124,7 @@ func set_current_recipe() -> void:
 		_current_recipe = null
 		return
 	for recipe in data.recipes:
+		print(recipe)
 		if recipe.can_produce(input_buffer):
 			_current_recipe = recipe
 			return

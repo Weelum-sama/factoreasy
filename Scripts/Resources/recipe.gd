@@ -13,4 +13,6 @@ func can_produce(input_buffer: Dictionary) -> bool:
 		var available: int = input_buffer.get(required.item, 0)
 		if available < required.amount:
 			return false
+	if input.is_empty():
+		return false
 	return true

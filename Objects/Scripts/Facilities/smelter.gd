@@ -21,6 +21,9 @@ func tick() -> void:
 			_is_producing = false
 			_complete_production(recipe)
 	else:
+		if input_buffer.is_empty():
+			_set_state(Util.FACILITYSTATE.IDLE)
+			return
 		set_current_recipe()
 		var recipe := get_current_recipe()
 		if output_buffer.get(recipe.output.item, 0) >= MAX_BUFFER:

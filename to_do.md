@@ -42,8 +42,8 @@
 - ~~saving~~
 - ~~separate sprite for preview (showing in and output)~~
 - ~~moving belts should not have their items rendered~~
-- tutorial
 - context menus for facilities on click
+- tutorial
 - assembler (more than 1 input)
 - add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature

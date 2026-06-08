@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://oymac7mogqyv"]
+
+[ext_resource type="Script" uid="uid://dvn3c5xmcktrk" path="res://Objects/Scripts/UI/Context Menus/item_context_menu.gd" id="1_6t1qn"]
+[ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_x68f5"]
+[ext_resource type="Texture2D" uid="uid://7yeu3fopbwpw" path="res://Assets/Sprites/Resources/iron_ore.png" id="2_6t1qn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x68f5"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="ItemContextMenu" type="Control" unique_id=1027949]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6t1qn")
+
+[node name="Panel" type="Panel" parent="." unique_id=511194525]
+custom_minimum_size = Vector2(130, 110)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_x68f5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1516549862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=856066092]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemVBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=478723988]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = -4
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/ItemVBoxContainer" unique_id=456573971]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_x68f5")
+
+[node name="ItemIcon" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/ItemVBoxContainer/PanelContainer" unique_id=1756337987]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_6t1qn")
+
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/ItemVBoxContainer" unique_id=1536548974]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "item name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1881831078]
+layout_mode = 2
+alignment = 1
+
+[node name="Control2" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=890815164]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=405767151]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
+text = "sell value: "
+
+[node name="ValueLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1310887622]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
+text = "0.5"

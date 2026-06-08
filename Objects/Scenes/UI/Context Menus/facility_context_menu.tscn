@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dolvaaljroaxd"]
+
+[ext_resource type="Texture2D" uid="uid://j41c63uucykn" path="res://Assets/Sprites/Buildings/extractor.png" id="2_nq40d"]
+[ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="2_sivqt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x68f5"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="FacilityContextMenu" type="Control" unique_id=1027949]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="." unique_id=511194525]
+custom_minimum_size = Vector2(130, 110)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("2_sivqt")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1516549862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=856066092]
+layout_mode = 2
+alignment = 1
+
+[node name="FacilityVBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=478723988]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/FacilityVBoxContainer" unique_id=456573971]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_x68f5")
+
+[node name="FacilityIcon" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/FacilityVBoxContainer/PanelContainer" unique_id=1756337987]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_nq40d")
+
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/FacilityVBoxContainer" unique_id=1536548974]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "facility name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1443714159]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1236776721]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 11
+text = "recipes:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecipeHBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=706832414]
+layout_mode = 2

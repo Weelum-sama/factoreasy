@@ -23,7 +23,7 @@ func _refresh_toolbar() -> void:
 		child.queue_free()
 	_slots.clear()
 	
-	for node_id in GameState.unlocked_nodes:
+	for node_id in GameState.NODE_ORDER:
 		if not GameState.unlocked_nodes[node_id]:
 			continue
 		var data: OreNodeData = _load_node_data(node_id)

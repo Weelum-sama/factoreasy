@@ -46,6 +46,8 @@ func is_building_unlocked(building_id: String) -> bool:
 
 ### Nodes
 
+const NODE_ORDER: Array[String] = ["iron_ore_node", "copper_ore_node"]
+
 var unlocked_nodes: Dictionary = {
 	"iron_ore_node":		true,
 	"copper_ore_node":		true,

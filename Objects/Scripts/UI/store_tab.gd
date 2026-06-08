@@ -15,7 +15,7 @@ func _refresh() -> void:
 	for child in get_children():
 		child.queue_free()
 	_buttons.clear()
-	for node_id in GameState.unlocked_nodes:
+	for node_id in GameState.NODE_ORDER:
 		if not GameState.unlocked_nodes[node_id]:
 			continue
 		var path := "res://Scripts/Resources/Node Data/%s_data.tres" % node_id

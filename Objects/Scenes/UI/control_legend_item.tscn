@@ -1,23 +1,32 @@
 [gd_scene format=3 uid="uid://d18hijrx8ushv"]
 
+[ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_20h2r"]
 [ext_resource type="Script" uid="uid://dx7osj1if3xvv" path="res://Objects/Scripts/UI/control_legend_item.gd" id="1_jcxqm"]
 
 [node name="ControlLegendItem" type="PanelContainer" unique_id=797223444]
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("1_20h2r")
 script = ExtResource("1_jcxqm")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=162593906]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1565134046]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=162593906]
 layout_mode = 2
 
-[node name="ActionLabel" type="Label" parent="HBoxContainer" unique_id=1989182105]
+[node name="ActionLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1989182105]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Action: "
 vertical_alignment = 1
 
-[node name="InputLabel" type="Label" parent="HBoxContainer" unique_id=480802525]
+[node name="InputLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=480802525]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Input"

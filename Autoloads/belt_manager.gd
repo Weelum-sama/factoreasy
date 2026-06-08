@@ -117,10 +117,21 @@ func _is_output_blocked(belt: Belt) -> bool:
 	
 	return true
 
+func _is_delivering_from(cell: Vector2i) -> bool:
+	for delivery in _pending_deliveries:
+		if delivery.from_cell == cell:
+			return true
+	return false
+
 func _process(delta: float) -> void:
+	_move_items()
+	_try_push_to_facilities()
+
 	for cell in belts:
 		var belt: Belt = belts[cell]
 		if belt.belt_item == null:
+			if _is_delivering_from(cell):
+				belt.set_belt_state(Util.BELTSTATE.WORKING)
 			continue
 		belt.belt_item.progress = min(
 			belt.belt_item.progress + delta * belt.get_items_per_second(),
@@ -142,6 +153,4 @@ func _process(delta: float) -> void:
 	for delivery in completed:
 		_pending_deliveries.erase(delivery)
 	
-	_move_items()
-	_try_push_to_facilities()
 	belt_items_updated.emit()

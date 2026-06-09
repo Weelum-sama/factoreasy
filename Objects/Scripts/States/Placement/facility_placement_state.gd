@@ -24,9 +24,9 @@ func update(_delta: float) -> void:
 	var mouse := context.ghost_parent.get_global_mouse_position()
 	var snapped : = GridManager.snap_to_grid(mouse)
 	var cell := GridManager.world_to_cell(mouse)
-	context.ghost.visible = true
 	context.ghost.position = snapped + Vector2(GridManager.CELL_SIZE * 0.5, GridManager.CELL_SIZE * 0.5)
 	context.ghost.modulate = Color(1, 1, 1, 0.6) if GridManager.is_cell_empty(cell) else Color(1, 0.3, 0.3, 0.6)
+	context.ghost.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("Confirm"):

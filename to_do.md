@@ -18,7 +18,7 @@
 - ~~ui container misalignment~~
 - ~~upgrade cost not updating~~
 - ~~smelters without input complete copper ingots (maybe only after saving?)~~
-- pick up building spawns visible ghost at world origin for one frame
+- ~~pick up building spawns visible ghost at world origin for one frame~~
 - belts only move items every other tick
 - belts pushing onto occupied belts
 - buttons extend based on label lengths
@@ -42,7 +42,7 @@
 - ~~saving~~
 - ~~separate sprite for preview (showing in and output)~~
 - ~~moving belts should not have their items rendered~~
-- context menus for facilities on click
+- ~~context menus for facilities on click~~
 - tutorial
 - assembler (more than 1 input)
 - add pathfinding algorithm to belt placement, not just straight lines

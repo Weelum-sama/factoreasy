@@ -35,6 +35,10 @@ func enter() -> void:
 			ghost.texture = data.texture if context.entered_from_selection else data.preview_texture
 		ghost.rotation = building.rotation
 		ghost.modulate = Color(1, 1, 1, 0.5)
+		# Position at the mouse before appending
+		var mouse := context.ghost_parent.get_viewport().get_mouse_position()
+		var snapped := GridManager.snap_to_grid(mouse)
+		ghost.position = snapped + Vector2(GridManager.CELL_SIZE * 0.5, GridManager.CELL_SIZE * 0.5)
 		context.ghost_parent.add_child(ghost)
 		_ghosts.append(ghost)
 

@@ -33,8 +33,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		if occupant:
 			context.hold_candidate = occupant
 	elif event.is_action_released("Confirm"):
+		var occupant: Node = context.hold_candidate
 		context.hold_candidate = null
 		context.hold_timer = 0.0
+		_try_open_context_menu(occupant)
+
+## Context Menus
+
+func _try_open_context_menu(occupant: Node) -> void:
+	var layer := _get_context_menu_layer()
+	if layer == null:
+		return
+	if occupant:
+		layer.open_for(occupant, context.ghost_parent.get_viewport().get_mouse_position())
+	else:
+		layer.close_all()
+
+func _close_context_menus() -> void:
+	var layer := _get_context_menu_layer()
+	if layer:
+		layer.close_all()
+
+func _get_context_menu_layer() -> ContextMenuLayer:
+	return context.ghost_parent.get_tree().root.find_child("ContextMenuLayer", true, false) as ContextMenuLayer
+
+## Pick up and quick select
 
 func _pick_up_building(building: Node) -> void:
 	context.entered_from_selection = false

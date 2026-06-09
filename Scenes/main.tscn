@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dsk3vvyg4h47c" path="res://Objects/Scenes/UI/mode_display.tscn" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://bm7yqk8qcxn72" path="res://Objects/Scenes/UI/control_legend_container.tscn" id="5_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://bosised3v815v" path="res://Objects/Scenes/Managers/belt_renderer.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://br7drg3nvr0dl" path="res://Objects/Scenes/UI/Context Menus/context_menu_layer.tscn" id="12_6iyac"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
 script = ExtResource("1_d1ilt")
@@ -76,3 +77,5 @@ script = ExtResource("1_jjgbg")
 [node name="PlacementController" parent="." unique_id=1330468871 instance=ExtResource("3_jjvhh")]
 
 [node name="BeltRenderer" parent="." unique_id=709655741 instance=ExtResource("8_344ge")]
+
+[node name="ContextMenuLayer" parent="." unique_id=1429270545 instance=ExtResource("12_6iyac")]

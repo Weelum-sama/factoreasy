@@ -1,12 +1,13 @@
-extends Control
+extends ContextMenuBase
 class_name ItemContextMenu
 
-@onready var item_icon: TextureRect = %ItemIcon
-@onready var value_label: Label = %ValueLabel
-@onready var name_label: Label = %NameLabel
+@onready var _title_label: Label = %TitleLabel
+@onready var _item_icon: TextureRect = %ItemIcon
+@onready var _sell_label: Label = %SellLabel
 
-func setup(item: Item) -> void:
-	if is_instance_valid(item):
-		item_icon.texture = item.texture
-		name_label.text = item.name
-		value_label.text = str(item.sell_value)
+func open(item: Item, screen_pos: Vector2) -> void:
+	_title_label.text = item.name
+	_item_icon.texture = item.texture
+	_sell_label.text = "Sell value: %.1f" % item.sell_value
+	visible = true
+	_position_clamped(screen_pos)

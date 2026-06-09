@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b8xdeajsr02ao"]
+
+[ext_resource type="Script" uid="uid://vkqmhahepkpw" path="res://Objects/Scripts/UI/Context Menus/belt_context_menu.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://7yeu3fopbwpw" path="res://Assets/Sprites/Resources/iron_ore.png" id="2_pmbsa"]
+
+[node name="BeltContextMenu" type="PanelContainer" unique_id=1989705042]
+visible = false
+custom_minimum_size = Vector2(170, 0)
+script = ExtResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=410312787]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1801354008]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=629153222]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "belt"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=282239839]
+layout_mode = 2
+
+[node name="StateLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=636707177]
+unique_name_in_owner = true
+layout_mode = 2
+text = "state: working"
+
+[node name="ItemRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=116066090]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/ItemRow" unique_id=1082203570]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("2_pmbsa")
+stretch_mode = 5
+
+[node name="ItemLabel" type="Label" parent="MarginContainer/VBoxContainer/ItemRow" unique_id=2014095494]
+unique_name_in_owner = true
+layout_mode = 2
+text = "empty"
+
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=336606483]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)

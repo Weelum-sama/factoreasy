@@ -131,6 +131,7 @@ animations = [{
 }]
 
 [node name="Belt" type="Node2D" unique_id=287387431]
+process_mode = 1
 script = ExtResource("1_s663k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=509952617]

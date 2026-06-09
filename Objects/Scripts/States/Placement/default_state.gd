@@ -11,10 +11,7 @@ func update(_delta: float) -> void:
 			context.hold_candidate = null
 			context.hold_timer = 0.0
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action("Escape"):
-		GameState.game_paused.emit(true)
-	
+func _unhandled_input(event: InputEvent) -> void:	
 	if event.is_action_pressed("Toggle Select"):
 		transitioned.emit(self, SelectionState.NAME)
 		return

@@ -106,9 +106,9 @@ func _try_place_group() -> void:
 			GridManager.place(target_cell, building)
 		building.modulate = Color.WHITE
 	
-	context.selected_buildings.clear()
 	if _selected_buildings_contains_belt():
 		BeltManager.stop_moving_belts.emit()
+	context.selected_buildings.clear()
 	transitioned.emit(self, DefaultState.NAME)
 
 func _cancel_group_move() -> void:

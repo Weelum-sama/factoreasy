@@ -14,11 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://br7drg3nvr0dl" path="res://Objects/Scenes/UI/Context Menus/context_menu_layer.tscn" id="12_6iyac"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
+process_mode = 3
 script = ExtResource("1_d1ilt")
 
 [node name="PauseMenu" parent="." unique_id=1495478638 instance=ExtResource("1_hptm8")]
+process_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1757633803]
+process_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1074168058]
 anchors_preset = 15
@@ -65,6 +68,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
+process_mode = 1
 position = Vector2(0, 1)
 ignore_rotation = false
 rotation_smoothing_enabled = true
@@ -72,10 +76,14 @@ rotation_smoothing_speed = 25.0
 script = ExtResource("2_jjvhh")
 
 [node name="GridDebug" type="Node2D" parent="." unique_id=362493852]
+process_mode = 1
 script = ExtResource("1_jjgbg")
 
 [node name="PlacementController" parent="." unique_id=1330468871 instance=ExtResource("3_jjvhh")]
+process_mode = 1
 
 [node name="BeltRenderer" parent="." unique_id=709655741 instance=ExtResource("8_344ge")]
+process_mode = 1
 
 [node name="ContextMenuLayer" parent="." unique_id=1429270545 instance=ExtResource("12_6iyac")]
+process_mode = 1

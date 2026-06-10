@@ -20,7 +20,7 @@ const BEGINNER_TUTORIAL_TEXT: Dictionary = {
 
 func _ready() -> void:
 	TutorialManager.step_changed.connect(_on_tutorial_step_changed)
-	_on_tutorial_step_changed(TutorialManager.TUTORIALS.BEGINNER_TUTORIAL, TutorialManager.tutorial_current_step)
+	_on_tutorial_step_changed(TutorialManager.TUTORIALS.BEGINNER_TUTORIAL, TutorialManager.tutorial_progression[TutorialManager.TUTORIALS.BEGINNER_TUTORIAL])
 
 
 func _on_tutorial_step_changed(tutorial: TutorialManager.TUTORIALS, new_step: int) -> void:

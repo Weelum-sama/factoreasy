@@ -43,7 +43,8 @@
 - ~~separate sprite for preview (showing in and output)~~
 - ~~moving belts should not have their items rendered~~
 - ~~context menus for facilities on click~~
-- tutorial
+- ~~tutorial~~
+- constructor
 - assembler (more than 1 input)
 - add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature
@@ -54,7 +55,19 @@
 - ~~sink texture~~
 - ~~smelter texture~~
 
-### nice to have
+### nice to have:
 - ~~drag select multiple buildings~~
 - drag controls for camera
 - maluable belts (easy splitting and automatic bridges)
+
+### future recipes:
+- constructor. iron ingot = iron plate
+- constructor. iron ingot = iron rod
+- constructor. copper ingot = copper rod
+- constructor. copper ingot = copper sheet
+- assembler. iron plate + iron rod = gear
+- assembler. iron plate + gear = reinforced plate
+- assembler. copper wire + iron rod = cable
+- assembler. copper wire + iron plate = circuit board
+- manufacturer. gear + iron rod + copper wire = motor
+- manufacturer. circuit board + cable + copper wire = computer

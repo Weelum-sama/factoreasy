@@ -153,6 +153,7 @@ func save_game() -> void:
 	state.total_nodes_owned = total_nodes_owned.duplicate()
 	state.total_coins = _total_coins
 	state.upgrade_levels = upgrade_levels.duplicate()
+	state.tutorial_progression = TutorialManager.tutorial_progression.duplicate()
 	ResourceSaver.save(state, SAVE_PATH_STATE)
 	
 	var grid := GridData.new()
@@ -180,6 +181,8 @@ func load_game() -> void:
 		unlocked_nodes     = state.unlocked_nodes.duplicate()
 		_total_coins       = state.total_coins
 		upgrade_levels     = state.upgrade_levels.duplicate()
+		if not state.tutorial_progression.is_empty():
+			TutorialManager.tutorial_progression = state.tutorial_progression.duplicate()
 	
 	if ResourceLoader.exists(SAVE_PATH_GRID):
 		var grid: GridData = ResourceLoader.load(SAVE_PATH_GRID)

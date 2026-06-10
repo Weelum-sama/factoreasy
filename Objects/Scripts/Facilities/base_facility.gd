@@ -29,6 +29,7 @@ func get_data() -> FacilityData:
 
 func _ready() -> void:
 	z_index = 2
+	add_to_group("facilities")
 	TickManager.tick_occurred.connect(tick)
 
 func tick() -> void:

@@ -55,6 +55,7 @@ func _place_facility(cell: Vector2i) -> void:
 	context.ghost_parent.get_tree().current_scene.add_child(building)
 	if not GridManager.place(cell, building):
 		building.queue_free()
+	TutorialManager.notify_facility_placed(building)
 
 func _place_ore_node(cell: Vector2i) -> void:
 	if not GridManager.is_cell_empty(cell):

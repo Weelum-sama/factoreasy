@@ -112,7 +112,7 @@ func get_factory_bounds() -> Rect2i:
 
 ## Coins
 
-var _total_coins: float = 50
+var _total_coins: float = 10.0
 
 signal coins_changed(new_amount: int)
 

@@ -95,6 +95,7 @@ func _place_belts() -> void:
 		context.ghost_parent.get_tree().current_scene.add_child(belt)
 		GridManager.place(cell, belt)
 		belt.register()
+		TutorialManager.notify_belt_placed(belt)
 
 func _get_belt_rotation(index: int) -> float:
 	var cells := _preview_cells

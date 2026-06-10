@@ -112,6 +112,13 @@ func _try_place_group() -> void:
 	
 	if _selected_buildings_contains_belt():
 		BeltManager.stop_moving_belts.emit()
+	# Quick move should also notify tutorial manager
+	if not context.entered_from_selection:
+		var building := context.selected_buildings[0]
+		if building is BaseFacility:
+			TutorialManager.notify_facility_placed(building)
+		elif building is Belt:
+			TutorialManager.notify_belt_placed(building)
 	context.selected_buildings.clear()
 	transitioned.emit(self, DefaultState.NAME)
 

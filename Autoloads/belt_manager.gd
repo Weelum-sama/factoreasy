@@ -2,106 +2,167 @@ extends Node2D
 
 var belts: Dictionary = {}
 var _pending_deliveries: Array = []
+var _lines: Array = []
 
 signal belt_items_updated
 signal moving_belts(belts: Array[Belt])
 signal stop_moving_belts
 
-func _ready() -> void:
-	TickManager.tick_occurred.connect(_economy_tick)
-
 func register_belt(cell: Vector2i, belt: Belt) -> void:
 	belts[cell] = belt
+	_rebuild_lines()
 
 func unregister_belt(cell: Vector2i) -> void:
 	belts.erase(cell)
+	_rebuild_lines()
 
-func _economy_tick() -> void:
-	_try_pull_from_facilities()
+func _rebuild_lines() -> void:
+	_lines.clear()
+	var visited: Dictionary = {}
+	for cell in belts:
+		if visited.has(cell):
+			continue
+		var start := _find_line_start(cell, visited)
+		var line := _build_line(start, visited)
+		if not line.is_empty():
+			_lines.append(line)
 
-func _try_pull_from_facilities() -> void:
+func _find_line_start(cell: Vector2i, visited: Dictionary) -> Vector2i:
+	var current := cell
+	var seen: Dictionary = {}
+	while true:
+		seen[current] = true
+		var belt: Belt = belts.get(current)
+		if belt == null:
+			return current
+		var prev := belt.get_input_cell()
+		# Stop if prev isn't a belt, was already built or forms a cycle
+		if not belts.has(prev) or visited.has(prev) or seen.has(prev):
+			return current
+		# Stop if prev belt doesn't point toward current
+		var prev_belt: Belt = belts[prev]
+		if prev_belt.get_output_cell() != current:
+			return current
+		current = prev
+	return current
+
+func _build_line(start: Vector2i, visited: Dictionary) -> Array:
+	var line: Array[Vector2i] = []
+	var current := start
+	while belts.has(current) and not visited.has(current):
+		line.append(current)
+		visited[current] = true
+		var belt: Belt = belts[current]
+		var next := belt.get_output_cell()
+		# Only extend the line if the next belt accepts input from us
+		var next_belt: Belt = belts.get(next)
+		if next_belt == null or next_belt.get_input_cell() != current:
+			break
+		current = next
+	return line
+
+func _process(delta: float) -> void:
+	_advance_progress(delta)
+	
+	for line in _lines:
+		_process_line(line)
+	
+	_advance_delieveries(delta)
+	belt_items_updated.emit()
+
+func _advance_progress(delta: float) -> void:
 	for cell in belts:
 		var belt: Belt = belts[cell]
-		if not is_instance_valid(belt):
+		if belt.belt_item == null:
 			continue
-		if belt.belt_item != null:
+		belt.belt_item.progress = minf(
+			belt.belt_item.progress + delta * belt.get_items_per_second(), 1.0
+		)
+
+func _process_line(line: Array) -> void:
+	if line.is_empty():
+		return
+	
+	for i in range(line.size() - 1, -1, -1):
+		var cell: Vector2i = line[i]
+		var belt: Belt = belts.get(cell)
+		if belt == null:
 			continue
-		var input_cell := belt.get_input_cell()
+		
+		if belt.belt_item == null or belt.belt_item.progress < 1.0:
+			belt.set_belt_state(Util.BELTSTATE.WORKING)
+			continue
+		
+		var output_cell := belt.get_output_cell()
+		
+		# Try to push into a facility
+		var occupant := GridManager.get_cell_occupant(output_cell)
+		if occupant is BaseFacility:
+			var facility := occupant as BaseFacility
+			if facility.get_valid_input_cells().has(cell) and facility.can_receive_item(belt.belt_item.item):
+				_pending_deliveries.append({
+					"from_cell": cell,
+					"to_cell": output_cell,
+					"item": belt.belt_item.item,
+					"progress": 0.0,
+					"facility": facility
+				})
+				belt.belt_item = null
+				belt.set_belt_state(Util.BELTSTATE.WORKING)
+				continue
+		
+		# Try to move to the next belt in line
+		var next_belt: Belt = belts.get(output_cell)
+		if next_belt != null and next_belt.belt_item == null:
+			next_belt.belt_item = belt.belt_item
+			next_belt.belt_item.previous_cell = cell
+			next_belt.belt_item.current_cell = output_cell
+			next_belt.belt_item.progress = 0.0
+			belt.belt_item = null
+			belt.set_belt_state(Util.BELTSTATE.WORKING)
+		else:
+			belt.set_belt_state(Util.BELTSTATE.CLOGGED)
+	
+	# Try to pull from source facility into the first belt
+	var first_cell: Vector2i = line[0]
+	var first_belt: Belt = belts.get(first_cell)
+	if first_belt != null and first_belt.belt_item == null:
+		var input_cell := first_belt.get_input_cell()
 		var source := GridManager.get_cell_occupant(input_cell)
 		if source is BaseFacility:
-			if not source.get_valid_output_cells().has(cell):
-				continue
-			var item : Item = source.peek_output()
-			if item:
-				source.take_item(item)
-				var belt_item : BeltItem = BeltItem.new()
-				belt_item.item = item
-				belt_item.previous_cell = input_cell
-				belt_item.current_cell = cell
-				belt_item.progress = 0.0
-				belt.belt_item = belt_item
+			var facility := source as BaseFacility
+			if facility.get_valid_output_cells().has(first_cell):
+				var item: Item = facility.peek_output()
+				if item:
+					facility.take_item(item)
+					var belt_item := BeltItem.new()
+					belt_item.item = item
+					belt_item.previous_cell = input_cell
+					belt_item.current_cell = first_cell
+					belt_item.progress = 0.0
+					first_belt.belt_item = belt_item
 
-func _move_items() -> void:
-	var moves: Dictionary = {}
-	for cell in belts:
-		var belt: Belt = belts[cell]
-		if belt.belt_item == null:
-			continue
-		if belt.belt_item.progress < 1.0:
-			continue
-		var target: Belt = belts.get(belt.get_output_cell())
-		if target and target.belt_item == null:
-			moves[belt] = target
+func _advance_delieveries(delta: float) -> void:
+	var completed: Array = []
+	for delivery in _pending_deliveries:
+		delivery.progress = minf(
+			delivery.progress + delta * _get_belt_speed_for_cell(delivery.from_cell), 1.0
+		)
+		if delivery.progress >= 1.0 and is_instance_valid(delivery.facility):
+			if delivery.facility.receive_item(delivery.item):
+				completed.append(delivery)
 	
-	var destinations := moves.values()
-	
-	for from_belt in moves:
-		if from_belt in destinations:
-			continue
-		var to_belt: Belt = moves[from_belt]
-		from_belt.belt_item.previous_cell = GridManager.world_to_cell(from_belt.global_position)
-		from_belt.belt_item.current_cell = GridManager.world_to_cell(to_belt.global_position)
-		from_belt.belt_item.progress = 0.0
-		to_belt.belt_item = from_belt.belt_item
-		from_belt.belt_item = null
-
-func _try_push_to_facilities() -> void:
-	for cell in belts:
-		var belt: Belt = belts[cell]
-		if belt.belt_item == null:
-			continue
-		if belt.belt_item.progress < 1.0:
-			continue
-		var output_cell := belt.get_output_cell()
-		var target := GridManager.get_cell_occupant(output_cell)
-		if target is BaseFacility:
-			if not (target as BaseFacility).get_valid_input_cells().has(cell):
-				continue
-			if not (target as BaseFacility).can_receive_item(belt.belt_item.item):
-				continue
-			_pending_deliveries.append({
-				"from_cell": cell,
-				"to_cell": output_cell,
-				"item": belt.belt_item.item,
-				"progress": 0.0,
-				"facility": target
-			})
-			belt.belt_item = null
-		continue
+	for delivered in completed:
+		_pending_deliveries.erase(delivered)
 
 func _get_belt_speed_for_cell(cell: Vector2i) -> float:
 	var belt: Belt = belts.get(cell)
-	if belt:
-		return belt.get_items_per_second()
-	return 1.0
+	return belt.get_items_per_second() if belt else 1.0
 
 func cancel_deliveries_to(placeable: Placeable) -> void:
 	_pending_deliveries = _pending_deliveries.filter(
 		func(d): return d.facility != placeable
 	)
-
-func get_current_pending_deliveries() -> Array:
-	return _pending_deliveries
 
 func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 	for delivery in _pending_deliveries:
@@ -109,53 +170,5 @@ func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 			delivery.from_cell += delta
 			delivery.to_cell += delta
 
-func _is_output_blocked(belt: Belt) -> bool:
-	var output_cell := belt.get_output_cell()
-	
-	var target_belt: Belt = belts.get(output_cell)
-	if target_belt != null:
-		return target_belt.belt_item != null
-	
-	var target := GridManager.get_cell_occupant(output_cell)
-	if target is BaseFacility:
-		return not target.can_receive_item()
-	
-	return true
-
-func _is_delivering_from(cell: Vector2i) -> bool:
-	for delivery in _pending_deliveries:
-		if delivery.from_cell == cell:
-			return true
-	return false
-
-func _process(delta: float) -> void:
-	_move_items()
-	_try_push_to_facilities()
-
-	for cell in belts:
-		var belt: Belt = belts[cell]
-		if belt.belt_item == null:
-			if _is_delivering_from(cell):
-				belt.set_belt_state(Util.BELTSTATE.WORKING)
-			continue
-		belt.belt_item.progress = min(
-			belt.belt_item.progress + delta * belt.get_items_per_second(),
-			 1.0
-		)
-		
-		if belt.belt_item.progress >= 1.0:
-			belt.set_belt_state(Util.BELTSTATE.CLOGGED if _is_output_blocked(belt) else Util.BELTSTATE.WORKING)
-		else:
-			belt.set_belt_state(Util.BELTSTATE.WORKING)
-	
-	var completed := []
-	for delivery in _pending_deliveries:
-		delivery.progress = min(delivery.progress + delta * _get_belt_speed_for_cell(delivery.from_cell), 1.0)
-		if delivery.progress >= 1.0:
-			if is_instance_valid(delivery.facility):
-				if delivery.facility.receive_item(delivery.item):
-					completed.append(delivery)
-	for delivery in completed:
-		_pending_deliveries.erase(delivery)
-	
-	belt_items_updated.emit()
+func get_current_pending_deliveries() -> Array:
+	return _pending_deliveries

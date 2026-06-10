@@ -39,6 +39,8 @@ func tick() -> void:
 func _consume_inputs(recipe: Recipe) -> void:
 	for ingredient in recipe.input:
 		input_buffer[ingredient.item] -= ingredient.amount
+		if input_buffer[ingredient.item] <= 0:
+			input_buffer.erase(ingredient.item)
 
 func _complete_production(recipe: Recipe) -> void:
 	var out := recipe.output

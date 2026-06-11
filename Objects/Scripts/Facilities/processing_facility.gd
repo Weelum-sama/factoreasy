@@ -17,9 +17,15 @@ func tick() -> void:
 		_production_timer += TickManager.TICK_RATE
 		_set_state(Util.FACILITYSTATE.PRODUCING)
 		if _production_timer >= recipe.production_time:
-			_production_timer = 0.0
-			_is_producing = false
 			_complete_production(recipe)
+			_production_timer = 0.0
+			set_current_recipe()
+			var next_recipe := get_current_recipe()
+			if next_recipe != null and next_recipe.can_produce(input_buffer) and output_buffer.get(next_recipe.output.item, 0) < MAX_BUFFER:
+				_consume_inputs(next_recipe)
+				_is_producing = true
+			else:
+				_is_producing = false
 	else:
 		if input_buffer.is_empty():
 			_set_state(Util.FACILITYSTATE.IDLE)

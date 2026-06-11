@@ -41,7 +41,7 @@ func _ingredient_row(ingredient: RecipeIngredient) -> HBoxContainer:
 
 	row.mouse_entered.connect(func() -> void: row.modulate = Color(1.15, 1.15, 1.15))
 	row.mouse_exited.connect(func() -> void:  row.modulate = Color.WHITE)
-	row.mouse_exited.connect(func(event: InputEvent) -> void:
+	row.gui_input.connect(func(event: InputEvent) -> void:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if ingredient.item:
 				var layer := get_parent() as ContextMenuLayer

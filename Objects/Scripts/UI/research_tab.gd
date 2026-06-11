@@ -14,7 +14,7 @@ func _refresh() -> void:
 	for child in get_children():
 		child.queue_free()
 	_buttons.clear()
-	for building_id in GameState.unlocked_buildings:
+	for building_id in GameState.BUILDING_ORDER:
 		var path := "res://Scripts/Resources/Facility Data/%s_data.tres" % building_id
 		if not ResourceLoader.exists(path):
 			continue

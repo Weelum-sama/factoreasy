@@ -15,7 +15,7 @@ func _refresh_toolbar() -> void:
 	for child in $PanelContainer/SlotContainer.get_children():
 		child.queue_free()
 	
-	for building_id in GameState.unlocked_buildings:
+	for building_id in GameState.BUILDING_ORDER:
 		if not GameState.unlocked_buildings[building_id]:
 			continue
 		var data: FacilityData = _load_facility_data(building_id)

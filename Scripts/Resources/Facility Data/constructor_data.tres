@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://h601fbcsg5h6"]
+
+[ext_resource type="Texture2D" uid="uid://ds4ac7uj5u8ow" path="res://Assets/Sprites/Buildings/previews/constructor_preview.png" id="1_68p8b"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_nvpm7"]
+[ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="2_fdmr1"]
+[ext_resource type="PackedScene" uid="uid://bd468cfy7dgdc" path="res://Objects/Scenes/Facilities/constructor.tscn" id="3_ig4hx"]
+[ext_resource type="Texture2D" uid="uid://14mul5yv7vqf" path="res://Assets/Sprites/Buildings/constructor.png" id="4_ig4hx"]
+
+[resource]
+script = ExtResource("2_fdmr1")
+id = "constructor"
+display_name = "constructor"
+texture = ExtResource("4_ig4hx")
+preview_texture = ExtResource("1_68p8b")
+scene = ExtResource("3_ig4hx")
+building_id = "constructor"
+research_cost = 5000
+input_directions = Array[Vector2i]([Vector2i(0, -1)])
+output_directions = Array[Vector2i]([Vector2i(0, 1)])
+metadata/_custom_type_script = "uid://cwoqjapww8r0j"

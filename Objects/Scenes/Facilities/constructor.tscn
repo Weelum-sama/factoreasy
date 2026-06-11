@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bd468cfy7dgdc"]
+
+[ext_resource type="Script" uid="uid://damw3fonjdwsi" path="res://Objects/Scripts/Facilities/constructor.gd" id="1_wbiqe"]
+[ext_resource type="Texture2D" uid="uid://14mul5yv7vqf" path="res://Assets/Sprites/Buildings/constructor.png" id="2_j2jlx"]
+
+[node name="Constructor" type="Node2D" unique_id=536789426]
+script = ExtResource("1_wbiqe")
+facility_id = "constructor"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=874403451]
+texture = ExtResource("2_j2jlx")

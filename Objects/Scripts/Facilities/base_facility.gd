@@ -23,8 +23,8 @@ func _set_state(new_state: Util.FACILITYSTATE) -> void:
 	state_changed.emit(new_state)
 
 func get_data() -> FacilityData:
-	#if _data_cache == null:
-	_data_cache = GameState.facility_registry.get(facility_id)
+	if _data_cache == null:
+		_data_cache = GameState.facility_registry.get(facility_id)
 	return _data_cache
 
 func _ready() -> void:

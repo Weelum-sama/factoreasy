@@ -23,7 +23,7 @@ func _load_facility_registry() -> void:
 		"res://Scripts/Resources/Facility Data/extractor_data.tres",
 		"res://Scripts/Resources/Facility Data/sink_data.tres",
 		"res://Scripts/Resources/Facility Data/smelter_data.tres",
-		"res://Scripts/Resources/Facility Data/constructor.tres",
+		"res://Scripts/Resources/Facility Data/constructor_data.tres",
 		
 		"res://Scripts/Resources/Node Data/iron_ore_node_data.tres",
 		"res://Scripts/Resources/Node Data/copper_ore_node_data.tres",

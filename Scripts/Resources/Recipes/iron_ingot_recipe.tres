@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_3cn6y"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_5xxds"]
-[ext_resource type="Resource" uid="uid://hbin32hge5ql" path="res://Scripts/Resources/Recipes/Ingredients/Input/iron_ore_to_ingot.tres" id="2_7xp6m"]
+[ext_resource type="Resource" uid="uid://hbin32hge5ql" path="res://Scripts/Resources/Recipes/Ingredients/Input/iron_ore_ingredient.tres" id="2_7xp6m"]
 [ext_resource type="Resource" uid="uid://dnm7b5e6nq514" path="res://Scripts/Resources/Recipes/Ingredients/Output/iron_ingot_output.tres" id="3_fg77f"]
 
 [resource]

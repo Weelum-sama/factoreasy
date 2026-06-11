@@ -1,20 +1,23 @@
 [gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://h601fbcsg5h6"]
 
-[ext_resource type="Texture2D" uid="uid://ds4ac7uj5u8ow" path="res://Assets/Sprites/Buildings/previews/constructor_preview.png" id="1_68p8b"]
-[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="1_nvpm7"]
-[ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="2_fdmr1"]
-[ext_resource type="PackedScene" uid="uid://bd468cfy7dgdc" path="res://Objects/Scenes/Facilities/constructor.tscn" id="3_ig4hx"]
-[ext_resource type="Texture2D" uid="uid://14mul5yv7vqf" path="res://Assets/Sprites/Buildings/constructor.png" id="4_ig4hx"]
+[ext_resource type="Texture2D" uid="uid://ds4ac7uj5u8ow" path="res://Assets/Sprites/Buildings/previews/constructor_preview.png" id="1_vauqq"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_nonog"]
+[ext_resource type="Resource" uid="uid://ch6elv3duyxf6" path="res://Scripts/Resources/Recipes/iron_plate_recipe.tres" id="3_efb2m"]
+[ext_resource type="Resource" uid="uid://dbfe18ru58r48" path="res://Scripts/Resources/Recipes/copper_sheet_recipe.tres" id="4_kqgrl"]
+[ext_resource type="PackedScene" uid="uid://bd468cfy7dgdc" path="res://Objects/Scenes/Facilities/constructor.tscn" id="5_5wcio"]
+[ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="6_fjk8t"]
+[ext_resource type="Texture2D" uid="uid://14mul5yv7vqf" path="res://Assets/Sprites/Buildings/constructor.png" id="7_3tpvp"]
 
 [resource]
-script = ExtResource("2_fdmr1")
+script = ExtResource("6_fjk8t")
+recipes = Array[ExtResource("2_nonog")]([ExtResource("3_efb2m"), ExtResource("4_kqgrl")])
 id = "constructor"
 display_name = "constructor"
-texture = ExtResource("4_ig4hx")
-preview_texture = ExtResource("1_68p8b")
-scene = ExtResource("3_ig4hx")
+texture = ExtResource("7_3tpvp")
+preview_texture = ExtResource("1_vauqq")
+scene = ExtResource("5_5wcio")
 building_id = "constructor"
 research_cost = 5000
-input_directions = Array[Vector2i]([Vector2i(0, -1)])
-output_directions = Array[Vector2i]([Vector2i(0, 1)])
+input_directions = Array[Vector2i]([Vector2i(0, 1)])
+output_directions = Array[Vector2i]([Vector2i(0, -1)])
 metadata/_custom_type_script = "uid://cwoqjapww8r0j"

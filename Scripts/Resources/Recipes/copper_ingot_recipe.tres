@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_1f4jw"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_emp3j"]
-[ext_resource type="Resource" uid="uid://bqt8nf5lfvjcl" path="res://Scripts/Resources/Recipes/Ingredients/Input/copper_ore_to_ingot.tres" id="2_uekp7"]
+[ext_resource type="Resource" uid="uid://bqt8nf5lfvjcl" path="res://Scripts/Resources/Recipes/Ingredients/Input/copper_ore_ingredient.tres" id="2_uekp7"]
 [ext_resource type="Resource" uid="uid://djdrgi17wxh3b" path="res://Scripts/Resources/Recipes/Ingredients/Output/copper_ingot_output.tres" id="2_x8svq"]
 
 [resource]

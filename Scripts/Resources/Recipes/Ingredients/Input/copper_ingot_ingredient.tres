@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://c7ilrpwusot8c"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_7bwpq"]
+[ext_resource type="Resource" uid="uid://cmlupcgjkpy6m" path="res://Scripts/Resources/Items/Ingots/copper_ingot.tres" id="1_aap6v"]
+
+[resource]
+script = ExtResource("1_7bwpq")
+item = ExtResource("1_aap6v")
+amount = 1
+metadata/_custom_type_script = "uid://bxvq6snmfesks"

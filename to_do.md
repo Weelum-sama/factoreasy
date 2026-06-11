@@ -20,7 +20,7 @@
 - ~~smelters without input complete copper ingots (maybe only after saving?)~~
 - ~~pick up building spawns visible ghost at world origin for one frame~~
 - ~~belts only move items every other tick~~
-- belts pushing onto occupied belts
+- ~~belts pushing onto occupied belts~~
 - buttons extend based on label lengths
 
 ## implement:
@@ -44,9 +44,11 @@
 - ~~moving belts should not have their items rendered~~
 - ~~context menus for facilities on click~~
 - ~~tutorial~~
-- constructor
+- ~~constructor~~
+- constructor split into plate press and rod extruder
+- gradual, automatic unlock of more expensive ore nodes based on amount of coins
+- high cost simplifier (10k, million, billion, trillion, etc)
 - assembler (more than 1 input)
-- add pathfinding algorithm to belt placement, not just straight lines
 - copy selection feature
 
 ## make placeholder sprites:

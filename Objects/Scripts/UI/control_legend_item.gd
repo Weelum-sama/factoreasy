@@ -11,8 +11,8 @@ func _ready() -> void:
 	set_action_label(action)
 	set_input_label(input)
 
-func set_action_label(action: String) -> void:
+func set_action_label(_action: String) -> void:
 	_action_label.text = action
 
-func set_input_label(input: String) -> void:
+func set_input_label(_input: String) -> void:
 	_input_label.text = input

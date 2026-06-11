@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bt6eq2ush7l01" path="res://Assets/Sprites/gear_coin.png" id="4_o78rd"]
 
 [node name="ShopButton" type="PanelContainer" unique_id=945987124]
-offset_right = 92.0
-offset_bottom = 103.0
+offset_right = 242.0
+offset_bottom = 108.0
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("1_2gku0")
 script = ExtResource("1_boux0")

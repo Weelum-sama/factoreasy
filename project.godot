@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Factoreasy"
+config/name="factoreasy"
 run/main_scene="uid://bej5sh4ue04tg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
@@ -32,6 +32,10 @@ window/size/viewport_height=720
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
+
+[filesystem]
+
+import/name="factoreasy"
 
 [input]
 

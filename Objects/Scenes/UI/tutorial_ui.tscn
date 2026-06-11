@@ -7,10 +7,11 @@
 script = ExtResource("1_btajc")
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=112795521]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
+offset_left = -150.0
+offset_top = 12.0
 offset_right = 127.0
 offset_bottom = 40.0
 grow_horizontal = 2

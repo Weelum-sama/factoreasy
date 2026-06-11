@@ -20,52 +20,59 @@ script = ExtResource("1_d1ilt")
 
 [node name="PauseMenu" parent="." unique_id=1495478638 instance=ExtResource("1_hptm8")]
 process_mode = 1
+visible = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1757633803]
+[node name="MainUI" type="CanvasLayer" parent="." unique_id=1757633803]
 process_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1074168058]
+[node name="MarginContainer" type="MarginContainer" parent="MainUI" unique_id=1074168058]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=113146341]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/MarginContainer" unique_id=113146341]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="GameArea" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1939408335]
+[node name="GameArea" type="Control" parent="MainUI/MarginContainer/HBoxContainer" unique_id=1939408335]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="OreNodeBarUI" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
+[node name="OreNodeBarUI" parent="MainUI/MarginContainer/HBoxContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SidebarUI" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1853947216 instance=ExtResource("1_21xkr")]
+[node name="SidebarUI" parent="MainUI/MarginContainer/HBoxContainer" unique_id=1853947216 instance=ExtResource("1_21xkr")]
 layout_mode = 2
 
-[node name="ToolBarUI" parent="CanvasLayer/MarginContainer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
+[node name="ToolBarUI" parent="MainUI/MarginContainer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer" unique_id=756639909]
+[node name="InfoTopLeft" type="MarginContainer" parent="MainUI" unique_id=756639909]
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2" unique_id=159007235]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/InfoTopLeft" unique_id=159007235]
 layout_mode = 2
 
-[node name="ModeDisplay" parent="CanvasLayer/MarginContainer2/VBoxContainer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
+[node name="ModeDisplay" parent="MainUI/InfoTopLeft/VBoxContainer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
 clip_contents = false
 layout_mode = 2
 
-[node name="ControlLegendContainer" parent="CanvasLayer/MarginContainer2/VBoxContainer" unique_id=349626345 instance=ExtResource("5_ynf5e")]
+[node name="ControlLegendContainer" parent="MainUI/InfoTopLeft/VBoxContainer" unique_id=349626345 instance=ExtResource("5_ynf5e")]
 layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
@@ -76,7 +83,7 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 25.0
 script = ExtResource("2_jjvhh")
 
-[node name="GridDebug" type="Node2D" parent="." unique_id=362493852]
+[node name="Grid" type="Node2D" parent="." unique_id=362493852]
 process_mode = 1
 script = ExtResource("1_jjgbg")
 

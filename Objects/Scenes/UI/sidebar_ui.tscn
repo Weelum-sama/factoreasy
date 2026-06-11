@@ -7,14 +7,10 @@
 [ext_resource type="Script" uid="uid://4nbgyypqqkvd" path="res://Objects/Scripts/UI/upgrade_tab.gd" id="5_swmst"]
 
 [node name="SidebarUI" type="VBoxContainer" unique_id=1853947216]
-custom_minimum_size = Vector2(220, 0)
 anchors_preset = -1
-offset_left = -110.0
-offset_top = -33.5
-offset_right = 110.0
-offset_bottom = 33.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 234.0
+offset_bottom = 67.0
+grow_horizontal = 0
 focus_behavior_recursive = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1723561795]

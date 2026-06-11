@@ -11,7 +11,7 @@ func _ready() -> void:
 	GameState.inventory_changed.connect(_on_inventory_changed)
 	_refresh_toolbar()
 
-func _on_node_unlocked(node_id: String) -> void:
+func _on_node_unlocked(_node_id: String) -> void:
 	_refresh_toolbar()
 
 func _on_inventory_changed(resource_id: String, new_count: int) -> void:

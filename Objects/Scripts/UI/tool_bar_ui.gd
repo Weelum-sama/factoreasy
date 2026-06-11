@@ -8,7 +8,7 @@ func _ready() -> void:
 	GameState.building_unlocked.connect(_on_building_unlocked)
 	_refresh_toolbar()
 
-func _on_building_unlocked(building_id: String) -> void:
+func _on_building_unlocked(_building_id: String) -> void:
 	_refresh_toolbar()
 
 func _refresh_toolbar() -> void:

@@ -53,6 +53,14 @@ func _item_row(item: Item, amount: int) -> HBoxContainer:
 	var label := Label.new()
 	label.text = "%s ×%d" % [item.name, amount]
 	row.add_child(label)
+	row.mouse_entered.connect(func() -> void: row.modulate = Color(1.15, 1.15, 1.15))
+	row.mouse_exited.connect(func() -> void:  row.modulate = Color.WHITE)
+	row.gui_input.connect(func(e: InputEvent) -> void:
+		if e is InputEventMouseButton and e.button_index == MOUSE_BUTTON_LEFT and e.pressed:
+			var layer := get_parent() as ContextMenuLayer
+			if layer:
+				layer.open_item(item, get_viewport().get_mouse_position())
+		)
 	return row
 
 func _recipe_row(recipe: Recipe) -> PanelContainer:

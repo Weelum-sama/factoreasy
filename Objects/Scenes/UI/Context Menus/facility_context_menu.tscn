@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://dolvaaljroaxd"]
 
 [ext_resource type="Script" uid="uid://de8vnibq72y43" path="res://Objects/Scripts/UI/Context Menus/facility_context_menu.gd" id="1"]
+[ext_resource type="StyleBox" uid="uid://fw838vsmfaev" path="res://Assets/Styles/context_menu_style_box_flat.tres" id="1_nq40d"]
 
 [node name="FacilityContextMenu" type="PanelContainer" unique_id=410372481]
 visible = false
 custom_minimum_size = Vector2(200, 0)
+theme_override_styles/panel = ExtResource("1_nq40d")
 script = ExtResource("1")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=180901695]
@@ -37,7 +39,7 @@ layout_mode = 2
 
 [node name="InputHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1463769149]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+theme_override_colors/font_color = Color(0.13319641, 0.13319641, 0.13319635, 1)
 text = "input:"
 
 [node name="InputList" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1936042671]
@@ -47,7 +49,7 @@ theme_override_constants/separation = 2
 
 [node name="OutputHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=196682591]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+theme_override_colors/font_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
 text = "output:"
 
 [node name="OutputList" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1743466285]
@@ -65,7 +67,7 @@ layout_mode = 2
 
 [node name="RecipesHeader" type="Label" parent="MarginContainer/VBoxContainer/RecipesSection" unique_id=1581024116]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+theme_override_colors/font_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
 text = "recipes:"
 
 [node name="RecipeList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RecipesSection" unique_id=1415690924]

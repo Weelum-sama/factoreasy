@@ -20,9 +20,26 @@ func open(recipe: Recipe, screen_pos: Vector2) -> void:
 	if output and output.item:
 		_output_icon.texture = output.item.texture
 		_output_label.text = "%s x%d" % [output.item.name, output.amount]
+		_setup_output_click(output.item)
 	
 	visible = true
 	_position_clamped(screen_pos)
+
+func _setup_output_click(item: Item) -> void:
+	var output_row := _output_icon.get_parent()
+	
+	if output_row.gui_input.is_connected(_on_output_clicked):
+		output_row.gui_input.disconnect(_on_output_clicked)
+	output_row.gui_input.connect(_on_output_clicked.bind(item))
+	
+	output_row.mouse_entered.connect(func() -> void: output_row.modulate = Color(1.15, 1.15, 1.15))
+	output_row.mouse_exited.connect(func() -> void: output_row.modulate = Color.WHITE)
+
+func _on_output_clicked(event: InputEvent, item: Item) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var layer := get_parent() as ContextMenuLayer
+		if layer:
+			layer.open_item(item, get_viewport().get_mouse_position())
 
 func _ingredient_row(ingredient: RecipeIngredient) -> HBoxContainer:
 	var row := HBoxContainer.new()

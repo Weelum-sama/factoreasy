@@ -9,3 +9,12 @@ func _position_clamped(screen_pos: Vector2) -> void:
 		clamp(position.x, 0.0, viewport.x - size.x),
 		clamp(position.y, 0.0, viewport.y - size.y)
 	)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible:
+		return
+	if event.is_action_pressed("Cancel"):
+		var layer := get_parent() as ContextMenuLayer
+		if layer:
+			layer.close_top()
+		get_viewport().set_input_as_handled()

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://fo4dd1mimuio"]
 
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_10fmb"]
-[ext_resource type="Resource" uid="uid://yf2fts2waf6x" path="res://Scripts/Resources/Recipes/Ingredients/Output/copper_ore_output.tres" id="2_10fmb"]
+[ext_resource type="Resource" uid="uid://bqt8nf5lfvjcl" path="res://Scripts/Resources/Recipes/Ingredients/copper_ore_x1.tres" id="2_10fmb"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="3_ajg6b"]
 
 [resource]

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_rfcpt"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_ftva7"]
-[ext_resource type="Resource" uid="uid://c84xb063gt14p" path="res://Scripts/Resources/Recipes/Ingredients/Input/iron_ingot_ingredient.tres" id="2_vlv7s"]
-[ext_resource type="Resource" uid="uid://ddkdefbjuc2vv" path="res://Scripts/Resources/Recipes/Ingredients/Output/iron_plate_output.tres" id="3_b07vf"]
+[ext_resource type="Resource" uid="uid://c84xb063gt14p" path="res://Scripts/Resources/Recipes/Ingredients/iron_ingot_x1.tres" id="2_vlv7s"]
+[ext_resource type="Resource" uid="uid://ddkdefbjuc2vv" path="res://Scripts/Resources/Recipes/Ingredients/iron_plate_x1.tres" id="3_b07vf"]
 
 [resource]
 script = ExtResource("2_ftva7")

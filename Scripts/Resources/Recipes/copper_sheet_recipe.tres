@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dbfe18ru58r48"]
 
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_6ly5x"]
-[ext_resource type="Resource" uid="uid://c7ilrpwusot8c" path="res://Scripts/Resources/Recipes/Ingredients/Input/copper_ingot_ingredient.tres" id="2_2qhbe"]
-[ext_resource type="Resource" uid="uid://b1a5gutqa3bu2" path="res://Scripts/Resources/Recipes/Ingredients/Output/copper_sheet_output.tres" id="3_eakj5"]
+[ext_resource type="Resource" uid="uid://c7ilrpwusot8c" path="res://Scripts/Resources/Recipes/Ingredients/copper_ingot_x1.tres" id="2_2qhbe"]
+[ext_resource type="Resource" uid="uid://b1a5gutqa3bu2" path="res://Scripts/Resources/Recipes/Ingredients/copper_sheet_x1.tres" id="3_eakj5"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="4_wrou6"]
 
 [resource]

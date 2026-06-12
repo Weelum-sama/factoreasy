@@ -6,6 +6,8 @@ var belt_item: BeltItem = null
 
 var belt_state: Util.BELTSTATE = Util.BELTSTATE.WORKING
 
+var _split_index: int = 0
+
 func _ready() -> void:
 	var ips := get_items_per_second()
 	$AnimatedSprite2D.speed_scale = ips

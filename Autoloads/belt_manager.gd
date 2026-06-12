@@ -111,16 +111,28 @@ func _process_line(line: Array) -> void:
 				belt.set_belt_state(Util.BELTSTATE.WORKING)
 				continue
 		
-		# Try to move to the next belt in line
-		var next_belt: Belt = belts.get(output_cell)
-		if next_belt != null and next_belt.belt_item == null:
-			next_belt.belt_item = belt.belt_item
-			next_belt.belt_item.previous_cell = cell
-			next_belt.belt_item.current_cell = output_cell
-			next_belt.belt_item.progress = 0.0
-			belt.belt_item = null
-			belt.set_belt_state(Util.BELTSTATE.WORKING)
-		else:
+		# Try to move to the next belt in line - supports automatic splitting
+		var destinations := _get_output_destinations(cell)
+		if destinations.is_empty():
+			belt.set_belt_state(Util.BELTSTATE.CLOGGED)
+			continue
+		
+		var moved := false
+		for j in destinations.size():
+			var try_cell := destinations[(belt._split_index + j) % destinations.size()]
+			var try_belt: Belt = belts.get(try_cell)
+			if try_belt != null and try_belt.belt_item == null:
+				try_belt.belt_item = belt.belt_item
+				try_belt.belt_item.previous_cell = cell
+				try_belt.belt_item.current_cell = try_cell
+				try_belt.belt_item.progress = 0.0
+				belt.belt_item = null
+				belt._split_index = (belt._split_index + 1) % destinations.size()
+				belt.set_belt_state(Util.BELTSTATE.WORKING)
+				moved = true
+				break
+		
+		if not moved:
 			belt.set_belt_state(Util.BELTSTATE.CLOGGED)
 	
 	# Try to pull from source facility into the first belt
@@ -172,3 +184,13 @@ func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 
 func get_current_pending_deliveries() -> Array:
 	return _pending_deliveries
+
+func _get_output_destinations(cell: Vector2i) -> Array[Vector2i]:
+	var results: Array[Vector2i] = []
+	var offsets := [Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0)]
+	for offset in offsets:
+		var neighbour_cell: Vector2i = cell + offset
+		var neighbour: Belt = belts.get(neighbour_cell)
+		if neighbour != null and neighbour.get_input_cell() == cell:
+			results.append(neighbour_cell)
+	return results

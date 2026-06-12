@@ -49,7 +49,7 @@
 - ~~constructor split into plate press and rod extruder~~
 - ~~high cost simplifier (10k, million, billion, trillion, etc)~~
 - ~~gradual, automatic unlock of more expensive ore nodes based on amount of coins~~
-- splitable belts
+- ~~splitable belts~~
 - assembler (more than 1 input)
 - belt upgrade
 - copy selection feature

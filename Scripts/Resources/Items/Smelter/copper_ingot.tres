@@ -7,5 +7,5 @@
 script = ExtResource("1_u854i")
 name = "copper ingot"
 texture = ExtResource("2_506tv")
-sell_value = 6.0
+sell_value = 9.0
 metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

@@ -7,4 +7,5 @@
 [resource]
 script = ExtResource("2_iaobg")
 output = ExtResource("2_cf00k")
+production_time = 0.0
 metadata/_custom_type_script = "uid://c2rsbilpyoifr"

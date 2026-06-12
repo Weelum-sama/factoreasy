@@ -52,6 +52,7 @@
 - ~~splitable belts~~
 - assembler (more than 1 input)
 - belt upgrade
+- extractors should extract ore infinitely fast, faster belt means more ore to use
 - copy selection feature
 
 ## make placeholder sprites:

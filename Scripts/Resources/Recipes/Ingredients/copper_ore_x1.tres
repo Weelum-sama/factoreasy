@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://bqt8nf5lfvjcl"]
 
-[ext_resource type="Resource" uid="uid://clf413oig7m3m" path="res://Scripts/Resources/Items/Ores/copper_ore.tres" id="1_p5pbx"]
+[ext_resource type="Resource" uid="uid://clf413oig7m3m" path="res://Scripts/Resources/Items/Extractor/copper_ore.tres" id="1_p5pbx"]
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_sbo0a"]
 
 [resource]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://cbifd3a3x0sk6"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_kqp52"]
+[ext_resource type="Resource" uid="uid://fgjc6glm3cgq" path="res://Scripts/Resources/Recipes/Ingredients/coal_ore_x1.tres" id="2_k44x3"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="3_ew1a5"]
+
+[resource]
+script = ExtResource("3_ew1a5")
+output = ExtResource("2_k44x3")
+production_time = 0.0
+metadata/_custom_type_script = "uid://c2rsbilpyoifr"

@@ -39,6 +39,7 @@ func _load_facility_registry() -> void:
 		"res://Scripts/Resources/Facility Data/rod_extruder_data.tres",
 		
 		"res://Scripts/Resources/Node Data/iron_ore_node_data.tres",
+		"res://Scripts/Resources/Node Data/coal_ore_node_data.tres",
 		"res://Scripts/Resources/Node Data/copper_ore_node_data.tres",
 	]
 	for path in paths:
@@ -68,20 +69,27 @@ func is_building_unlocked(building_id: String) -> bool:
 
 ### Nodes
 
-const NODE_ORDER: Array[String] = ["iron_ore_node", "copper_ore_node"]
+const NODE_ORDER: Array[String] = [
+	"iron_ore_node", 
+	"coal_ore_node", 
+	"copper_ore_node"
+]
 
 var unlocked_nodes: Dictionary = {
 	"iron_ore_node":		true,
+	"coal_ore_node":		false,
 	"copper_ore_node":		false,
 }
 
 var node_inventory: Dictionary = {
 	"iron_ore_node":		0,
+	"coal_ore_node":		0,
 	"copper_ore_node":		0,
 }
 
 var total_nodes_owned: Dictionary = {
 	"iron_ore_node":		0,
+	"coal_ore_node":		0,
 	"copper_ore_node":		0,
 }
 

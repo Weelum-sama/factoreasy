@@ -7,10 +7,11 @@
 [ext_resource type="Resource" uid="uid://b8kaqnqcwyvu" path="res://Scripts/Resources/Recipes/copper_ingot_recipe.tres" id="3_6sth1"]
 [ext_resource type="PackedScene" uid="uid://djfadk1ijsscl" path="res://Objects/Scenes/Facilities/smelter.tscn" id="3_68nox"]
 [ext_resource type="Texture2D" uid="uid://cjgsdv1wkgsk4" path="res://Assets/Sprites/Buildings/smelter.png" id="5_6sth1"]
+[ext_resource type="Resource" uid="uid://0d8ginfrv7g5" path="res://Scripts/Resources/Recipes/coke_recipe.tres" id="5_m8f5w"]
 
 [resource]
 script = ExtResource("2_qqdcc")
-recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq"), ExtResource("3_6sth1")])
+recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq"), ExtResource("3_6sth1"), ExtResource("5_m8f5w")])
 id = "smelter"
 display_name = "smelter"
 texture = ExtResource("5_6sth1")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dyironlcnn4k1"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_j8nyl"]
+[ext_resource type="Texture2D" uid="uid://cumagy8qqwiul" path="res://Assets/Sprites/Resources/coke.png" id="2_gi38a"]
+
+[resource]
+script = ExtResource("1_j8nyl")
+name = "coke"
+texture = ExtResource("2_gi38a")
+sell_value = 6.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

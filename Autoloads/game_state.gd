@@ -13,6 +13,15 @@ var unlocked_buildings: Dictionary = {
 	"assembler": 	false,
 }
 
+var unlocked_research: Dictionary = {
+	"extractor":	true,
+	"sink":			true,
+	"smelter":		true,
+	"plate_press":	false,
+	"rod_extruder":	false,
+	"assembler": 	false,
+}
+
 var facility_registry: Dictionary = {}
 
 func _ready() -> void:
@@ -40,6 +49,13 @@ func _load_facility_registry() -> void:
 func register_facility(data: FacilityData) -> void:
 	facility_registry[data.id] = data
 
+signal research_unlocked(building_id)
+
+func unlock_research(building_id: String) -> void:
+	if unlocked_research.has(building_id):
+		unlocked_research[building_id] = true
+		research_unlocked.emit(building_id)
+
 signal building_unlocked(building_id: String)
 
 func unlock_building(building_id: String) -> void:
@@ -56,7 +72,7 @@ const NODE_ORDER: Array[String] = ["iron_ore_node", "copper_ore_node"]
 
 var unlocked_nodes: Dictionary = {
 	"iron_ore_node":		true,
-	"copper_ore_node":		true,
+	"copper_ore_node":		false,
 }
 
 var node_inventory: Dictionary = {
@@ -153,6 +169,7 @@ const SAVE_PATH_GRID  := "user://grid_data.tres"
 
 func save_game() -> void:
 	var state := GameStateData.new()
+	state.unlocked_research = unlocked_research.duplicate()
 	state.unlocked_buildings = unlocked_buildings.duplicate()
 	state.unlocked_nodes = unlocked_nodes.duplicate()
 	state.node_inventory = node_inventory
@@ -181,12 +198,13 @@ func save_game() -> void:
 func load_game() -> void:
 	if ResourceLoader.exists(SAVE_PATH_STATE):
 		var state: GameStateData = ResourceLoader.load(SAVE_PATH_STATE)
-		unlocked_buildings = state.unlocked_buildings.duplicate()
-		node_inventory     = state.node_inventory.duplicate()
-		total_nodes_owned  = state.total_nodes_owned.duplicate()
-		unlocked_nodes     = state.unlocked_nodes.duplicate()
-		_total_coins       = state.total_coins
-		upgrade_levels     = state.upgrade_levels.duplicate()
+		unlocked_research	= state.unlocked_research.duplicate()
+		unlocked_buildings	= state.unlocked_buildings.duplicate()
+		node_inventory		= state.node_inventory.duplicate()
+		total_nodes_owned	= state.total_nodes_owned.duplicate()
+		unlocked_nodes		= state.unlocked_nodes.duplicate()
+		_total_coins		= state.total_coins
+		upgrade_levels		= state.upgrade_levels.duplicate()
 		if not state.tutorial_progression.is_empty():
 			TutorialManager.tutorial_progression = state.tutorial_progression.duplicate()
 	

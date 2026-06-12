@@ -18,6 +18,7 @@ preview_texture = ExtResource("1_n2wcn")
 scene = ExtResource("5_ckmr0")
 building_id = "plate_press"
 research_cost = 5000
+research_unlock_threshold = 4000
 input_directions = Array[Vector2i]([Vector2i(0, 1)])
 output_directions = Array[Vector2i]([Vector2i(0, -1)])
 metadata/_custom_type_script = "uid://cwoqjapww8r0j"

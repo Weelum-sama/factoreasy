@@ -36,7 +36,16 @@ func _add_entry(data: OreNodeData) -> void:
 	button.update_label_cost(button.data.cost)
 	button.update_affordability(GameState.get_total_coins() >= button.data.cost)
 
+func _check_node_unlocks(new_coins: float) -> void:
+	for node_id in GameState.NODE_ORDER:
+		if GameState.unlocked_nodes[node_id]:
+			continue
+		var data: OreNodeData = GameState.facility_registry.get(node_id)
+		if data and new_coins >= data.unlock_threshold:
+			GameState.unlock_node(node_id)
+
 func _on_coins_changed(new_amount: float) -> void:
+	_check_node_unlocks(new_amount)
 	for node_id in _buttons:
 		var button: ShopButton = _buttons[node_id]
 		button.update_affordability(new_amount >= button.data.cost)

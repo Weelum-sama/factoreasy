@@ -9,6 +9,7 @@
 script = ExtResource("1_kj2l8")
 item = ExtResource("1_4hoad")
 base_cost = 100
+unlock_threshold = 80
 id = "copper_ore_node"
 display_name = "copper ore node"
 texture = ExtResource("3_4hoad")

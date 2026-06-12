@@ -15,6 +15,7 @@ preview_texture = ExtResource("1_y7phg")
 scene = ExtResource("5_ig3oe")
 building_id = "assembler"
 research_cost = 30000
+research_unlock_threshold = 25000
 input_directions = Array[Vector2i]([Vector2i(0, 1)])
 output_directions = Array[Vector2i]([Vector2i(0, -1)])
 metadata/_custom_type_script = "uid://cwoqjapww8r0j"

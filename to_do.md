@@ -46,8 +46,8 @@
 - ~~tutorial~~
 - ~~constructor~~
 - ~~constructor split into plate press and rod extruder~~
+- ~~high cost simplifier (10k, million, billion, trillion, etc)~~
 - gradual, automatic unlock of more expensive ore nodes based on amount of coins
-- high cost simplifier (10k, million, billion, trillion, etc)
 - splitable belts
 - assembler (more than 1 input)
 - belt upgrade

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://fc38w4na6lot"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_he0p3"]
+[ext_resource type="Texture2D" uid="uid://dcs77ync7o08p" path="res://Assets/Sprites/Resources/iron_rod.png" id="2_1if7t"]
+
+[resource]
+script = ExtResource("1_he0p3")
+name = "iron rod"
+texture = ExtResource("2_1if7t")
+sell_value = 16.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://14mul5yv7vqf"
-path="res://.godot/imported/constructor.png-b0e17df13df8d75274be46a56f660f6c.ctex"
+uid="uid://d137cio0fh5w"
+path="res://.godot/imported/copper_rod.png-270cccf5930f4ae52dc90e88d34d16b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buildings/constructor.png"
-dest_files=["res://.godot/imported/constructor.png-b0e17df13df8d75274be46a56f660f6c.ctex"]
+source_file="res://Assets/Sprites/Resources/copper_rod.png"
+dest_files=["res://.godot/imported/copper_rod.png-270cccf5930f4ae52dc90e88d34d16b3.ctex"]
 
 [params]
 

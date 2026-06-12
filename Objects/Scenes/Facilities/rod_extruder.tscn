@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bpech7epbrewg"]
+
+[ext_resource type="Script" uid="uid://damw3fonjdwsi" path="res://Objects/Scripts/Facilities/assembler.gd" id="1_gy4ys"]
+[ext_resource type="Texture2D" uid="uid://bwh1ox5x8th5c" path="res://Assets/Sprites/Buildings/rod_extruder.png" id="2_gy4ys"]
+
+[node name="RodExtruder" type="Node2D" unique_id=536789426]
+script = ExtResource("1_gy4ys")
+facility_id = "rod_extruder"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=874403451]
+texture = ExtResource("2_gy4ys")

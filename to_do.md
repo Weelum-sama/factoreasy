@@ -45,10 +45,12 @@
 - ~~context menus for facilities on click~~
 - ~~tutorial~~
 - ~~constructor~~
-- constructor split into plate press and rod extruder
+- ~~constructor split into plate press and rod extruder~~
 - gradual, automatic unlock of more expensive ore nodes based on amount of coins
 - high cost simplifier (10k, million, billion, trillion, etc)
+- splitable belts
 - assembler (more than 1 input)
+- belt upgrade
 - copy selection feature
 
 ## make placeholder sprites:
@@ -61,3 +63,10 @@
 - ~~drag select multiple buildings~~
 - drag controls for camera
 - maluable belts (easy splitting and automatic bridges)
+
+### polish:
+- placement animation
+- placement sound
+- select sound
+- deselect sound
+- purchase sound

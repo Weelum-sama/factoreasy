@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bd468cfy7dgdc"]
+
+[ext_resource type="Script" uid="uid://damw3fonjdwsi" path="res://Objects/Scripts/Facilities/assembler.gd" id="1_3w5jt"]
+[ext_resource type="Texture2D" uid="uid://14mul5yv7vqf" path="res://Assets/Sprites/Buildings/assembler.png" id="2_isskv"]
+
+[node name="Assembler" type="Node2D" unique_id=536789426]
+script = ExtResource("1_3w5jt")
+facility_id = "assembler"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=874403451]
+texture = ExtResource("2_isskv")

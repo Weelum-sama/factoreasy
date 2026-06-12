@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dvfbkaelm3xx2"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_g27s3"]
+[ext_resource type="Resource" uid="uid://c7ilrpwusot8c" path="res://Scripts/Resources/Recipes/Ingredients/copper_ingot_x1.tres" id="2_lkbs6"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_o8m60"]
+[ext_resource type="Resource" uid="uid://fnvyepvrpkpq" path="res://Scripts/Resources/Recipes/Ingredients/copper_rod_x1.tres" id="3_t0nex"]
+
+[resource]
+script = ExtResource("2_o8m60")
+input = Array[ExtResource("1_g27s3")]([ExtResource("2_lkbs6")])
+output = ExtResource("3_t0nex")
+metadata/_custom_type_script = "uid://c2rsbilpyoifr"

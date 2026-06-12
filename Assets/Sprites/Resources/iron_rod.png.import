@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds4ac7uj5u8ow"
-path="res://.godot/imported/constructor_preview.png-7e55fab8caecf95d9e4eb63f6aa42867.ctex"
+uid="uid://dcs77ync7o08p"
+path="res://.godot/imported/iron_rod.png-8f24d70cf96165f036c67748c5a049d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buildings/previews/constructor_preview.png"
-dest_files=["res://.godot/imported/constructor_preview.png-7e55fab8caecf95d9e4eb63f6aa42867.ctex"]
+source_file="res://Assets/Sprites/Resources/iron_rod.png"
+dest_files=["res://.godot/imported/iron_rod.png-8f24d70cf96165f036c67748c5a049d1.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://fnvyepvrpkpq"]
+
+[ext_resource type="Resource" uid="uid://kmjwe3hkyrct" path="res://Scripts/Resources/Items/Rod Extruder/copper_rod.tres" id="1_8beqt"]
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_qj7y2"]
+
+[resource]
+script = ExtResource("1_qj7y2")
+item = ExtResource("1_8beqt")
+amount = 1
+metadata/_custom_type_script = "uid://bxvq6snmfesks"

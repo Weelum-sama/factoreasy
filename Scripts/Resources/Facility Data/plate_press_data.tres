@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://cefwf8kpnkj35"]
+
+[ext_resource type="Texture2D" uid="uid://gp70r12j3q84" path="res://Assets/Sprites/Buildings/previews/plate_press_preview.png" id="1_n2wcn"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_p7aet"]
+[ext_resource type="Resource" uid="uid://ch6elv3duyxf6" path="res://Scripts/Resources/Recipes/iron_plate_recipe.tres" id="3_xocsv"]
+[ext_resource type="Resource" uid="uid://dbfe18ru58r48" path="res://Scripts/Resources/Recipes/copper_sheet_recipe.tres" id="4_om1i1"]
+[ext_resource type="PackedScene" uid="uid://beyqcckpho53n" path="res://Objects/Scenes/Facilities/plate_press.tscn" id="5_ckmr0"]
+[ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="6_cjd8n"]
+[ext_resource type="Texture2D" uid="uid://drdthwilcu82p" path="res://Assets/Sprites/Buildings/plate_press.png" id="7_u7giw"]
+
+[resource]
+script = ExtResource("6_cjd8n")
+recipes = Array[ExtResource("2_p7aet")]([ExtResource("3_xocsv"), ExtResource("4_om1i1")])
+id = "plate_press"
+display_name = "plate press"
+texture = ExtResource("7_u7giw")
+preview_texture = ExtResource("1_n2wcn")
+scene = ExtResource("5_ckmr0")
+building_id = "plate_press"
+research_cost = 5000
+input_directions = Array[Vector2i]([Vector2i(0, 1)])
+output_directions = Array[Vector2i]([Vector2i(0, -1)])
+metadata/_custom_type_script = "uid://cwoqjapww8r0j"

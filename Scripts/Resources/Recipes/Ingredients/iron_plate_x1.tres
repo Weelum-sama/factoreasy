@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://ddkdefbjuc2vv"]
 
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_fltq5"]
-[ext_resource type="Resource" uid="uid://2cdf8nsh240" path="res://Scripts/Resources/Items/Constructor/iron_plate.tres" id="1_n27tm"]
+[ext_resource type="Resource" uid="uid://2cdf8nsh240" path="res://Scripts/Resources/Items/Plate Press/iron_plate.tres" id="1_n27tm"]
 
 [resource]
 script = ExtResource("1_fltq5")

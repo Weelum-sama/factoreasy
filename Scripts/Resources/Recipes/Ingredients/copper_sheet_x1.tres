@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://b1a5gutqa3bu2"]
 
-[ext_resource type="Resource" uid="uid://bfh4r8bxlpxit" path="res://Scripts/Resources/Items/Constructor/copper_sheet.tres" id="1_0ktpc"]
+[ext_resource type="Resource" uid="uid://bfh4r8bxlpxit" path="res://Scripts/Resources/Items/Plate Press/copper_sheet.tres" id="1_0ktpc"]
 [ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="2_orwoq"]
 
 [resource]

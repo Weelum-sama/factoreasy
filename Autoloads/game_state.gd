@@ -2,13 +2,15 @@ extends Node
 
 ### Buildings
 
-const BUILDING_ORDER: Array[String] = ["extractor", "sink", "smelter", "constructor"]
+const BUILDING_ORDER: Array[String] = ["extractor", "sink", "smelter", "plate_press", "rod_extruder", "assembler"]
 
 var unlocked_buildings: Dictionary = {
 	"extractor":	true,
 	"sink":			true,
 	"smelter":		false,
-	"constructor":	false,
+	"plate_press":	false,
+	"rod_extruder":	false,
+	"assembler": 	false,
 }
 
 var facility_registry: Dictionary = {}
@@ -23,7 +25,9 @@ func _load_facility_registry() -> void:
 		"res://Scripts/Resources/Facility Data/extractor_data.tres",
 		"res://Scripts/Resources/Facility Data/sink_data.tres",
 		"res://Scripts/Resources/Facility Data/smelter_data.tres",
-		"res://Scripts/Resources/Facility Data/constructor_data.tres",
+		"res://Scripts/Resources/Facility Data/plate_press_data.tres",
+		"res://Scripts/Resources/Facility Data/assembler_data.tres",
+		"res://Scripts/Resources/Facility Data/rod_extruder_data.tres",
 		
 		"res://Scripts/Resources/Node Data/iron_ore_node_data.tres",
 		"res://Scripts/Resources/Node Data/copper_ore_node_data.tres",

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://dxveyisgsvy5k"]
+
+[ext_resource type="Texture2D" uid="uid://beh54l70x72e5" path="res://Assets/Sprites/Buildings/previews/rod_extruder_preview.png" id="1_2nye5"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_4vql1"]
+[ext_resource type="Resource" uid="uid://b6ym6v4cqbd2u" path="res://Scripts/Resources/Recipes/iron_rod_recipe.tres" id="3_nmnar"]
+[ext_resource type="PackedScene" uid="uid://bpech7epbrewg" path="res://Objects/Scenes/Facilities/rod_extruder.tscn" id="3_y3lxp"]
+[ext_resource type="Resource" uid="uid://dvfbkaelm3xx2" path="res://Scripts/Resources/Recipes/copper_rod_recipe.tres" id="4_bpq0o"]
+[ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="4_nmnar"]
+[ext_resource type="Texture2D" uid="uid://bwh1ox5x8th5c" path="res://Assets/Sprites/Buildings/rod_extruder.png" id="5_bpq0o"]
+
+[resource]
+script = ExtResource("4_nmnar")
+recipes = Array[ExtResource("2_4vql1")]([ExtResource("3_nmnar"), ExtResource("4_bpq0o")])
+id = "rod_extruder"
+display_name = "rod extruder"
+texture = ExtResource("5_bpq0o")
+preview_texture = ExtResource("1_2nye5")
+scene = ExtResource("3_y3lxp")
+building_id = "rod_extruder"
+research_cost = 8000
+input_directions = Array[Vector2i]([Vector2i(0, 1)])
+output_directions = Array[Vector2i]([Vector2i(0, -1)])
+metadata/_custom_type_script = "uid://cwoqjapww8r0j"

@@ -23,7 +23,7 @@ func setup(upgrade_data: UpgradeData) -> void:
 
 func _refresh_labels() -> void:
 	var level := GameState.get_upgrade_level(data.upgrade_id)
-	var cost: int = data.get_cost(level)
+	var cost: int = data.get_cost()
 	cost_label.text = "%d" % cost
 	level_label.text = "lvl %d" % level
 

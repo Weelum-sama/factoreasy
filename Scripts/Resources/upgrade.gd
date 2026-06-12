@@ -19,3 +19,6 @@ func decide_upgrade_cost() -> void:
 	else:
 		new_cost = roundi(upgrade_base_cost * level ** upgrade_cost_multiplier)
 	upgrade_cost = new_cost
+
+func get_cost() -> int:
+	return upgrade_cost

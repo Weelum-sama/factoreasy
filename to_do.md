@@ -22,6 +22,7 @@
 - ~~belts only move items every other tick~~
 - ~~belts pushing onto occupied belts~~
 - buttons extend based on label lengths
+- store buttons slightly scrollable (something to do with width of the widest button)
 
 ## implement:
 - ~~rotate during placement~~
@@ -47,7 +48,7 @@
 - ~~constructor~~
 - ~~constructor split into plate press and rod extruder~~
 - ~~high cost simplifier (10k, million, billion, trillion, etc)~~
-- gradual, automatic unlock of more expensive ore nodes based on amount of coins
+- ~~gradual, automatic unlock of more expensive ore nodes based on amount of coins~~
 - splitable belts
 - assembler (more than 1 input)
 - belt upgrade
@@ -62,7 +63,7 @@
 ### nice to have:
 - ~~drag select multiple buildings~~
 - drag controls for camera
-- maluable belts (easy splitting and automatic bridges)
+- automatic bridges
 
 ### polish:
 - placement animation

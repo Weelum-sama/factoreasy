@@ -1,21 +1,22 @@
 [gd_resource type="Resource" script_class="ProcessingFacilityData" format=3 uid="uid://h601fbcsg5h6"]
 
-[ext_resource type="Texture2D" uid="uid://ds4ac7uj5u8ow" path="res://Assets/Sprites/Buildings/previews/assembler_preview.png" id="1_y7phg"]
+[ext_resource type="Texture2D" uid="uid://cgpvh236owm05" path="res://Assets/Sprites/Buildings/assembler.png" id="1_mrba3"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_vb8cq"]
 [ext_resource type="PackedScene" uid="uid://bd468cfy7dgdc" path="res://Objects/Scenes/Facilities/assembler.tscn" id="5_ig3oe"]
 [ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="6_52aac"]
-[ext_resource type="Texture2D" uid="uid://14mul5yv7vqf" path="res://Assets/Sprites/Buildings/assembler.png" id="7_ph1un"]
 
 [resource]
 script = ExtResource("6_52aac")
 id = "assembler"
 display_name = "assembler"
-texture = ExtResource("7_ph1un")
-preview_texture = ExtResource("1_y7phg")
+texture = ExtResource("1_mrba3")
+preview_texture = ExtResource("1_mrba3")
 scene = ExtResource("5_ig3oe")
 building_id = "assembler"
+building_width = 3
+building_height = 3
 research_cost = 30000
 research_unlock_threshold = 25000
-input_directions = Array[Vector2i]([Vector2i(0, 1)])
-output_directions = Array[Vector2i]([Vector2i(0, -1)])
+input_directions = Array[Vector2i]([Vector2i(-1, 2), Vector2i(0, 2), Vector2i(1, 2)])
+output_directions = Array[Vector2i]([Vector2i(0, -2)])
 metadata/_custom_type_script = "uid://cwoqjapww8r0j"

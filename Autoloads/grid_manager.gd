@@ -66,7 +66,7 @@ func compute_footprint(root: Vector2i, width: int, height: int, rotation: float)
 	var half_width := (width - 1) / 2
 	var half_height := (height - 1) / 2
 	for dy in range(-half_height, half_height + 1):
-		for dx in range(-half_width, half_height + 1):
+		for dx in range(-half_width, half_width + 1):
 			cells.append(root + Util.rotate_offset(Vector2i(dx, dy), rotation))
 	return cells
 
@@ -77,8 +77,14 @@ func is_area_empty(cells: Array[Vector2i]) -> bool:
 	return true
 
 func place_footprint(cells: Array[Vector2i], root_cell: Vector2i, building: Node) -> bool:
-	if not is_area_empty(cells):
-		return false
+	# Check if every cell is either empty or already owned by this building
+	for cell in cells:
+		var occupant: Node = _grid.get(cell, null)
+		if occupant != null and occupant != building:
+			return false
+		if not is_cell_in_bounds(cell):
+			return false
+	
 	for cell in cells:
 		_grid[cell] = building
 	building.position = cell_center(root_cell)

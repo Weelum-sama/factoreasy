@@ -112,7 +112,7 @@ func _process_line(line: Array) -> void:
 				continue
 		
 		# Try to move to the next belt in line - supports automatic splitting
-		var destinations := _get_output_destinations(cell)
+		var destinations := _get_output_destinations(belt, cell)
 		if destinations.is_empty():
 			belt.set_belt_state(Util.BELTSTATE.CLOGGED)
 			continue
@@ -185,8 +185,16 @@ func update_delivery_cells(old_cell: Vector2i, delta: Vector2i) -> void:
 func get_current_pending_deliveries() -> Array:
 	return _pending_deliveries
 
-func _get_output_destinations(cell: Vector2i) -> Array[Vector2i]:
+func _get_output_destinations(belt: Belt, cell: Vector2i) -> Array[Vector2i]:
 	var results: Array[Vector2i] = []
+	
+	# Forward direction is first priority
+	var forward_cell := belt.get_output_cell()
+	var forward_belt: Belt = belts.get(forward_cell)
+	if forward_belt != null:
+		results.append(forward_cell)
+	
+	# Check whether can split
 	var offsets := [Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0)]
 	for offset in offsets:
 		var neighbour_cell: Vector2i = cell + offset

@@ -1,2 +1,2 @@
 extends ProcessingFacility
-class_name PlatePress
+class_name Assembler

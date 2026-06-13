@@ -59,7 +59,7 @@ func _on_purchase(node_id: String, _amount: int) -> void:
 	_buttons[node_id].update_label_cost(_buttons[node_id].data.cost)
 
 ### TESTING PURPOSES
-var amount = 1000
+var amount = 80
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Test"):

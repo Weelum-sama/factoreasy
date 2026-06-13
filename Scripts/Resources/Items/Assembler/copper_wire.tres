@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://do21fuu4vst0y"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_pw3bj"]
+[ext_resource type="Texture2D" uid="uid://d4fefe4kpwhbk" path="res://Assets/Sprites/Resources/copper_wire.png" id="2_3jqme"]
+
+[resource]
+script = ExtResource("1_pw3bj")
+name = "copper wire"
+texture = ExtResource("2_3jqme")
+sell_value = 60.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

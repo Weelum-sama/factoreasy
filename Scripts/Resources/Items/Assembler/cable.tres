@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://boktjwnme16pj"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_47h0o"]
+[ext_resource type="Texture2D" uid="uid://cafwifjnxgfb6" path="res://Assets/Sprites/Resources/cable.png" id="2_hyvr3"]
+
+[resource]
+script = ExtResource("1_47h0o")
+name = "cable"
+texture = ExtResource("2_hyvr3")
+sell_value = 100.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

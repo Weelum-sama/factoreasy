@@ -26,6 +26,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 accessibility_name = "Icon"
 texture = ExtResource("2_wr22d")
+expand_mode = 3
 stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1514448789]

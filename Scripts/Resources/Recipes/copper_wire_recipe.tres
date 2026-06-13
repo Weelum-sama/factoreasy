@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://3wslpy500s0j"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_dn80s"]
+[ext_resource type="Resource" uid="uid://c7ilrpwusot8c" path="res://Scripts/Resources/Recipes/Ingredients/copper_ingot_x1.tres" id="2_5ocni"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_f84qa"]
+[ext_resource type="Resource" uid="uid://b8t3cyv1ofjla" path="res://Scripts/Resources/Recipes/Ingredients/coke_x1.tres" id="3_yf8mn"]
+[ext_resource type="Resource" uid="uid://d74vs78qubrx" path="res://Scripts/Resources/Recipes/Ingredients/copper_wire_x1.tres" id="4_kj04k"]
+
+[resource]
+script = ExtResource("2_f84qa")
+input = Array[ExtResource("1_dn80s")]([ExtResource("2_5ocni"), ExtResource("3_yf8mn")])
+output = ExtResource("4_kj04k")
+metadata/_custom_type_script = "uid://c2rsbilpyoifr"

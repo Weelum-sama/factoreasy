@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://bse6earm3ka65"]
+
+[ext_resource type="Resource" uid="uid://22dlma3w623l" path="res://Scripts/Resources/Items/Assembler/reinforced_iron_plate.tres" id="1_gth8c"]
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_yei84"]
+
+[resource]
+script = ExtResource("1_yei84")
+item = ExtResource("1_gth8c")
+amount = 1
+metadata/_custom_type_script = "uid://bxvq6snmfesks"

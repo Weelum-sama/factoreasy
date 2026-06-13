@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecipeIngredient" format=3 uid="uid://c3xrcb1a8im7m"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_8v5y2"]
+[ext_resource type="Resource" uid="uid://b7wljdwj7176g" path="res://Scripts/Resources/Items/Assembler/gear.tres" id="1_jxjfr"]
+
+[resource]
+script = ExtResource("1_8v5y2")
+item = ExtResource("1_jxjfr")
+amount = 1
+metadata/_custom_type_script = "uid://bxvq6snmfesks"

@@ -61,9 +61,22 @@ func update(_delta: float) -> void:
 		var target_cell := cursor_cell + context.group_move_offsets[i]
 		_ghosts[i].position = GridManager.cell_center(target_cell)
 		
-		var occupant := GridManager.get_cell_occupant(target_cell)
-		var in_bounds := GridManager.is_cell_in_bounds(target_cell)
-		var is_free := in_bounds and (occupant == null or context.selected_buildings.has(occupant))
+		var building := context.selected_buildings[i]
+		var is_free := true
+		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
+			var bf := building as BaseFacility
+			var data := bf.get_data()
+			var fp := GridManager.compute_footprint(target_cell, data.building_width, data.building_height, _ghosts[i].rotation)
+			
+			for fp_cell in fp:
+				var occupant := GridManager.get_cell_occupant(fp_cell)
+				if not GridManager.is_cell_in_bounds(fp_cell) or (occupant != null and not context.selected_buildings.has(occupant)):
+					is_free = false
+					break
+		else:
+			var occupant := GridManager.get_cell_occupant(target_cell)
+			var in_bounds := GridManager.is_cell_in_bounds(target_cell)
+			is_free = in_bounds and (occupant == null or context.selected_buildings.has(occupant))
 		
 		_ghosts[i].modulate = Color(1, 1, 1, 0.5) if is_free else Color(1, 0.3, 0.3, 0.5)
 
@@ -77,33 +90,57 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _try_place_group() -> void:
 	var cursor_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
+	
+	# Validate all target cells
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
-		var occupant := GridManager.get_cell_occupant(target_cell)
-		if occupant != null and not context.selected_buildings.has(occupant):
-			return
-		if not GridManager.is_cell_in_bounds(target_cell):
-			return
+		var building := context.selected_buildings[i]
+		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
+			var bf := building as BaseFacility
+			var data := bf.get_data()
+			var fp := GridManager.compute_footprint(target_cell, data.building_width, data.building_height, _ghosts[i].rotation)
+			for fp_cell in fp:
+				var occupant := GridManager.get_cell_occupant(fp_cell)
+				if occupant != null and not context.selected_buildings.has(occupant):
+					return
+				if not GridManager.is_cell_in_bounds(fp_cell):
+					return
+		else:
+			var occupant := GridManager.get_cell_occupant(target_cell)
+			if occupant != null and not context.selected_buildings.has(occupant):
+				return
+			if not GridManager.is_cell_in_bounds(target_cell):
+				return
 	
+	# Remove all from current positions
 	for building in context.selected_buildings:
-		var cell := GridManager.world_to_cell(building.global_position)
-		GridManager.remove(cell)
-		if building is Belt:
+		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
+			GridManager.remove_footprint((building as BaseFacility).get_footprint())
+		elif building is Belt:
+			var cell := GridManager.world_to_cell(building.global_position)
+			GridManager.remove(cell)
 			BeltManager.unregister_belt(cell)
+		else:
+			GridManager.remove(GridManager.world_to_cell(building.global_position))
 	
+	# Place at new positions
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
 		var building := context.selected_buildings[i]
 		building.rotation = _ghosts[i].rotation
 		
-		if building is Belt:
+		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
+			var bf := building as BaseFacility
+			var data := bf.get_data()
+			var fp := GridManager.compute_footprint(target_cell, data.building_width, data.building_height, building.rotation)
+			GridManager.place_footprint(fp, target_cell, building)
+		elif building is Belt:
 			var old_cell := GridManager.world_to_cell(building.global_position)
 			var delta := target_cell - old_cell
 			if building.belt_item != null:
 				building.belt_item.previous_cell += delta
 				building.belt_item.current_cell += delta
 			BeltManager.update_delivery_cells(old_cell, delta)
-			
 			GridManager.place(target_cell, building)
 			BeltManager.register_belt(target_cell, building)
 		else:

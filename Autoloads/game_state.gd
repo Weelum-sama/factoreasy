@@ -188,16 +188,15 @@ func save_game() -> void:
 	ResourceSaver.save(state, SAVE_PATH_STATE)
 	
 	var grid := GridData.new()
-	var existing_grid := GridManager.get_full_grid()
-	for cell in existing_grid:
-		var occupant: Node = existing_grid[cell]
-		var entry := { "cell": cell, "rotation": occupant.rotation }
-		if occupant is Belt:
+	for building in GridManager.get_all_cell_occupants():
+		var cell := GridManager.world_to_cell(building.global_position)
+		var entry := { "cell": cell, "rotation": building.rotation }
+		if building is Belt:
 			entry["type"] = "belt"
-		elif occupant is OreNode:
-			entry["type"] = occupant.data.id
-		elif occupant is BaseFacility:
-			entry["type"] = occupant.facility_id
+		elif building is OreNode:
+			entry["type"] = building.data.id
+		elif building is BaseFacility:
+			entry["type"] = building.facility_id
 		else:
 			continue
 		grid.entries.append(entry)

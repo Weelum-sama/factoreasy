@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsxhk6pxk7cpb"
-path="res://.godot/imported/assembler_preview.png-0f598f515f5b7b8bc6c50501a014d5af.ctex"
+uid="uid://ci4cluhfu87s6"
+path="res://.godot/imported/gear.png-975ff4125aa197667f450a6bd1a8a1db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buildings/previews/assembler_preview.png"
-dest_files=["res://.godot/imported/assembler_preview.png-0f598f515f5b7b8bc6c50501a014d5af.ctex"]
+source_file="res://Assets/Sprites/Resources/gear.png"
+dest_files=["res://.godot/imported/gear.png-975ff4125aa197667f450a6bd1a8a1db.ctex"]
 
 [params]
 

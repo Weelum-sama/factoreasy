@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsxhk6pxk7cpb"
-path="res://.godot/imported/assembler_preview.png-0f598f515f5b7b8bc6c50501a014d5af.ctex"
+uid="uid://duq65ipcxnkfd"
+path="res://.godot/imported/constructor.png-b0e17df13df8d75274be46a56f660f6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buildings/previews/assembler_preview.png"
-dest_files=["res://.godot/imported/assembler_preview.png-0f598f515f5b7b8bc6c50501a014d5af.ctex"]
+source_file="res://Assets/Sprites/Buildings/constructor.png"
+dest_files=["res://.godot/imported/constructor.png-b0e17df13df8d75274be46a56f660f6c.ctex"]
 
 [params]
 

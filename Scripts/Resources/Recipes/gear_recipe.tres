@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://fcpo3mn28gs7"]
+
+[ext_resource type="Script" uid="uid://bxvq6snmfesks" path="res://Scripts/Resources/recipe_ingredient.gd" id="1_vo28t"]
+[ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_fivij"]
+[ext_resource type="Resource" uid="uid://ddkdefbjuc2vv" path="res://Scripts/Resources/Recipes/Ingredients/iron_plate_x1.tres" id="2_kjdm2"]
+[ext_resource type="Resource" uid="uid://cxjsawnti2wvs" path="res://Scripts/Resources/Recipes/Ingredients/iron_rod_x1.tres" id="3_ujp4w"]
+[ext_resource type="Resource" uid="uid://c3xrcb1a8im7m" path="res://Scripts/Resources/Recipes/Ingredients/gear_x1.tres" id="4_isfh8"]
+
+[resource]
+script = ExtResource("2_fivij")
+input = Array[ExtResource("1_vo28t")]([ExtResource("2_kjdm2"), ExtResource("3_ujp4w")])
+output = ExtResource("4_isfh8")
+metadata/_custom_type_script = "uid://c2rsbilpyoifr"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsxhk6pxk7cpb"
-path="res://.godot/imported/assembler_preview.png-0f598f515f5b7b8bc6c50501a014d5af.ctex"
+uid="uid://bvnjrfnnweq4d"
+path="res://.godot/imported/circuit_board.png-bcd206f53bcfab4dab49b33062e9e937.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buildings/previews/assembler_preview.png"
-dest_files=["res://.godot/imported/assembler_preview.png-0f598f515f5b7b8bc6c50501a014d5af.ctex"]
+source_file="res://Assets/Sprites/Resources/circuit_board.png"
+dest_files=["res://.godot/imported/circuit_board.png-bcd206f53bcfab4dab49b33062e9e937.ctex"]
 
 [params]
 

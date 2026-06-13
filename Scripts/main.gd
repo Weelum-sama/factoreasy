@@ -41,10 +41,21 @@ func _restore_grid(grid_data: GridData) -> void:
 				push_warning("No scene found for saved type: " + type)
 				continue
 			node = facility_data.scene.instantiate()
-			
+		
 		node.rotation = saved_rotation
 		add_child(node)
-		GridManager.place(cell, node)
 		
 		if node is Belt:
+			GridManager.place(cell, node)
 			BeltManager.register_belt(cell, node)
+		elif node is BaseFacility:
+			var facility_data: FacilityData = GameState.facility_registry.get(type)
+			if facility_data and (facility_data.building_width > 1 or facility_data.building_height > 1):
+				var cells := GridManager.compute_footprint(cell, facility_data.building_width, facility_data.building_height, saved_rotation)
+				if not GridManager.place_footprint(cells, cell, node):
+					node.queue_free()
+					continue
+			else:
+				GridManager.place(cell, node)
+		else:
+			GridManager.place(cell, node)

@@ -21,7 +21,7 @@
 - rod extruder. copper ingot = copper rod - 28.0
 
 - assembler. iron plate + iron rod = gear - 50.0
-- assembler. copper ingot + coke = copper wire - 60.0
+- assembler. copper ingot + coke = copper wire - 60.0 (? what is this input ?)
 - assembler. iron plate + gear = reinforced plate - 80.0 (? other recipes ?)
 - assembler. copper wire + iron rod = cable - 100.0
 - assembler. copper wire + iron plate = circuit board - 100.0

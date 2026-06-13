@@ -188,7 +188,6 @@ func save_game() -> void:
 	ResourceSaver.save(state, SAVE_PATH_STATE)
 	
 	var grid := GridData.new()
-	var existing_grid := GridManager.get_full_grid()
 	for building in GridManager.get_all_cell_occupants():
 		var cell := GridManager.world_to_cell(building.global_position)
 		var entry := { "cell": cell, "rotation": building.rotation }

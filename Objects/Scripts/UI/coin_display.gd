@@ -20,6 +20,7 @@ func _set_display(value: float) -> void:
 	text = format_number(int(value))
 
 func format_number(n: float) -> String:
+	if n >= 1_000_000_000_000_000:	return "cash overflow"
 	if n >= 1_000_000_000_000:	return "%.2fT" % (n / 1_000_000_000_000.0)
 	if n >= 1_000_000_000:		return "%.2fB" % (n / 1_000_000_000.0)
 	if n >= 1_000_000:			return "%.2fM" % (n / 1_000_000.0)

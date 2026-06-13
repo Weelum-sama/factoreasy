@@ -29,12 +29,12 @@ func update(_delta: float) -> void:
 	var data := context.pending_data
 	var is_valid: bool
 	if data and (data.building_width > 1 or data.building_height > 1):
-		var cells := GridManager.compute_footprint(cell, data.building_width, data.building_height, data.ghost.rotation)
+		var cells := GridManager.compute_footprint(cell, data.building_width, data.building_height, context.ghost.rotation)
 		is_valid = GridManager.is_area_empty(cells)
 	else:
 		is_valid = GridManager.is_cell_empty(cell)
 	
-	context.ghost.modulate = Color(1, 1, 1, 0.6) if GridManager.is_cell_empty(cell) else Color(1, 0.3, 0.3, 0.6)
+	context.ghost.modulate = Color(1, 1, 1, 0.6) if is_valid else Color(1, 0.3, 0.3, 0.6)
 	context.ghost.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -27,6 +27,29 @@ func get_data() -> FacilityData:
 		_data_cache = GameState.facility_registry.get(facility_id)
 	return _data_cache
 
+### Multi cell helpers
+
+func is_multi_cell() -> bool:
+	var data := get_data()
+	if data == null:
+		return false
+	return data.building_width > 1 or data.building_height > 1
+
+func get_footprint() -> Array[Vector2i]:
+	var data := get_data()
+	var w := data.building_width if data else 1
+	var h := data.building_height if data else 1
+	return GridManager.compute_footprint(GridManager.world_to_cell(global_position), w, h, rotation)
+
+func cleanup() -> void:
+	if is_multi_cell():
+		GridManager.remove_footprint(get_footprint())
+		queue_free()
+	else :
+		super.cleanup()
+
+### Body
+
 func _ready() -> void:
 	z_index = 2
 	add_to_group("facilities")

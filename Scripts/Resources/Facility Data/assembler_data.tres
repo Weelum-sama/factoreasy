@@ -2,11 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://cgpvh236owm05" path="res://Assets/Sprites/Buildings/assembler.png" id="1_mrba3"]
 [ext_resource type="Script" uid="uid://c2rsbilpyoifr" path="res://Scripts/Resources/recipe.gd" id="2_vb8cq"]
+[ext_resource type="Resource" uid="uid://fcpo3mn28gs7" path="res://Scripts/Resources/Recipes/gear_recipe.tres" id="3_v8n33"]
+[ext_resource type="Resource" uid="uid://3wslpy500s0j" path="res://Scripts/Resources/Recipes/copper_wire_recipe.tres" id="4_xq23p"]
+[ext_resource type="Resource" uid="uid://crujote0mh5c" path="res://Scripts/Resources/Recipes/reinforced_iron_plate_recipe.tres" id="5_52aac"]
 [ext_resource type="PackedScene" uid="uid://bd468cfy7dgdc" path="res://Objects/Scenes/Facilities/assembler.tscn" id="5_ig3oe"]
 [ext_resource type="Script" uid="uid://cwoqjapww8r0j" path="res://Scripts/Resources/processing_facility_data.gd" id="6_52aac"]
+[ext_resource type="Resource" uid="uid://cjj60rgsddsv5" path="res://Scripts/Resources/Recipes/cable_recipe.tres" id="6_ph1un"]
+[ext_resource type="Resource" uid="uid://dq20yr3pmrwmd" path="res://Scripts/Resources/Recipes/circuit_board_recipe.tres" id="7_arj10"]
 
 [resource]
 script = ExtResource("6_52aac")
+recipes = Array[ExtResource("2_vb8cq")]([ExtResource("3_v8n33"), ExtResource("4_xq23p"), ExtResource("5_52aac"), ExtResource("6_ph1un"), ExtResource("7_arj10")])
 id = "assembler"
 display_name = "assembler"
 texture = ExtResource("1_mrba3")

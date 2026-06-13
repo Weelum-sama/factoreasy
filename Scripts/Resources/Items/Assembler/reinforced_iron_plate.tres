@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://22dlma3w623l"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_vplnt"]
+[ext_resource type="Texture2D" uid="uid://c1kuax7vaajem" path="res://Assets/Sprites/Resources/reinforced_iron_plate.png" id="2_r160d"]
+
+[resource]
+script = ExtResource("1_vplnt")
+name = "reinforced iron plate"
+texture = ExtResource("2_r160d")
+sell_value = 80.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

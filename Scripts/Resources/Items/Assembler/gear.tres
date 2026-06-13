@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b7wljdwj7176g"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_mkq74"]
+[ext_resource type="Texture2D" uid="uid://ci4cluhfu87s6" path="res://Assets/Sprites/Resources/gear.png" id="2_a8aib"]
+
+[resource]
+script = ExtResource("1_mkq74")
+name = "gear"
+texture = ExtResource("2_a8aib")
+sell_value = 50.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

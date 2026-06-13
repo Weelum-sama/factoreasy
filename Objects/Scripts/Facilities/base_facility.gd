@@ -121,10 +121,8 @@ func can_receive_item(item: Item = null) -> bool:
 		if not belongs:
 			return false
 	
-	var total := 0
-	for count in input_buffer.values():
-		total += count
-	return total < MAX_BUFFER
+	var amount: int = input_buffer.get(item, 0)
+	return amount < MAX_BUFFER
 
 func can_produce() -> bool:
 	var total := 0

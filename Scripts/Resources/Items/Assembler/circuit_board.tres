@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dqcc6fl37puhn"]
+
+[ext_resource type="Script" uid="uid://b6mrboq7ngwq3" path="res://Scripts/Resources/item.gd" id="1_00l8r"]
+[ext_resource type="Texture2D" uid="uid://bvnjrfnnweq4d" path="res://Assets/Sprites/Resources/circuit_board.png" id="2_64wty"]
+
+[resource]
+script = ExtResource("1_00l8r")
+name = "circuit board"
+texture = ExtResource("2_64wty")
+sell_value = 100.0
+metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

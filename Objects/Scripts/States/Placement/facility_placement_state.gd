@@ -25,6 +25,15 @@ func update(_delta: float) -> void:
 	var snapped : = GridManager.snap_to_grid(mouse)
 	var cell := GridManager.world_to_cell(mouse)
 	context.ghost.position = snapped + Vector2(GridManager.CELL_SIZE * 0.5, GridManager.CELL_SIZE * 0.5)
+	
+	var data := context.pending_data
+	var is_valid: bool
+	if data and (data.building_width > 1 or data.building_height > 1):
+		var cells := GridManager.compute_footprint(cell, data.building_width, data.building_height, data.ghost.rotation)
+		is_valid = GridManager.is_area_empty(cells)
+	else:
+		is_valid = GridManager.is_cell_empty(cell)
+	
 	context.ghost.modulate = Color(1, 1, 1, 0.6) if GridManager.is_cell_empty(cell) else Color(1, 0.3, 0.3, 0.6)
 	context.ghost.visible = true
 
@@ -53,8 +62,19 @@ func _place_facility(cell: Vector2i) -> void:
 	building.facility_id = context.pending_data.id
 	building.rotation = context.ghost.rotation
 	context.ghost_parent.get_tree().current_scene.add_child(building)
-	if not GridManager.place(cell, building):
+	
+	var data := context.pending_data
+	var placed := false
+	if data.building_width > 1 or data.building_height > 1:
+		var cells := GridManager.compute_footprint(cell, data.building_width, data.building_height, building.rotation)
+		placed = GridManager.place_footprint(cells, cell, building)
+	else:
+		placed = GridManager.place(cell, building)
+	
+	if not placed:
 		building.queue_free()
+		return
+	
 	TutorialManager.notify_facility_placed(building)
 
 func _place_ore_node(cell: Vector2i) -> void:

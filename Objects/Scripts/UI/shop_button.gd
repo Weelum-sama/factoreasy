@@ -15,7 +15,7 @@ func setup(ore_data: OreNodeData, cost: int, owned: int) -> void:
 	update_label_owned(owned)
 
 func update_label_cost(cost: int) -> void:
-	cost_label.text = "x%d" % cost
+	cost_label.text = "x" + format_number(cost)
 
 func update_label_owned(owned: int) -> void:
 	owned_label.text = "owned: %d" % owned

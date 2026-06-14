@@ -11,6 +11,7 @@ anchors_preset = -1
 offset_right = 234.0
 offset_bottom = 67.0
 grow_horizontal = 0
+size_flags_horizontal = 0
 focus_behavior_recursive = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1723561795]
@@ -36,17 +37,24 @@ tab_focus_mode = 1
 
 [node name="store" type="ScrollContainer" parent="TabContainer" unique_id=1571925321]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 accessibility_name = "store"
+horizontal_scroll_mode = 0
 metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/store" unique_id=2125756668]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_4v2ih")
 
 [node name="research" type="ScrollContainer" parent="TabContainer" unique_id=1406536427]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/research" unique_id=999676654]
@@ -58,6 +66,9 @@ script = ExtResource("3_tmd3e")
 [node name="upgrade" type="ScrollContainer" parent="TabContainer" unique_id=1729573533]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/upgrade" unique_id=1732148425]

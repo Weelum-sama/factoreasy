@@ -40,7 +40,7 @@ func update(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("Confirm"):
 		_try_place()
-	elif event.is_action_pressed("Cancel"):
+	elif event.is_action_released("Cancel"):
 		transitioned.emit(self, DefaultState.NAME)
 	if event.is_action_pressed("Rotate Building"):
 		if context.ghost:

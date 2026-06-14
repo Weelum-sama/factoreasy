@@ -14,7 +14,7 @@ func update(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	_unselect = Input.is_key_pressed(KEY_CTRL)
 	
-	if event.is_action_pressed("Toggle Select") or event.is_action_pressed("Cancel"):
+	if event.is_action_pressed("Toggle Select") or event.is_action_released("Cancel"):
 		context.clear_selection()
 		transitioned.emit(self, DefaultState.NAME)
 		return

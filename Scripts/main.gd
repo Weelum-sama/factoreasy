@@ -16,7 +16,8 @@ func _on_pause(paused: bool) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Escape"):
-		GameState.game_paused.emit(!get_tree().paused)
+		if Util._current_placement_mode == Util.PLACEMENTMODE.NONE:
+			GameState.game_paused.emit(!get_tree().paused)
 
 func _restore_grid(grid_data: GridData) -> void:
 	var belt_scene: PackedScene = preload("res://Objects/Scenes/Facilities/belt.tscn")

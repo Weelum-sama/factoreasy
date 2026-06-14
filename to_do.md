@@ -23,9 +23,10 @@
 - ~~belts pushing onto occupied belts~~
 - ~~assemblers recipes don't always work (more often when loaded from a save file)~~
 - ~~facilitycontext menus are way too long~~
-- extractors don't extract infinitely quickly
+- ~~extractors don't extract infinitely quickly~~
+- ~~store buttons slightly scrollable (something to do with width of the widest button)~~
 - buttons extend based on label lengths
-- store buttons slightly scrollable (something to do with width of the widest button)
+- when placing belt while hovering over ui, it does not place and removes ghost while staying in belt placement mode
 
 ## implement:
 - ~~rotate during placement~~

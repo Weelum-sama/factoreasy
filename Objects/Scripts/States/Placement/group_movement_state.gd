@@ -10,7 +10,7 @@ func enter() -> void:
 	super.enter()
 	_group_rotation = 0
 	var centroid := Vector2i.ZERO
-	_set_selected_buildings_visible(false)
+	_set_selected_buildings_visible(context.is_copy_mode)
 	for building in context.selected_buildings:
 		centroid += GridManager.world_to_cell(building.global_position)
 	centroid /= context.selected_buildings.size()
@@ -49,6 +49,8 @@ func exit() -> void:
 	_ghosts.clear()
 	context.group_move_offsets.clear()
 	_group_rotation = 0
+	
+	context.is_copy_mode = false
 	
 	if not context.entered_from_selection:
 		return
@@ -94,7 +96,7 @@ func _try_place_group() -> void:
 	# Validate all target cells
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
-		var building := context.selected_buildings[i]
+		var building := context.selected_buildings[i] if not context.is_copy_mode else _instantiate_copy(context.selected_buildings[i])
 		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
 			var bf := building as BaseFacility
 			var data := bf.get_data()
@@ -112,21 +114,22 @@ func _try_place_group() -> void:
 			if not GridManager.is_cell_in_bounds(target_cell):
 				return
 	
-	# Remove all from current positions
-	for building in context.selected_buildings:
-		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
-			GridManager.remove_footprint((building as BaseFacility).get_footprint())
-		elif building is Belt:
-			var cell := GridManager.world_to_cell(building.global_position)
-			GridManager.remove(cell)
-			BeltManager.unregister_belt(cell)
-		else:
-			GridManager.remove(GridManager.world_to_cell(building.global_position))
+	# Remove all from current positions (skip in copy mode)
+	if not context.is_copy_mode:
+		for building in context.selected_buildings:
+			if building is BaseFacility and (building as BaseFacility).is_multi_cell():
+				GridManager.remove_footprint((building as BaseFacility).get_footprint())
+			elif building is Belt:
+				var cell := GridManager.world_to_cell(building.global_position)
+				GridManager.remove(cell)
+				BeltManager.unregister_belt(cell)
+			else:
+				GridManager.remove(GridManager.world_to_cell(building.global_position))
 	
 	# Place at new positions
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
-		var building := context.selected_buildings[i]
+		var building := context.selected_buildings[i] if not context.is_copy_mode else _instantiate_copy(context.selected_buildings[i])
 		building.rotation = _ghosts[i].rotation
 		
 		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
@@ -147,7 +150,7 @@ func _try_place_group() -> void:
 			GridManager.place(target_cell, building)
 		building.modulate = Color.WHITE
 	
-	if _selected_buildings_contains_belt():
+	if _selected_buildings_contains_belt() and not context.is_copy_mode:
 		BeltManager.stop_moving_belts.emit()
 	# Quick move should also notify tutorial manager
 	if not context.entered_from_selection:
@@ -193,3 +196,25 @@ func _selected_buildings_contains_belt() -> bool:
 		if building is Belt:
 			return true
 	return false
+
+func _instantiate_copy(building: Node) -> Node2D:
+	if building is OreNode:
+		var node: OreNode = PlacementContext.ORE_NODE_SCENE.instantiate()
+		node.data = building.data
+		node.rotation = building.rotation
+		return node
+	elif building is Belt:
+		var belt_scene := preload("res://Objects/Scenes/Facilities/belt.tscn")
+		var node: Belt = belt_scene.instantiate()
+		node.rotation = building.rotation
+		return node
+	elif building is BaseFacility:
+		var facility := building as BaseFacility
+		var data := GameState.facility_registry.get(facility.facility_id) as FacilityData
+		if not data or not data.scene:
+			return null
+		var node: BaseFacility = data.scene.instantiate()
+		node.facility_id = facility.facility_id
+		node.rotation = building.rotation
+		return node
+	return null

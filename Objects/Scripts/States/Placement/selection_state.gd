@@ -60,8 +60,15 @@ func _unhandled_input(event: InputEvent) -> void:
 					belts.append(building)
 			if not belts.is_empty():
 				BeltManager.moving_belts.emit(belts)
-				
 			transitioned.emit(self, GroupMovementState.NAME)
+			
+		if event.is_action_pressed("Copy Selection"):
+			if not _can_copy_selection():
+				return # @TODO: Make feedback message appear
+			context.entered_from_selection = true
+			context.is_copy_mode = true
+			transitioned.emit(self, GroupMovementState.NAME)
+		
 		if event.is_action_pressed("Stash"):
 			for building in context.selected_buildings:
 				building.cleanup()
@@ -93,3 +100,16 @@ func _select_all_buildings() -> void:
 	context.selected_buildings = GridManager.get_all_cell_occupants()
 	for building in context.selected_buildings:
 		building.modulate = Color.SKY_BLUE
+
+func _can_copy_selection() -> bool:
+	var ores := {}
+	for building in context.selected_buildings:
+		if building is OreNode:
+			var ore_node := building as OreNode
+			if not GameState.has_node_in_inventory(ore_node.data.id):
+				return false
+			ores[ore_node.data.id] = ores.get(ore_node.data.id, 0) + 1
+	for ore_node in ores:
+		if ores[ore_node] > GameState.node_inventory[ore_node]:
+			return false
+	return true

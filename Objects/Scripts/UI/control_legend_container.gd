@@ -5,8 +5,6 @@ const CONTROL_LEGEND_ITEM = preload("res://Objects/Scenes/UI/control_legend_item
 
 var _current_items: Array[Node]
 
-
-
 const universal_inputs: Dictionary = {
 	"move camera: ": "WASD/arrows",
 	"zoom: ": "scroll in/out",
@@ -29,6 +27,7 @@ const selection_inputs: Dictionary = {
 	"select all: ": "Q",
 	"move selection: ": "M",
 	"stash selection: ": "F",
+	"copy seleciton": "ctrl + C",
 }
 
 const placement_inputs: Dictionary = {

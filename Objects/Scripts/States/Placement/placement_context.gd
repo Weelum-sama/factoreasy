@@ -20,6 +20,7 @@ var selection_box_active: bool = false
 
 # Group move
 var entered_from_selection: bool = false
+var is_copy_mode: bool = false
 var group_move_offsets: Array[Vector2i] = []
 
 # Hold to pickup

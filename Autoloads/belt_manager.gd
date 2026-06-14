@@ -12,16 +12,19 @@ signal stop_moving_belts
 
 func _ready() -> void:
 	GameState.belt_upgrade_purchased.connect(_on_belt_upgrade_purchased)
+	_on_belt_upgrade_purchased() # Makes sure belts have the correct speed on load
 
 func _on_belt_upgrade_purchased() -> void:
-	var level := GameState.get_upgrade_level("belts")
-	var new_speed := level * base_belt_speed
-	set_items_per_minute(new_speed)
+	belt_speed = calculate_belt_speed()
+	update_active_belts_speed()
 
-func set_items_per_minute(new_speed: float) -> void:
-	belt_speed = new_speed
+func update_active_belts_speed() -> void:
 	for belt in belts.values():
 		belt.update_animation_speed()
+
+func calculate_belt_speed() -> float:
+	var level := GameState.get_upgrade_level("belts")
+	return level * base_belt_speed
 
 func register_belt(cell: Vector2i, belt: Belt) -> void:
 	belts[cell] = belt

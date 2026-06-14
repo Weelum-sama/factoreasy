@@ -85,7 +85,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_rotate_group()
 	if event.is_action_released("Confirm"):
 		_try_place_group()
-	if event.is_action_pressed("Cancel"):
+	if event.is_action_released("Cancel"):
 		_cancel_group_move()
 
 func _try_place_group() -> void:

@@ -60,8 +60,7 @@ func _on_purchase(node_id: String, _amount: int) -> void:
 
 ### TESTING PURPOSES
 var amount = 80
-@warning_ignore("unused_parameter")
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Test"):
 		GameState.add_coins(amount)
 		GameState.reset_save_data()

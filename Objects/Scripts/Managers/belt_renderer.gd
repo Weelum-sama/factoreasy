@@ -14,7 +14,9 @@ func _draw() -> void:
 	# Draw belt items
 	for cell in BeltManager.belts:
 		var belt: Belt = BeltManager.belts[cell]
-		if excluded_belts.has(belt):
+		if not is_instance_valid(belt):
+			continue
+		if not excluded_belts.is_empty() and excluded_belts.has(belt):
 			continue
 		if belt.belt_item == null or belt.belt_item.item == null:
 			continue

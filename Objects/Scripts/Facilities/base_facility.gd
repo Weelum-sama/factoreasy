@@ -145,16 +145,19 @@ func set_current_recipe() -> void:
 	if data == null:
 		_current_recipe = null
 		return
+	
+	# Find best recipe for buffer inputs
+	var best_recipe: Recipe = null
+	var best_score: int = 0
 	for recipe in data.recipes:
-		if recipe.can_produce(input_buffer):
-			_current_recipe = recipe
-			return
-	for recipe in data.recipes:
+		var score := 0
 		for ingredient in recipe.input:
 			if input_buffer.get(ingredient.item, 0) > 0:
-				_current_recipe = recipe
-				return
-	_current_recipe = null
+				score += 1
+			if score > best_score:
+				best_score = score
+				best_recipe = recipe
+	_current_recipe = best_recipe
 
 func get_current_recipe() -> Recipe:
 	return _current_recipe

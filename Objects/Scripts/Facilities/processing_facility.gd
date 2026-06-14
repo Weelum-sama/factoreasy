@@ -51,3 +51,21 @@ func _consume_inputs(recipe: Recipe) -> void:
 func _complete_production(recipe: Recipe) -> void:
 	var out := recipe.output
 	output_buffer[out.item] = output_buffer.get(out.item, 0) + out.amount
+
+func can_receive_item(item: Item = null) -> bool:
+	if item!= null and get_data() is ProcessingFacilityData:
+		if not is_input_valid(item):
+			return false
+	
+	# Only lock current recipe after comitting to producing it
+	if _current_recipe != null and _is_producing:
+		var belongs := false
+		for ingredient in _current_recipe.input:
+			if ingredient.item == item:
+				belongs = true
+				break
+		if not belongs:
+			return false
+	
+	var amount: int = input_buffer.get(item, 0)
+	return amount < MAX_BUFFER

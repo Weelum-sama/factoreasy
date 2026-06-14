@@ -21,6 +21,10 @@
 - ~~pick up building spawns visible ghost at world origin for one frame~~
 - ~~belts only move items every other tick~~
 - ~~belts pushing onto occupied belts~~
+- assemblers recipes don't always work (more often when loaded from a save file)
+- facilitycontext menus are way too long
+- belts are sometimes wonky
+- extractors don't extract infinitely quickly
 - buttons extend based on label lengths
 - store buttons slightly scrollable (something to do with width of the widest button)
 

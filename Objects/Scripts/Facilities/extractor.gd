@@ -1,7 +1,7 @@
 extends BaseFacility
 class_name Extractor
 
-func tick() -> void:
+func _process(_delta: float) -> void:
 	_try_exctract()
 
 func _try_exctract() -> void:

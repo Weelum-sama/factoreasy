@@ -8,7 +8,7 @@ var _data_cache: FacilityData = null
 var input_buffer: Dictionary = {}
 var output_buffer: Dictionary = {}
 
-const MAX_BUFFER: int = 5
+const MAX_BUFFER: int = 99
 
 var facility_state: Util.FACILITYSTATE = Util.FACILITYSTATE.IDLE
 
@@ -108,6 +108,8 @@ func get_valid_output_cells() -> Array[Vector2i]:
 	return results
 
 func can_receive_item(item: Item = null) -> bool:
+	if get_data().building_id == "sink":
+		return true
 	if item != null and get_data() is ProcessingFacilityData:
 		if not is_input_valid(item):
 			return false

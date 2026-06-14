@@ -21,9 +21,8 @@
 - ~~pick up building spawns visible ghost at world origin for one frame~~
 - ~~belts only move items every other tick~~
 - ~~belts pushing onto occupied belts~~
-- assemblers recipes don't always work (more often when loaded from a save file)
-- facilitycontext menus are way too long
-- belts are sometimes wonky
+- ~~assemblers recipes don't always work (more often when loaded from a save file)~~
+- ~~facilitycontext menus are way too long~~
 - extractors don't extract infinitely quickly
 - buttons extend based on label lengths
 - store buttons slightly scrollable (something to do with width of the widest button)
@@ -54,7 +53,7 @@
 - ~~high cost simplifier (10k, million, billion, trillion, etc)~~
 - ~~gradual, automatic unlock of more expensive ore nodes based on amount of coins~~
 - ~~splitable belts~~
-- assembler (more than 1 input)
+- ~~assembler (more than 1 input)~~
 - belt upgrade
 - extractors should extract ore infinitely fast, faster belt means more ore to use
 - copy selection feature

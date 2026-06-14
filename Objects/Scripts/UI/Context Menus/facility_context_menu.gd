@@ -41,6 +41,7 @@ func _rebuild(facility: BaseFacility) -> void:
 	if processing_data:
 		for recipe in processing_data.recipes:
 			_recipe_list.add_child(_recipe_row(recipe))
+	reset_size()
 
 func _item_row(item: Item, amount: int) -> HBoxContainer:
 	var row := HBoxContainer.new()
@@ -91,4 +92,4 @@ func _recipe_row(recipe: Recipe) -> PanelContainer:
 
 func _clear(node: Node) -> void:
 	for child in node.get_children():
-		child.queue_free()
+		child.free()

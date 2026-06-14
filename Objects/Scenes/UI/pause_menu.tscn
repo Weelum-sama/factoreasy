@@ -51,3 +51,12 @@ unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
 text = "resume"
+
+[node name="ResetProgressButton" type="Button" parent="Panel/VBoxContainer" unique_id=822903016]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.114, 0.114, 1)
+text = "RESET PROGRESS
+(WILL QUIT GAME)"

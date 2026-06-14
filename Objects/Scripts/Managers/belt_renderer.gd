@@ -9,6 +9,8 @@ func _ready() -> void:
 	BeltManager.stop_moving_belts.connect(_reset_excluded_belts)
 
 func _draw() -> void:
+	if not BeltManager.belts:
+		return
 	# Draw belt items
 	for cell in BeltManager.belts:
 		var belt: Belt = BeltManager.belts[cell]

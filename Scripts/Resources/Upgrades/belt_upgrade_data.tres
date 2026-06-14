@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ci3vavebicg8r"]
+
+[ext_resource type="Script" uid="uid://m42k2ka2sir8" path="res://Scripts/Resources/upgrade.gd" id="1_x2n5x"]
+[ext_resource type="Texture2D" uid="uid://bfqwdqfje8kjo" path="res://Assets/Sprites/Buildings/belt.png" id="2_ulaqs"]
+
+[resource]
+script = ExtResource("1_x2n5x")
+id = "belts"
+texture = ExtResource("2_ulaqs")
+display_name = "belts upgrade"
+description = "increase belt speed"
+upgrade_id = "belts"
+upgrade_base_cost = 15000
+upgrade_cost_multiplier = 2.9
+metadata/_custom_type_script = "uid://m42k2ka2sir8"

@@ -131,6 +131,7 @@ const FACTORY_BASE_SIZE: int = 16
 const FACTORY_SIZE_PER_LEVEL: int = 4
 
 signal factory_size_changed
+signal belt_upgrade_purchased
 
 func get_factory_size() -> int:
 	return FACTORY_BASE_SIZE + (upgrade_levels["factory"] - 1) * FACTORY_SIZE_PER_LEVEL
@@ -164,6 +165,8 @@ func upgrade_level(upgrade: String, amount: int = 1) -> void:
 	upgrade_levels[upgrade] += amount
 	if upgrade == "factory":
 		factory_size_changed.emit()
+	if upgrade == "belts":
+		belt_upgrade_purchased.emit()
 
 func get_upgrade_level(upgrade: String) -> int:
 	return upgrade_levels[upgrade]

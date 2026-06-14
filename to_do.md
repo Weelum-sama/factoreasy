@@ -54,8 +54,7 @@
 - ~~gradual, automatic unlock of more expensive ore nodes based on amount of coins~~
 - ~~splitable belts~~
 - ~~assembler (more than 1 input)~~
-- belt upgrade
-- extractors should extract ore infinitely fast, faster belt means more ore to use
+- ~~belt upgrade~~
 - copy selection feature
 
 ## make placeholder sprites:

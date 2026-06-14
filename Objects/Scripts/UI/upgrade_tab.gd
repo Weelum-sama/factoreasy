@@ -4,6 +4,7 @@ const UPGRADE_BUTTON = preload("res://Objects/Scenes/UI/upgrade_button.tscn")
 
 const UPGRADE_PATHS := [
 	"res://Scripts/Resources/Upgrades/factory_upgrade_data.tres",
+	"res://Scripts/Resources/Upgrades/belt_upgrade_data.tres"
 ]
 
 var _buttons: Dictionary = {}
@@ -42,6 +43,7 @@ func _on_upgrade_pressed(data: UpgradeData) -> void:
 	button.data.decide_upgrade_cost()
 	if button:
 		button._refresh_labels()
+		button.update_affordability(GameState.get_total_coins() >= button.data.get_cost())
 	upgrade_purchased.emit(data.upgrade_id)
 
 func _on_coins_changed(new_amount: float) -> void:

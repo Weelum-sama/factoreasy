@@ -12,10 +12,12 @@ const ZOOM_INCREMENT_VECTOR: Vector2 = Vector2(ZOOM_INCREMENT, ZOOM_INCREMENT)
 
 var movement_vector: Vector2
 
-func _process(delta: float) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	_control_zoom()
-	_control_position(delta)
 	_control_rotation()
+
+func _process(delta: float) -> void:
+	_control_position(delta)
 
 func _control_zoom() -> void:
 	if Input.is_action_just_pressed("Zoom In"):

@@ -1,12 +1,27 @@
 extends Node2D
 
 var belts: Dictionary = {}
+@export var base_belt_speed: float = 30.0
+var belt_speed: float = base_belt_speed
 var _pending_deliveries: Array = []
 var _lines: Array = []
 
 signal belt_items_updated
 signal moving_belts(belts: Array[Belt])
 signal stop_moving_belts
+
+func _ready() -> void:
+	GameState.belt_upgrade_purchased.connect(_on_belt_upgrade_purchased)
+
+func _on_belt_upgrade_purchased() -> void:
+	var level := GameState.get_upgrade_level("belts")
+	var new_speed := level * base_belt_speed
+	set_items_per_minute(new_speed)
+
+func set_items_per_minute(new_speed: float) -> void:
+	belt_speed = new_speed
+	for belt in belts.values():
+		belt.update_animation_speed()
 
 func register_belt(cell: Vector2i, belt: Belt) -> void:
 	belts[cell] = belt

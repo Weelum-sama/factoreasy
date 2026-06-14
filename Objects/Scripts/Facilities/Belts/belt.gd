@@ -1,8 +1,9 @@
 extends Placeable
 class_name Belt
 
+@onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
+
 var belt_item: BeltItem = null
-@export var items_per_minute: float = 30.0
 
 var belt_state: Util.BELTSTATE = Util.BELTSTATE.WORKING
 
@@ -10,8 +11,8 @@ var _split_index: int = 0
 
 func _ready() -> void:
 	var ips := get_items_per_second()
-	$AnimatedSprite2D.speed_scale = ips
-	$AnimatedSprite2D.play("default")
+	animated_sprite_2d.speed_scale = ips
+	animated_sprite_2d.play("default")
 	_sync_animation()
 
 func register() -> void:
@@ -19,7 +20,11 @@ func register() -> void:
 	BeltManager.register_belt(cell, self)
 
 func get_items_per_second() -> float:
-	return items_per_minute / 60.0
+	return BeltManager.belt_speed / 60.0
+
+func update_animation_speed() -> void:
+	animated_sprite_2d.speed_scale = get_items_per_second()
+	_sync_animation()
 
 func get_output_cell() -> Vector2i:
 	return GridManager.world_to_cell(global_position) + Util.get_facing_offset(rotation)
@@ -33,10 +38,10 @@ func set_belt_state(new_state: Util.BELTSTATE) -> void:
 	belt_state = new_state
 	match new_state:
 		Util.BELTSTATE.WORKING:
-			$AnimatedSprite2D.play("default")
+			animated_sprite_2d.play("default")
 			_sync_animation()
 		Util.BELTSTATE.CLOGGED:
-			$AnimatedSprite2D.pause()
+			animated_sprite_2d.pause()
 
 func move_to(new_cell: Vector2i) -> void:
 	var old_cell := GridManager.world_to_cell(global_position)
@@ -53,16 +58,15 @@ func move_to(new_cell: Vector2i) -> void:
 	BeltManager.register_belt(new_cell, self)
 
 func _sync_animation() -> void:
-	var sprite: AnimatedSprite2D = $AnimatedSprite2D
-	var frame_count := sprite.sprite_frames.get_frame_count("default")
-	var fps := sprite.sprite_frames.get_animation_speed("default") * sprite.speed_scale
+	var frame_count := animated_sprite_2d.sprite_frames.get_frame_count("default")
+	var fps := animated_sprite_2d.sprite_frames.get_animation_speed("default") * animated_sprite_2d.speed_scale
 	if fps <= 0:
 		return
 	
 	var time_seconds := Time.get_ticks_msec() / 1000.0
 	var cycle_position := fmod(time_seconds * fps, frame_count)
-	sprite.frame = int(cycle_position)
-	sprite.frame_progress = fmod(cycle_position, 1.0)
+	animated_sprite_2d.frame = int(cycle_position)
+	animated_sprite_2d.frame_progress = fmod(cycle_position, 1.0)
 
 func cleanup() -> void:
 	BeltManager.unregister_belt(GridManager.world_to_cell(global_position))

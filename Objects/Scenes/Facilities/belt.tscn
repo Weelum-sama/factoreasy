@@ -135,6 +135,7 @@ process_mode = 1
 script = ExtResource("1_s663k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=509952617]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_sgb5w")
 autoplay = "default"
 frame_progress = 0.52263635

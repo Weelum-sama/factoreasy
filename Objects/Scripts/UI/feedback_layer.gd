@@ -7,10 +7,17 @@ var tween: Tween
 
 func _ready() -> void:
 	Util.cannot_copy_selection.connect(_on_cannot_copy_selection)
+	Util.copied_selection.connect(_speed_tween_up)
+	Util.cancelled_copy_selection.connect(_speed_tween_up)
 
 func _on_cannot_copy_selection(missing_nodes: Dictionary):
 	_update_missing_label(missing_nodes)
 	_play_tween_animation()
+
+func _speed_tween_up() -> void:
+	if tween:
+		tween.set_speed_scale(15.0)
+
 
 func _play_tween_animation() -> void:
 	if tween:

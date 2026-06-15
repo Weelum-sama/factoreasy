@@ -16,6 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("Toggle Select") or event.is_action_released("Cancel"):
 		context.clear_selection()
+		Util.cancelled_copy_selection.emit()
 		transitioned.emit(self, DefaultState.NAME)
 		return
 	
@@ -69,6 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				return
 			context.entered_from_selection = true
 			context.is_copy_mode = true
+			Util.copied_selection.emit()
 			transitioned.emit(self, GroupMovementState.NAME)
 		
 		if event.is_action_pressed("Stash"):

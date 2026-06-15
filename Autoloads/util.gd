@@ -22,6 +22,8 @@ func get_current_placement_mode() -> PLACEMENTMODE:
 ## GroupMove signals
 
 signal cannot_copy_selection(missing_ore: Array[OreNode])
+signal copied_selection
+signal cancelled_copy_selection
 
 ## Cell detection
 

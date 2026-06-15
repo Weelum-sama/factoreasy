@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dmsbd71at8nc7"]
+
+[ext_resource type="Script" uid="uid://cdip74pynls0h" path="res://Objects/Scripts/Managers/placement_controller.gd" id="1_pkyci"]
+[ext_resource type="Script" uid="uid://ckknrujs6u4je" path="res://Objects/Scripts/States/state_machine.gd" id="2_030on"]
+[ext_resource type="Script" uid="uid://b56uolshyq6ft" path="res://Objects/Scripts/States/Placement/default_state.gd" id="2_f2egx"]
+[ext_resource type="Script" uid="uid://d33dsqtjwcs2f" path="res://Objects/Scripts/States/Placement/facility_placement_state.gd" id="3_030on"]
+[ext_resource type="Script" uid="uid://bu5befts6ax2t" path="res://Objects/Scripts/States/Placement/selection_state.gd" id="4_0r2m2"]
+[ext_resource type="Script" uid="uid://blbti7lowpyre" path="res://Objects/Scripts/States/Placement/group_movement_state.gd" id="5_qike3"]
+[ext_resource type="Script" uid="uid://c4ffxb2v2n1aa" path="res://Objects/Scripts/States/Placement/belt_placement_state.gd" id="7_0r2m2"]
+
+[node name="PlacementController" type="Node2D" unique_id=1330468871]
+script = ExtResource("1_pkyci")
+
+[node name="StateMachine" type="Node" parent="." unique_id=257894879 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_030on")
+initial_state = NodePath("Default")
+metadata/_custom_type_script = "uid://ckknrujs6u4je"
+
+[node name="Default" type="Node" parent="StateMachine" unique_id=294648230]
+script = ExtResource("2_f2egx")
+metadata/_custom_type_script = "uid://b56uolshyq6ft"
+
+[node name="FacilityPlacement" type="Node" parent="StateMachine" unique_id=2047366522]
+script = ExtResource("3_030on")
+placement_mode = 2
+metadata/_custom_type_script = "uid://d33dsqtjwcs2f"
+
+[node name="Selection" type="Node" parent="StateMachine" unique_id=44679645]
+script = ExtResource("4_0r2m2")
+placement_mode = 1
+metadata/_custom_type_script = "uid://bu5befts6ax2t"
+
+[node name="GroupMovement" type="Node" parent="StateMachine" unique_id=777773560]
+script = ExtResource("5_qike3")
+placement_mode = 4
+metadata/_custom_type_script = "uid://blbti7lowpyre"
+
+[node name="BeltPlacement" type="Node" parent="StateMachine" unique_id=280123929]
+script = ExtResource("7_0r2m2")
+placement_mode = 5
+metadata/_custom_type_script = "uid://c4ffxb2v2n1aa"

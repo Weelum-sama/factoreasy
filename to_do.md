@@ -75,7 +75,7 @@
 - automatic bridges
 
 ### polish:
-- placement animation
+- ~~placement animation~~
 - placement sound
 - select sound
 - deselect sound

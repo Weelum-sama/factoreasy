@@ -18,7 +18,6 @@ func _speed_tween_up() -> void:
 	if tween:
 		tween.set_speed_scale(15.0)
 
-
 func _play_tween_animation() -> void:
 	if tween:
 		tween.kill()
@@ -36,4 +35,4 @@ func _update_missing_label(missing_nodes: Dictionary):
 	for missing_node in missing_nodes.keys():
 		var missing: int = missing_nodes[missing_node] - GameState.node_inventory[missing_node]
 		var display_name: String = GameState.facility_registry[missing_node].display_name
-		missing_label.text += "\n%s %d" % [display_name, missing]
+		missing_label.text += "\n%s x%d" % [display_name, missing]

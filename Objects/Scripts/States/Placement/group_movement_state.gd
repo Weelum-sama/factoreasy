@@ -41,6 +41,8 @@ func enter() -> void:
 		ghost.position = snapped + Vector2(GridManager.CELL_SIZE * 0.5, GridManager.CELL_SIZE * 0.5)
 		context.ghost_parent.add_child(ghost)
 		_ghosts.append(ghost)
+		if not context.entered_from_selection:
+			_play_pick_up_tween(_ghosts[0])
 
 func exit() -> void:
 	for ghost in _ghosts:
@@ -100,7 +102,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _try_place_group() -> void:
 	var cursor_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
-	
 	# Validate all target cells
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
@@ -173,6 +174,7 @@ func _try_place_group() -> void:
 	# Quick move should also notify tutorial manager
 	if not context.entered_from_selection:
 		var building := context.selected_buildings[0]
+		_play_put_down_tween(building)
 		if building is BaseFacility:
 			TutorialManager.notify_facility_placed(building)
 		elif building is Belt:

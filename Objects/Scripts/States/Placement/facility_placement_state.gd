@@ -75,6 +75,8 @@ func _place_facility(cell: Vector2i) -> void:
 		building.queue_free()
 		return
 	
+	_play_placement_tween([building])
+	
 	TutorialManager.notify_facility_placed(building)
 
 func _place_ore_node(cell: Vector2i) -> void:
@@ -86,6 +88,7 @@ func _place_ore_node(cell: Vector2i) -> void:
 	context.ghost_parent.get_tree().current_scene.add_child(node)
 	if not GridManager.place(cell, node):
 		return
+	_play_placement_tween([node])
 	GameState.consume_node_from_inventory(context.pending_data.id)
 
 func _switch_facility() -> void:

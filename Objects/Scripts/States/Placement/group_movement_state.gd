@@ -179,6 +179,8 @@ func _try_place_group() -> void:
 			TutorialManager.notify_facility_placed(building)
 		elif building is Belt:
 			TutorialManager.notify_belt_placed(building)
+	if context.is_copy_mode:
+		return
 	context.selected_buildings.clear()
 	transitioned.emit(self, DefaultState.NAME)
 

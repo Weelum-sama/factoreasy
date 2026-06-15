@@ -38,7 +38,7 @@ func close_all() -> void:
 	for child in get_children():
 		if child is Control:
 			(child as ContextMenuBase)._play_close_tween(child)
-			child.visible = false
+
 
 func any_open() -> bool:
 	for child in get_children():

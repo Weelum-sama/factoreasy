@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bosised3v815v" path="res://Objects/Scenes/Managers/belt_renderer.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://br7drg3nvr0dl" path="res://Objects/Scenes/UI/Context Menus/context_menu_layer.tscn" id="12_6iyac"]
 [ext_resource type="PackedScene" uid="uid://cilu7qykhnv2d" path="res://Objects/Scenes/UI/tutorial_ui.tscn" id="13_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://cr16vsf4j0lt8" path="res://Objects/Scenes/UI/feedback_layer.tscn" id="14_jkdf5"]
 
 [node name="main" type="Node2D" unique_id=1849373714]
 process_mode = 3
@@ -97,3 +98,5 @@ process_mode = 1
 process_mode = 1
 
 [node name="TutorialUI" parent="." unique_id=644080945 instance=ExtResource("13_fdnlq")]
+
+[node name="FeedbackLayer" parent="." unique_id=553713350 instance=ExtResource("14_jkdf5")]

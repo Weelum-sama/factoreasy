@@ -64,7 +64,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 		if event.is_action_pressed("Copy Selection"):
 			if not _can_copy_selection():
-				return # @TODO: Make feedback message appear
+				Util.cannot_copy_selection.emit(context.missing_ore_nodes)
+				context.missing_ore_nodes.clear()
+				return
 			context.entered_from_selection = true
 			context.is_copy_mode = true
 			transitioned.emit(self, GroupMovementState.NAME)
@@ -106,10 +108,14 @@ func _can_copy_selection() -> bool:
 	for building in context.selected_buildings:
 		if building is OreNode:
 			var ore_node := building as OreNode
-			if not GameState.has_node_in_inventory(ore_node.data.id):
-				return false
 			ores[ore_node.data.id] = ores.get(ore_node.data.id, 0) + 1
 	for ore_node in ores:
 		if ores[ore_node] > GameState.node_inventory[ore_node]:
-			return false
+			context.missing_ore_nodes[ore_node] = ores.get(ore_node, 0)
+	if not context.missing_ore_nodes.is_empty():
+		return false
+	context.missing_ore_nodes.clear()
 	return true
+
+func exit() -> void:
+	context.missing_ore_nodes.clear()

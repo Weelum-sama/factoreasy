@@ -19,6 +19,10 @@ func set_current_placement_mode(mode: PLACEMENTMODE) -> void:
 func get_current_placement_mode() -> PLACEMENTMODE:
 	return _current_placement_mode
 
+## GroupMove signals
+
+signal cannot_copy_selection(missing_ore: Array[OreNode])
+
 ## Cell detection
 
 func get_facing_offset(rotation: float) -> Vector2i:

@@ -12,6 +12,7 @@ func open(facility: BaseFacility, screen_pos: Vector2) -> void:
 	_rebuild(facility)
 	visible = true
 	_position_clamped(screen_pos)
+	_play_open_tween(self)
 
 func _rebuild(facility: BaseFacility) -> void:
 	var data := facility.get_data()

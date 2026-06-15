@@ -24,6 +24,7 @@ func open(recipe: Recipe, screen_pos: Vector2) -> void:
 	
 	visible = true
 	_position_clamped(screen_pos)
+	_play_open_tween(self)
 
 func _setup_output_click(item: Item) -> void:
 	var output_row := _output_icon.get_parent()

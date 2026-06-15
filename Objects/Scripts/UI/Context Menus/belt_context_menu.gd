@@ -22,6 +22,8 @@ func open(belt: Belt, screen_pos: Vector2) -> void:
 	
 	item_row.mouse_entered.connect(func() -> void: item_row.modulate = Color(1.15, 1.15, 1.15))
 	item_row.mouse_exited.connect(func() -> void: item_row.modulate = Color.WHITE)
+	
+	_play_open_tween(self)
 
 func _process(_delta: float) -> void:
 	if not visible:

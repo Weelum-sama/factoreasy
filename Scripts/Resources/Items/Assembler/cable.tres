@@ -7,5 +7,5 @@
 script = ExtResource("1_47h0o")
 name = "cable"
 texture = ExtResource("2_hyvr3")
-sell_value = 100.0
+sell_value = 180.0
 metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

@@ -7,5 +7,5 @@
 script = ExtResource("1_vplnt")
 name = "reinforced iron plate"
 texture = ExtResource("2_r160d")
-sell_value = 80.0
+sell_value = 160.0
 metadata/_custom_type_script = "uid://b6mrboq7ngwq3"

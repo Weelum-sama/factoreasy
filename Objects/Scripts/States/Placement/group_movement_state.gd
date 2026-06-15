@@ -72,13 +72,21 @@ func update(_delta: float) -> void:
 			
 			for fp_cell in fp:
 				var occupant := GridManager.get_cell_occupant(fp_cell)
-				if not GridManager.is_cell_in_bounds(fp_cell) or (occupant != null and not context.selected_buildings.has(occupant)):
-					is_free = false
-					break
+				if context.is_copy_mode:
+					if not GridManager.is_cell_in_bounds(fp_cell) or (occupant != null):
+						is_free = false
+						break
+				else:
+					if not GridManager.is_cell_in_bounds(fp_cell) or (occupant != null and not context.selected_buildings.has(occupant)):
+						is_free = false
+						break
 		else:
 			var occupant := GridManager.get_cell_occupant(target_cell)
 			var in_bounds := GridManager.is_cell_in_bounds(target_cell)
-			is_free = in_bounds and (occupant == null or context.selected_buildings.has(occupant))
+			if context.is_copy_mode:
+				is_free = in_bounds and (occupant == null)
+			else:
+				is_free = in_bounds and (occupant == null or context.selected_buildings.has(occupant))
 		
 		_ghosts[i].modulate = Color(1, 1, 1, 0.5) if is_free else Color(1, 0.3, 0.3, 0.5)
 

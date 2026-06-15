@@ -86,7 +86,7 @@ func _apply_box_select(start: Vector2, end: Vector2) -> void:
 			continue
 		if _unselect:
 			_unselect_building(building)
-		else:
+		elif not context.selected_buildings.has(building):
 			_select_building(building)
 
 func _unselect_building(building: Node) -> void:

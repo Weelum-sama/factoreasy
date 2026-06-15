@@ -61,7 +61,7 @@
 - ~~assembler (more than 1 input)~~
 - ~~belt upgrade~~
 - ~~copy selection feature~~
-- can't copy feedback popup
+- ~~can't copy feedback popup~~
 
 ## make placeholder sprites:
 - ~~extractor texture~~

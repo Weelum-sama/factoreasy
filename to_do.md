@@ -27,7 +27,7 @@
 - ~~store buttons slightly scrollable (something to do with width of the widest button)~~
 - ~~when placing belt while hovering over ui, it does not place and removes ghost while staying in belt placement mode~~
 - ~~copied buildings does not check for amount of ore before handing off~~
-- copied buildings does not check for target cell occupation
+- ~~copied buildings does not check for target cell occupation~~
 - copied buildings are invisible upon placement
 - copied buildings do not properly place ore nodes (it's registered and might be instantiated but not functioning, also returned to inventory/not taken from inventory)
 - buttons extend based on label lengths

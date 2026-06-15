@@ -96,23 +96,31 @@ func _try_place_group() -> void:
 	# Validate all target cells
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
-		var building := context.selected_buildings[i] if not context.is_copy_mode else _instantiate_copy(context.selected_buildings[i])
+		var building := context.selected_buildings[i]
 		if building is BaseFacility and (building as BaseFacility).is_multi_cell():
 			var bf := building as BaseFacility
 			var data := bf.get_data()
 			var fp := GridManager.compute_footprint(target_cell, data.building_width, data.building_height, _ghosts[i].rotation)
 			for fp_cell in fp:
 				var occupant := GridManager.get_cell_occupant(fp_cell)
-				if occupant != null and not context.selected_buildings.has(occupant):
-					return
-				if not GridManager.is_cell_in_bounds(fp_cell):
-					return
+				if context.is_copy_mode:
+					if occupant != null or not GridManager.is_cell_in_bounds(target_cell):
+						return
+				else:
+					if occupant != null and not context.selected_buildings.has(occupant):
+						return
+					if not GridManager.is_cell_in_bounds(fp_cell):
+						return
 		else:
 			var occupant := GridManager.get_cell_occupant(target_cell)
-			if occupant != null and not context.selected_buildings.has(occupant):
-				return
-			if not GridManager.is_cell_in_bounds(target_cell):
-				return
+			if context.is_copy_mode:
+				if occupant != null or not GridManager.is_cell_in_bounds(target_cell):
+					return
+			else:
+				if occupant != null and not context.selected_buildings.has(occupant):
+					return
+				if not GridManager.is_cell_in_bounds(target_cell):
+					return
 	
 	# Remove all from current positions (skip in copy mode)
 	if not context.is_copy_mode:
@@ -148,6 +156,8 @@ func _try_place_group() -> void:
 			BeltManager.register_belt(target_cell, building)
 		else:
 			GridManager.place(target_cell, building)
+			if context.is_copy_mode and building is OreNode:
+				GameState.consume_node_from_inventory(building.data.id)
 		building.modulate = Color.WHITE
 	
 	if _selected_buildings_contains_belt() and not context.is_copy_mode:
@@ -202,11 +212,13 @@ func _instantiate_copy(building: Node) -> Node2D:
 		var node: OreNode = PlacementContext.ORE_NODE_SCENE.instantiate()
 		node.data = building.data
 		node.rotation = building.rotation
+		add_child(node)
 		return node
 	elif building is Belt:
 		var belt_scene := preload("res://Objects/Scenes/Facilities/belt.tscn")
 		var node: Belt = belt_scene.instantiate()
 		node.rotation = building.rotation
+		add_child(node)
 		return node
 	elif building is BaseFacility:
 		var facility := building as BaseFacility
@@ -216,5 +228,6 @@ func _instantiate_copy(building: Node) -> Node2D:
 		var node: BaseFacility = data.scene.instantiate()
 		node.facility_id = facility.facility_id
 		node.rotation = building.rotation
+		add_child(node)
 		return node
 	return null

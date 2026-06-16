@@ -149,6 +149,11 @@ func _try_place_group() -> void:
 			else:
 				GridManager.remove(GridManager.world_to_cell(building.global_position))
 	
+	if not _can_place_copy():
+		Util.cannot_copy_selection.emit(context.missing_ore_nodes)
+		context.missing_ore_nodes.clear()
+		return
+	
 	# Place at new positions
 	for i in context.selected_buildings.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
@@ -249,3 +254,17 @@ func _instantiate_copy(building: Node) -> Node2D:
 		add_child(node)
 		return node
 	return null
+
+func _can_place_copy() -> bool:
+	var ores := {}
+	for building in context.selected_buildings:
+		if building is OreNode:
+			var ore_node := building as OreNode
+			ores[ore_node.data.id] = ores.get(ore_node.data.id, 0) + 1
+	for ore_node in ores:
+		if ores[ore_node] > GameState.node_inventory[ore_node]:
+			context.missing_ore_nodes[ore_node] = ores.get(ore_node, 0)
+	if not context.missing_ore_nodes.is_empty():
+		return false
+	context.missing_ore_nodes.clear()
+	return true

@@ -36,9 +36,8 @@ func close_top() -> void:
 
 func close_all() -> void:
 	for child in get_children():
-		if child is Control:
+		if child is Control and (child as Control).scale > Vector2(0.1, 0.1):
 			(child as ContextMenuBase)._play_close_tween(child)
-
 
 func any_open() -> bool:
 	for child in get_children():

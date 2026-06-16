@@ -11,9 +11,17 @@ layer = 10
 script = ExtResource("1")
 
 [node name="BeltContextMenu" parent="." unique_id=997076653 instance=ExtResource("2")]
+visible = true
+scale = Vector2(1e-05, 1e-05)
 
 [node name="FacilityContextMenu" parent="." unique_id=337177798 instance=ExtResource("3")]
+visible = true
+scale = Vector2(1e-05, 1e-05)
 
 [node name="RecipeContextMenu" parent="." unique_id=904299757 instance=ExtResource("4")]
+visible = true
+scale = Vector2(1e-05, 1e-05)
 
 [node name="ItemContextMenu" parent="." unique_id=407402855 instance=ExtResource("5")]
+visible = true
+scale = Vector2(1e-05, 1e-05)

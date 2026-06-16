@@ -14,6 +14,7 @@ func open(belt: Belt, screen_pos: Vector2) -> void:
 	_refresh()
 	visible = true
 	_position_clamped(screen_pos)
+	_play_open_tween(self)
 	if belt.belt_item == null:
 		return
 	if item_row.gui_input.is_connected(_on_click):
@@ -22,8 +23,6 @@ func open(belt: Belt, screen_pos: Vector2) -> void:
 	
 	item_row.mouse_entered.connect(func() -> void: item_row.modulate = Color(1.15, 1.15, 1.15))
 	item_row.mouse_exited.connect(func() -> void: item_row.modulate = Color.WHITE)
-	
-	_play_open_tween(self)
 
 func _process(_delta: float) -> void:
 	if not visible:

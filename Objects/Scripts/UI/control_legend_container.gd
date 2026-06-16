@@ -4,6 +4,7 @@ const CONTROL_LEGEND_ITEM = preload("res://Objects/Scenes/UI/control_legend_item
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 
 var _current_items: Array[Node]
+@onready var placement_controller: Node2D = $"../../../../PlacementController" #YUUUUUUUUUUUUCKY YIKERS
 
 const universal_inputs: Dictionary = {
 	"move camera: ": "WASD/arrows",
@@ -42,6 +43,13 @@ const group_move_inputs: Dictionary = {
 	"confirm placement: ": "left mouse button",
 }
 
+const quick_move_inputs: Dictionary = {
+	"cancel movement: ": "TAB/right mouse button/ESC",
+	"rotate building: ": "R",
+	"confirm placement: ": "left mouse button",
+	"stash building: ": "F",
+}
+
 const belt_inputs: Dictionary = {
 	"stop placing belts: ": "right mouse button/ESC",
 	"place multiple: ": "drag left mouse button",
@@ -65,7 +73,10 @@ func update_legend(mode: Util.PLACEMENTMODE) -> void:
 		Util.PLACEMENTMODE.ORE_NODE:
 			_create_items(placement_inputs)
 		Util.PLACEMENTMODE.GROUP_MOVE:
-			_create_items(group_move_inputs)
+			if not placement_controller.context.entered_from_selection:
+				_create_items(quick_move_inputs)
+			else:
+				_create_items(group_move_inputs)
 		Util.PLACEMENTMODE.BELT:
 			_create_items(belt_inputs)
 

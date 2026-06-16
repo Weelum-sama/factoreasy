@@ -99,6 +99,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_try_place_group()
 	if event.is_action_released("Cancel"):
 		_cancel_group_move()
+	if event.is_action_pressed("Stash") and not context.entered_from_selection:
+		for building in context.selected_buildings:
+				building.cleanup()
+				BeltManager.cancel_deliveries_to(building)
+		context.selected_buildings.clear()
+		transitioned.emit(self, DefaultState.NAME)
 
 func _try_place_group() -> void:
 	var cursor_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())

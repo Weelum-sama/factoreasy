@@ -27,7 +27,7 @@ func _play_open_tween(control: Control) -> void:
 	_tween = create_tween()
 	_tween.set_trans(Tween.TRANS_CUBIC)
 	_tween.set_ease(Tween.EASE_OUT)
-	_tween.tween_property(control, "scale", Vector2(1.1, 1.1), .05).from(Vector2(0.0, 0.0))
+	_tween.tween_property(control, "scale", Vector2(1.1, 1.1), .05)
 	_tween.tween_property(control, "scale", Vector2(1.0, 1.0), .05)
 
 func _play_close_tween(control: Control) -> void:
@@ -36,5 +36,5 @@ func _play_close_tween(control: Control) -> void:
 	_tween = create_tween()
 	_tween.set_trans(Tween.TRANS_CUBIC)
 	_tween.set_ease(Tween.EASE_OUT)
-	_tween.tween_property(control, "scale", Vector2(1.1, 1.1), .05).from(Vector2(1.0, 1.0))
+	_tween.tween_property(control, "scale", Vector2(1.1, 1.1), .05)
 	_tween.tween_property(control, "scale", Vector2(0.0, 0.0), .01)

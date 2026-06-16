@@ -51,7 +51,7 @@ const quick_move_inputs: Dictionary = {
 }
 
 const belt_inputs: Dictionary = {
-	"stop placing belts: ": "right mouse button/ESC",
+	"stop placing belts: ": "right mouse button/ESC/E",
 	"place multiple: ": "drag left mouse button",
 	"rotate belt: ": "R",
 	"confirm placement: ": "left mouse button",

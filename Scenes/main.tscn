@@ -61,6 +61,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -68,6 +69,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainUI/InfoTopLeft" unique_id=159007235]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ModeDisplay" parent="MainUI/InfoTopLeft/VBoxContainer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
 clip_contents = false
@@ -75,6 +77,7 @@ layout_mode = 2
 
 [node name="ControlLegendContainer" parent="MainUI/InfoTopLeft/VBoxContainer" unique_id=349626345 instance=ExtResource("5_ynf5e")]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=705797823]
 process_mode = 1

@@ -36,7 +36,7 @@ func update(_delta: float) -> void:
 		_single_ghost.modulate = Color(1, 1, 1, 0.5) if GridManager.is_cell_empty(current_cell) else Color(1, 0.3, 0.3, 0.5)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Cancel"):
+	if event.is_action_pressed("Cancel") or event.is_action_pressed("Toggle Belt"):
 		transitioned.emit(self, DefaultState.NAME)
 		return
 	if event.is_action_pressed("Rotate Building"):
@@ -47,7 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_drag_start = cell
 		return
 	if event.is_action_released("Confirm"):
-		#if _is_dragging:
 		if _single_ghost:
 			_preview_cells.append(GridManager.world_to_cell(_single_ghost.position))
 		_place_belts()

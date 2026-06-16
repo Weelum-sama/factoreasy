@@ -19,7 +19,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		var layer := get_parent() as ContextMenuLayer
 		if layer:
 			layer.close_top()
-		get_viewport().set_input_as_handled()
 
 func _play_open_tween(control: Control) -> void:
 	if _tween:

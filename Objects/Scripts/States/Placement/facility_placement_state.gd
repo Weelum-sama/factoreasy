@@ -9,6 +9,9 @@ func enter() -> void:
 	super.enter()
 	context.create_ghost(context.pending_data)
 	switch_requested.connect(_switch_facility)
+	if not context.selected_buildings.is_empty():
+		for building in context.selected_buildings:
+			building.modulate = Color.WHITE
 
 func exit() -> void:
 	if switch_requested.is_connected(_switch_facility):

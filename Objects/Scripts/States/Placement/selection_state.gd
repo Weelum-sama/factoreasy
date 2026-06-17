@@ -120,4 +120,8 @@ func _can_copy_selection() -> bool:
 	return true
 
 func exit() -> void:
+	if not context.selected_buildings.is_empty():
+		for building in context.selected_buildings:
+			building.modulate = Color.WHITE
+		context.selected_buildings.clear()
 	context.missing_ore_nodes.clear()

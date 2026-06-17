@@ -149,7 +149,7 @@ func _try_place_group() -> void:
 			else:
 				GridManager.remove(GridManager.world_to_cell(building.global_position))
 	
-	if not _can_place_copy():
+	if context.is_copy_mode and not _can_place_copy():
 		Util.cannot_copy_selection.emit(context.missing_ore_nodes)
 		context.missing_ore_nodes.clear()
 		return

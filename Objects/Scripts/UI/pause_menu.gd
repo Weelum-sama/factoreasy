@@ -23,7 +23,9 @@ func _on_save_button_pressed() -> void:
 	GameState.save_game()
 	
 	save_button.text = "saved!"
+	save_button.modulate = Color(0.01, 0.675, 0.0)
 	await get_tree().create_timer(1.0).timeout
+	save_button.modulate = Color.WHITE
 	save_button.text = "save game"
 
 func _on_resume_button_pressed() -> void:

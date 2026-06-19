@@ -2,6 +2,96 @@
 
 [ext_resource type="Script" uid="uid://fchf1poso58h" path="res://Objects/Scripts/UI/pause_menu.gd" id="1_tmpkm"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmpkm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11087314, 0.28255296, 0.51010054, 0.6)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1njfe"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.06479998, 0.1925996, 0.3607907, 0.6)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3occv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.36, 0, 0, 0.6)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4ypf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.8634364, 4.3317675e-07, 1.0588765e-06, 0.6)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awupr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.7126914, 6.8465993e-06, 3.7541986e-06, 0.6)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="PauseMenu" type="CanvasLayer" unique_id=1495478638]
 layer = 10
 script = ExtResource("1_tmpkm")
@@ -14,7 +104,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="Panel" type="Panel" parent="." unique_id=219714620]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=650177436]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -27,36 +117,54 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=143778878]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1204024419]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=143778878]
+layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=907835863]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=907835863]
 layout_mode = 2
 text = "paused"
 horizontal_alignment = 1
 
-[node name="SaveButton" type="Button" parent="Panel/VBoxContainer" unique_id=1596144388]
+[node name="SaveButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1596144388]
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.42, 0.95, 0.313, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmpkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1njfe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tmpkm")
 text = "save game"
 
-[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer" unique_id=701611669]
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=701611669]
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.42, 0.95, 0.313, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmpkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1njfe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tmpkm")
 text = "resume"
 
-[node name="ResetProgressButton" type="Button" parent="Panel/VBoxContainer" unique_id=822903016]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=84652531]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ResetProgressButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=822903016]
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.114, 0.114, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_3occv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h4ypf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_awupr")
 text = "RESET PROGRESS
 (WILL QUIT GAME)"

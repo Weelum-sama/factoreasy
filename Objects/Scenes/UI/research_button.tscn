@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bt6eq2ush7l01" path="res://Assets/Sprites/gear_coin.png" id="4_vk1sr"]
 
 [node name="ResearchButton" type="PanelContainer" unique_id=945987124]
+custom_minimum_size = Vector2(234, 81)
+custom_maximum_size = Vector2(234, 81)
 offset_right = 92.0
 offset_bottom = 103.0
 size_flags_horizontal = 3

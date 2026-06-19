@@ -13,6 +13,8 @@ func _on_coins_changed(new_amount: int) -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
+	_tween.set_trans(Tween.TRANS_CUBIC)
+	_tween.set_ease(Tween.EASE_OUT)
 	_tween.tween_method(_set_display, _displayed_value, float(new_amount), tween_time)
 
 func _set_display(value: float) -> void:

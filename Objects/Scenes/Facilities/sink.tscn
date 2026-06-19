@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bgxrsw51br3ux" path="res://Assets/Sprites/Buildings/sink.png" id="2_c1fp1"]
 
 [node name="Sink" type="Node2D" unique_id=536789426]
+z_index = 2
 script = ExtResource("1_qwt7d")
 facility_id = "sink"
 

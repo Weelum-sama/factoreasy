@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c4ffxb2v2n1aa" path="res://Objects/Scripts/States/Placement/belt_placement_state.gd" id="7_0r2m2"]
 
 [node name="PlacementController" type="Node2D" unique_id=1330468871]
+z_index = 3
 script = ExtResource("1_pkyci")
 
 [node name="StateMachine" type="Node" parent="." unique_id=257894879 node_paths=PackedStringArray("initial_state")]

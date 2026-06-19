@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://tlo4baigibnv" path="res://Assets/Sprites/Buildings/iron_ore_node.png" id="1_vf4f0"]
 
 [node name="OreButton" type="PanelContainer" unique_id=945987124]
+custom_minimum_size = Vector2(106, 106)
+custom_maximum_size = Vector2(106, 106)
 offset_right = 92.0
 offset_bottom = 103.0
 size_flags_horizontal = 3
@@ -65,7 +67,7 @@ size_flags_horizontal = 4
 accessibility_name = "NameLabel"
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "Ore"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -13,16 +13,16 @@ const ZOOM_INCREMENT_VECTOR: Vector2 = Vector2(ZOOM_INCREMENT, ZOOM_INCREMENT)
 var movement_vector: Vector2
 
 func _unhandled_input(event: InputEvent) -> void:
-	_control_zoom()
-	_control_rotation()
+	_control_zoom(event)
+	_control_rotation(event)
 
 func _process(delta: float) -> void:
 	_control_position(delta)
 
-func _control_zoom() -> void:
-	if Input.is_action_just_pressed("Zoom In"):
+func _control_zoom(event: InputEvent) -> void:
+	if event.is_action_pressed("Zoom In"):
 		zoom = clamp(zoom + ZOOM_INCREMENT_VECTOR, MAX_ZOOM_VECTOR, MIN_ZOOM_VECTOR)
-	elif Input.is_action_just_pressed("Zoom Out"):
+	elif event.is_action_pressed("Zoom Out"):
 		zoom = clamp(zoom - ZOOM_INCREMENT_VECTOR, MAX_ZOOM_VECTOR, MIN_ZOOM_VECTOR)
 
 func _control_position(delta: float) -> void:
@@ -35,6 +35,6 @@ func _control_position(delta: float) -> void:
 		var current_move_speed: float = clamp(current_zoom * MOVE_SPEED, MIN_MOVE_SPEED, MOVE_SPEED)
 		position += rotated_direction * current_move_speed * delta
 
-func _control_rotation() -> void:
-	if Input.is_action_just_pressed("Rotate Camera"):
+func _control_rotation(event: InputEvent) -> void:
+	if event.is_action_pressed("Rotate Camera"):
 		rotate(PI/2.0)

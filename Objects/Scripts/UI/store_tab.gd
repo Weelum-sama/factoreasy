@@ -59,9 +59,9 @@ func _on_purchase(node_id: String, _amount: int) -> void:
 	_buttons[node_id].update_label_cost(_buttons[node_id].data.cost)
 
 ### TESTING PURPOSES
-#var amount = 80
-#func _process(_delta: float) -> void:
-	#if Input.is_action_just_pressed("Test"):
-		#GameState.add_coins(amount)
-		#GameState.reset_save_data()
-		#amount *= 10
+var amount = 80
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("Test"):
+		GameState.add_coins(amount)
+		GameState.reset_save_data()
+		amount *= 10

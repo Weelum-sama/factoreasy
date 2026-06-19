@@ -93,9 +93,11 @@ script = ExtResource("1_jjgbg")
 
 [node name="PlacementController" parent="." unique_id=1330468871 instance=ExtResource("3_jjvhh")]
 process_mode = 1
+z_index = 3
 
 [node name="BeltRenderer" parent="." unique_id=709655741 instance=ExtResource("8_344ge")]
 process_mode = 1
+z_index = 1
 
 [node name="ContextMenuLayer" parent="." unique_id=1429270545 instance=ExtResource("12_6iyac")]
 process_mode = 3

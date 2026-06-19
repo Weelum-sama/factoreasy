@@ -51,7 +51,6 @@ func cleanup() -> void:
 ### Body
 
 func _ready() -> void:
-	z_index = 2
 	add_to_group("facilities")
 	TickManager.tick_occurred.connect(tick)
 

@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://b8d7nnd15ms1o" path="res://Objects/Scripts/Managers/belt_renderer.gd" id="1_nrx0v"]
 
 [node name="BeltRenderer" type="Node2D" unique_id=709655741]
+z_index = 1
 script = ExtResource("1_nrx0v")

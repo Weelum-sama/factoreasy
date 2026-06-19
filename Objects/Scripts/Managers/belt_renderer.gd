@@ -3,7 +3,6 @@ extends Node2D
 var excluded_belts: Array[Belt]
 
 func _ready() -> void:
-	z_index = 1
 	BeltManager.belt_items_updated.connect(queue_redraw)
 	BeltManager.moving_belts.connect(_assign_excluded_belts)
 	BeltManager.stop_moving_belts.connect(_reset_excluded_belts)

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cgpvh236owm05" path="res://Assets/Sprites/Buildings/assembler.png" id="2_3w5jt"]
 
 [node name="Assembler" type="Node2D" unique_id=536789426]
+z_index = 2
 script = ExtResource("1_3w5jt")
 facility_id = "assembler"
 

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drdthwilcu82p" path="res://Assets/Sprites/Buildings/plate_press.png" id="2_kr6pj"]
 
 [node name="PlatePress" type="Node2D" unique_id=536789426]
+z_index = 2
 script = ExtResource("1_kr6pj")
 facility_id = "plate_press"
 

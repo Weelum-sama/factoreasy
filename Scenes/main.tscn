@@ -98,7 +98,7 @@ process_mode = 1
 process_mode = 1
 
 [node name="ContextMenuLayer" parent="." unique_id=1429270545 instance=ExtResource("12_6iyac")]
-process_mode = 1
+process_mode = 3
 
 [node name="TutorialUI" parent="." unique_id=644080945 instance=ExtResource("13_fdnlq")]
 

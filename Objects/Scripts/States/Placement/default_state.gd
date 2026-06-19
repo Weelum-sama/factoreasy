@@ -46,11 +46,6 @@ func _try_open_context_menu(occupant: Node) -> void:
 	else:
 		layer.close_all()
 
-func _close_context_menus() -> void:
-	var layer := _get_context_menu_layer()
-	if layer:
-		layer.close_all()
-
 func _get_context_menu_layer() -> ContextMenuLayer:
 	return context.ghost_parent.get_tree().root.find_child("ContextMenuLayer", true, false) as ContextMenuLayer
 

@@ -11,4 +11,4 @@ func open(item: Item, screen_pos: Vector2) -> void:
 	_sell_label.text = "Sell value: %.1f" % item.sell_value
 	visible = true
 	_position_clamped(screen_pos)
-	_play_open_tween(self)
+	_play_open_tween()

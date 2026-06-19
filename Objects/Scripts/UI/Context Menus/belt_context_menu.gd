@@ -14,7 +14,7 @@ func open(belt: Belt, screen_pos: Vector2) -> void:
 	_refresh()
 	visible = true
 	_position_clamped(screen_pos)
-	_play_open_tween(self)
+	_play_open_tween()
 	if belt.belt_item == null:
 		return
 	if item_row.gui_input.is_connected(_on_click):

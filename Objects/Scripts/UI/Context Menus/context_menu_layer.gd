@@ -7,6 +7,7 @@ class_name ContextMenuLayer
 @onready var item_menu: ItemContextMenu     = $ItemContextMenu
 
 var _stack_order: Array[ContextMenuBase] = []
+var _stack: Array[ContextMenuBase] = []
 
 func _ready() -> void:
 	close_all()
@@ -16,31 +17,34 @@ func _ready() -> void:
 		if paused: close_all()
 	)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Cancel"):
+		close_top()
+
 func open_for(node: Node, screen_pos: Vector2) -> void:
 	close_all()
 	if node is Belt:
 		belt_menu.open(node as Belt, screen_pos)
+		_stack.append(belt_menu)
 	elif node is BaseFacility:
 		facility_menu.open(node as BaseFacility, screen_pos)
+		_stack.append(facility_menu)
 
 func open_recipe(recipe: Recipe, screen_pos: Vector2) -> void:
 	recipe_menu.open(recipe, screen_pos)
+	_stack.append(recipe_menu)
 
 func open_item(item: Item, screen_pos: Vector2) -> void:
 	item_menu.open(item, screen_pos)
+	_stack.append(item_menu)
 
 func close_top() -> void:
-	for menu in _stack_order.filter(func(c): return c.scale == Vector2(1.0, 1.0)):
-		menu._play_close_tween(menu)
+	if _stack.is_empty():
 		return
+	_stack.pop_back()._play_close_tween()
 
 func close_all() -> void:
-	for child in get_children():
-		if child is Control and (child as Control).scale > Vector2(0.1, 0.1):
-			(child as ContextMenuBase)._play_close_tween(child)
-
-func any_open() -> bool:
-	for child in get_children():
-		if child is Control and child.visible:
-			return true
-	return false
+	if _stack.is_empty():
+		return
+	while not _stack.is_empty():
+		_stack.pop_back()._play_close_tween()

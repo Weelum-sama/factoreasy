@@ -10,6 +10,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vres3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1207267843]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=247903387]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1207267843]
 unique_name_in_owner = true
 layout_mode = 2

@@ -1,24 +1,24 @@
 extends Control
 
-@onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var label: Label = %Label
 
 func _ready() -> void:
 	Util.placement_mode_changed.connect(_on_placement_mode_changed)
-	rich_text_label.text = _get_string_for_placement_mode(Util._current_placement_mode)
+	label.text = _get_string_for_placement_mode(Util._current_placement_mode)
 
 func _on_placement_mode_changed(new_mode: Util.PLACEMENTMODE) -> void:
-	rich_text_label.text = _get_string_for_placement_mode(new_mode)
+	label.text = _get_string_for_placement_mode(new_mode)
 
 func _get_string_for_placement_mode(mode: Util.PLACEMENTMODE) -> String:
 	match mode:
 		Util.PLACEMENTMODE.FACILITY:
-			return "placement mode"
+			return "PLACEMENT"
 		Util.PLACEMENTMODE.ORE_NODE:
-			return "placement mode"
+			return "PLACEMENT"
 		Util.PLACEMENTMODE.SELECTION:
-			return "selection mode"
+			return "SELECTION"
 		Util.PLACEMENTMODE.GROUP_MOVE:
-			return "group move mode"
+			return "GROUP MOVE"
 		Util.PLACEMENTMODE.BELT:
-			return "belt mode"
-	return "regular mode"
+			return "BELT"
+	return "REGULAR"

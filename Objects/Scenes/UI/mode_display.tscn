@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bokhac3akadcg" path="res://Objects/Scripts/UI/mode_display.gd" id="1_5fh0p"]
 
 [node name="ModeDisplay" type="Control" unique_id=1020221613]
-clip_contents = true
+propagate_maximum_size = true
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 3
@@ -11,10 +11,29 @@ size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_5fh0p")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=642030418]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=888788569]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 119.0
+offset_bottom = 26.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1877533572]
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=938612189]
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1436022154]
+layout_mode = 2
+text = "current mode:"
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1383674544]
+unique_name_in_owner = true
+layout_mode = 2

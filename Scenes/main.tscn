@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cilu7qykhnv2d" path="res://Objects/Scenes/UI/tutorial_ui.tscn" id="13_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://cr16vsf4j0lt8" path="res://Objects/Scenes/UI/feedback_layer.tscn" id="14_jkdf5"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4v7s"]
+
 [node name="main" type="Node2D" unique_id=1849373714]
 process_mode = 3
 script = ExtResource("1_d1ilt")
@@ -26,7 +28,7 @@ visible = false
 [node name="MainUI" type="CanvasLayer" parent="." unique_id=1757633803]
 process_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MainUI" unique_id=1074168058]
+[node name="MarginContainer" type="PanelContainer" parent="MainUI" unique_id=1278546106]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,27 +36,33 @@ offset_top = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_g4v7s")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainUI/MarginContainer" unique_id=113146341]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="GameArea" type="Control" parent="MainUI/MarginContainer/HBoxContainer" unique_id=1939408335]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/MarginContainer/HBoxContainer" unique_id=1083770370]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
+
+[node name="OreNodeBarUI" parent="MainUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="OreNodeBarUI" parent="MainUI/MarginContainer/HBoxContainer" unique_id=754573461 instance=ExtResource("2_kry3j")]
+[node name="ToolBarUI" parent="MainUI/MarginContainer/HBoxContainer/VBoxContainer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
 layout_mode = 2
-mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
 
 [node name="SidebarUI" parent="MainUI/MarginContainer/HBoxContainer" unique_id=1853947216 instance=ExtResource("1_21xkr")]
 layout_mode = 2
-
-[node name="ToolBarUI" parent="MainUI/MarginContainer" unique_id=2146166244 instance=ExtResource("2_bo1nx")]
-layout_mode = 2
-mouse_filter = 2
 
 [node name="InfoTopLeft" type="MarginContainer" parent="MainUI" unique_id=756639909]
 offset_right = 40.0
@@ -72,7 +80,6 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ModeDisplay" parent="MainUI/InfoTopLeft/VBoxContainer" unique_id=1020221613 instance=ExtResource("4_6bp64")]
-clip_contents = false
 layout_mode = 2
 
 [node name="ControlLegendContainer" parent="MainUI/InfoTopLeft/VBoxContainer" unique_id=349626345 instance=ExtResource("5_ynf5e")]
@@ -93,11 +100,9 @@ script = ExtResource("1_jjgbg")
 
 [node name="PlacementController" parent="." unique_id=1330468871 instance=ExtResource("3_jjvhh")]
 process_mode = 1
-z_index = 3
 
 [node name="BeltRenderer" parent="." unique_id=709655741 instance=ExtResource("8_344ge")]
 process_mode = 1
-z_index = 1
 
 [node name="ContextMenuLayer" parent="." unique_id=1429270545 instance=ExtResource("12_6iyac")]
 process_mode = 3

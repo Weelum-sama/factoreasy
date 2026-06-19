@@ -6,7 +6,7 @@
 [node name="TutorialUI" type="CanvasLayer" unique_id=644080945]
 script = ExtResource("1_btajc")
 
-[node name="Panel" type="PanelContainer" parent="." unique_id=112795521]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=112795521]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
@@ -18,23 +18,23 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("1_i8l8d")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1886612944]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1886612944]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=127680582]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=127680582]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/HBoxContainer" unique_id=1462965370]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1462965370]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "objective: "
 
-[node name="ObjectiveLabel" type="Label" parent="Panel/MarginContainer/HBoxContainer" unique_id=1166481041]
+[node name="ObjectiveLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1166481041]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

@@ -13,4 +13,6 @@ display_name = "iron ore node"
 texture = ExtResource("3_31xpw")
 preview_texture = ExtResource("2_4kdp5")
 building_id = "iron_ore_node"
+base_cost = 10
+cost_increase_multiplier = 1.15
 metadata/_custom_type_script = "uid://c714qalhcrl15"

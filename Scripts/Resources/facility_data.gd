@@ -1,4 +1,4 @@
-extends Resource
+extends Purchaseable
 class_name FacilityData
 
 @export var id: String = ""
@@ -10,8 +10,6 @@ class_name FacilityData
 @export var building_id: String = ""
 @export var building_width: int = 1
 @export var building_height: int = 1
-@export var research_cost: int = 100
-@export var research_unlock_threshold: int = 0
 
 @export var input_directions: Array[Vector2i] = [] # Leave empty for all sides
 @export var output_directions: Array[Vector2i] = [] # Leave empty for all sides

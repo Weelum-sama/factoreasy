@@ -10,5 +10,6 @@ texture = ExtResource("2_uywtn")
 display_name = "factory expansion"
 description = "increase buildable radius"
 upgrade_id = "factory"
-upgrade_cost_multiplier = 2.45
+base_cost = 1000
+cost_increase_multiplier = 2.45
 metadata/_custom_type_script = "uid://m42k2ka2sir8"

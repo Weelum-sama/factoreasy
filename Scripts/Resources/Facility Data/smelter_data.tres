@@ -22,4 +22,5 @@ building_id = "smelter"
 research_cost = 500
 input_directions = Array[Vector2i]([Vector2i(0, 1)])
 output_directions = Array[Vector2i]([Vector2i(0, -1)])
+base_cost = 500
 metadata/_custom_type_script = "uid://cwoqjapww8r0j"

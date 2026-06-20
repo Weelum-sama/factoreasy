@@ -2,8 +2,6 @@ extends FacilityData
 class_name OreNodeData
 
 @export var item: Item
-@export var base_cost: int = 10
-@export var unlock_threshold: int = 0
 var price_increase: float = 1.15
 
 var cost: int = base_cost

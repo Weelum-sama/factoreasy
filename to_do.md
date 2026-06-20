@@ -31,6 +31,8 @@
 - ~~copied buildings are invisible upon placement~~
 - ~~copied buildings do not properly place ore nodes (it's registered and might be instantiated but not functioning, also returned to inventory/not taken from inventory)~~
 - ~~buttons extend based on label lengths~~
+- refactor purchaseable buttons
+- split copy and move states
 - items with recipes should bring up recipe windows for that too
 
 ## implement:

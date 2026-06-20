@@ -36,15 +36,15 @@ func _check_research_unlocks(new_coins: float) -> void:
 		if GameState.unlocked_research[facility_id]:
 			continue
 		var data: FacilityData = GameState.facility_registry.get(facility_id)
-		if data and new_coins >= data.research_unlock_threshold:
+		if data and new_coins >= data.unlock_threshold:
 			GameState.unlock_research(facility_id)
 
 func _on_research_pressed(data: FacilityData) -> void:
-	if GameState.get_total_coins() >= data.research_cost and not GameState.unlocked_buildings[data.id]:
-		GameState.add_coins(-data.research_cost)
+	if GameState.get_total_coins() >= data.base_cost and not GameState.unlocked_buildings[data.id]:
+		GameState.add_coins(-data.base_cost)
 		GameState.unlock_building(data.building_id)
-	elif GameState.get_total_coins() <= data.research_cost and not GameState.unlocked_buildings[data.id]:
-		Util.cannot_purchase.emit(data.research_cost - GameState.get_total_coins())
+	elif GameState.get_total_coins() <= data.base_cost and not GameState.unlocked_buildings[data.id]:
+		Util.cannot_purchase.emit(data.base_cost - GameState.get_total_coins())
 
 func _on_building_unlocked(building_id: String) -> void:
 	var button: ResearchButton = _buttons[building_id]
@@ -59,5 +59,5 @@ func _on_coins_changed(new_amount: float) -> void:
 	for building_id in _buttons.keys():
 		if not GameState.unlocked_buildings.get(building_id, false):
 			var button: ResearchButton = _buttons[building_id]
-			var can_afford: bool = new_amount >= button.data.research_cost
+			var can_afford: bool = new_amount >= button.data.base_cost
 			button.update_affordability(can_afford)

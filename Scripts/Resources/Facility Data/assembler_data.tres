@@ -26,4 +26,6 @@ research_cost = 50000
 research_unlock_threshold = 40000
 input_directions = Array[Vector2i]([Vector2i(-1, 2), Vector2i(0, 2), Vector2i(1, 2)])
 output_directions = Array[Vector2i]([Vector2i(0, -2)])
+base_cost = 50000
+unlock_threshold = 40000
 metadata/_custom_type_script = "uid://cwoqjapww8r0j"

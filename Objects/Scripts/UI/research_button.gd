@@ -12,8 +12,8 @@ var data: FacilityData
 func setup(facility_data: FacilityData, is_unlocked: bool) -> void:
 	data = facility_data
 	setup_base(data.texture, data.display_name)
-	cost_label.text = str(data.research_cost)
-	update_affordability(GameState.get_total_coins() >= data.research_cost)
+	cost_label.text = str(data.base_cost)
+	update_affordability(GameState.get_total_coins() >= data.base_cost)
 	set_unlocked(is_unlocked)
 
 func set_unlocked(is_unlocked: bool) -> void:

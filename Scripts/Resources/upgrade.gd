@@ -1,4 +1,4 @@
-extends Resource
+extends Purchaseable
 class_name UpgradeData
 
 @export var id: String = ""
@@ -6,18 +6,16 @@ class_name UpgradeData
 @export var display_name: String = ""
 @export_multiline var description: String = ""
 @export var upgrade_id: String = ""
-@export var upgrade_base_cost: int = 1000
-@export var upgrade_cost_multiplier: float = 1.75
 
-var upgrade_cost : int = upgrade_base_cost
+var upgrade_cost : int = base_cost
 
 func decide_upgrade_cost() -> void:
 	var new_cost: int
 	var level := GameState.get_upgrade_level(id)
 	if level == 1:
-		new_cost = upgrade_base_cost
+		new_cost = base_cost
 	else:
-		new_cost = roundi(upgrade_base_cost * level ** upgrade_cost_multiplier)
+		new_cost = roundi(base_cost * level ** cost_increase_multiplier)
 	upgrade_cost = new_cost
 
 func get_cost() -> int:

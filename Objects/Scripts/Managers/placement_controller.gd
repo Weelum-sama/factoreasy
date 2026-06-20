@@ -4,6 +4,8 @@ var context: PlacementContext
 
 @onready var state_machine: StateMachine = $StateMachine
 
+var _last_ghost_cell: Vector2i = Vector2i(-9999, -9999)
+
 func _ready() -> void:
 	context = PlacementContext.new()
 	context.ghost_parent = self
@@ -17,6 +19,15 @@ func _ready() -> void:
 	toolbar.placement_requested.connect(start_placement)
 	nodebar.placement_requested.connect(start_placement)
 	GameState.inventory_changed.connect(_on_inventory_changed)
+
+func _process(_delta: float) -> void:
+	if context.ghost == null:
+		_last_ghost_cell = Vector2i(-9999, -9999)
+		return
+	var current_cell := GridManager.world_to_cell(context.ghost.global_position)
+	if current_cell != _last_ghost_cell:
+		_last_ghost_cell = current_cell
+		AudioManager.play(AudioManager.SFX.GRID_MOVE)
 
 func _draw() -> void:
 	if not context.selection_box_active:

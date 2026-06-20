@@ -6,6 +6,8 @@ const NAME = "groupmovement"
 var _ghosts: Array[Sprite2D] = []
 var _group_rotation: int = 0
 
+var _last_ghost_cell: Vector2i = Vector2i(-9999, -9999)
+
 func enter() -> void:
 	super.enter()
 	_group_rotation = 0
@@ -61,6 +63,10 @@ func exit() -> void:
 
 func update(_delta: float) -> void:
 	var cursor_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
+	if cursor_cell != _last_ghost_cell:
+		_last_ghost_cell = cursor_cell
+		AudioManager.play(AudioManager.SFX.GRID_MOVE)
+	
 	for i in _ghosts.size():
 		var target_cell := cursor_cell + context.group_move_offsets[i]
 		_ghosts[i].position = GridManager.cell_center(target_cell)
@@ -151,6 +157,7 @@ func _try_place_group() -> void:
 	
 	if context.is_copy_mode and not _can_place_copy():
 		Util.cannot_copy_selection.emit(context.missing_ore_nodes)
+		AudioManager.play(AudioManager.SFX.CANNOT_PURCHASE)
 		context.missing_ore_nodes.clear()
 		return
 	
@@ -186,6 +193,7 @@ func _try_place_group() -> void:
 	if not context.entered_from_selection:
 		var building := context.selected_buildings[0]
 		_play_put_down_tween(building)
+		AudioManager.play(AudioManager.SFX.PLACE, Vector2.ZERO, true)
 		if building is BaseFacility:
 			TutorialManager.notify_facility_placed(building)
 		elif building is Belt:

@@ -22,6 +22,7 @@ GameState="*uid://dyba18qw62636"
 TickManager="*uid://b7rg7khl5lkdv"
 GridManager="*uid://iw5r6i2hjw7e"
 BeltManager="*uid://cxj2ss6fwd1kd"
+AudioManager="*uid://bj7g7v86sy20k"
 TutorialManager="*uid://cw7mvqa18575v"
 
 [display]

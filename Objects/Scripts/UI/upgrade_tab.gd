@@ -36,9 +36,11 @@ func _on_upgrade_pressed(data: UpgradeData) -> void:
 	var cost := data.get_cost()
 	if GameState.get_total_coins() < cost:
 		Util.cannot_purchase.emit(cost - GameState.get_total_coins())
+		AudioManager.play(AudioManager.SFX.CANNOT_PURCHASE)
 		return
 	GameState.add_coins(-cost)
 	GameState.upgrade_level(data.upgrade_id)
+	AudioManager.play(AudioManager.SFX.PURCHASE)
 	
 	var button: UpgradeButton = _buttons.get(data.upgrade_id)
 	button.data.decide_upgrade_cost()

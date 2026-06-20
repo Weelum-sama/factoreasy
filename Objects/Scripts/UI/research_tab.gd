@@ -43,8 +43,10 @@ func _on_research_pressed(data: FacilityData) -> void:
 	if GameState.get_total_coins() >= data.base_cost and not GameState.unlocked_buildings[data.id]:
 		GameState.add_coins(-data.base_cost)
 		GameState.unlock_building(data.building_id)
+		AudioManager.play(AudioManager.SFX.PURCHASE)
 	elif GameState.get_total_coins() <= data.base_cost and not GameState.unlocked_buildings[data.id]:
 		Util.cannot_purchase.emit(data.base_cost - GameState.get_total_coins())
+		AudioManager.play(AudioManager.SFX.CANNOT_PURCHASE)
 
 func _on_building_unlocked(building_id: String) -> void:
 	var button: ResearchButton = _buttons[building_id]

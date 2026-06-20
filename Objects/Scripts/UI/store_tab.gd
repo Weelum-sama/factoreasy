@@ -33,6 +33,7 @@ func _add_entry(data: OreNodeData) -> void:
 			Util.purchased.emit()
 		else:
 			Util.cannot_purchase.emit(data.cost - GameState.get_total_coins())
+			AudioManager.play(AudioManager.SFX.CANNOT_PURCHASE)
 	)
 	_buttons[data.id] = button
 	button.data.update_purchase_cost()
@@ -60,6 +61,7 @@ func _on_purchase(node_id: String, _amount: int) -> void:
 	_buttons[node_id].data.update_purchase_cost()
 	_buttons[node_id].update_label_owned(GameState.total_nodes_owned[node_id])
 	_buttons[node_id].update_label_cost(_buttons[node_id].data.cost)
+	AudioManager.play(AudioManager.SFX.PURCHASE)
 
 ### TESTING PURPOSES
 var amount = 80

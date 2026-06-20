@@ -28,6 +28,7 @@ func calculate_belt_speed() -> float:
 
 func register_belt(cell: Vector2i, belt: Belt) -> void:
 	belts[cell] = belt
+	AudioManager.play(AudioManager.SFX.PLACE, Vector2.ZERO, true)
 	_rebuild_lines()
 
 func unregister_belt(cell: Vector2i) -> void:

@@ -10,6 +10,8 @@ var _is_dragging: bool = false
 var _single_rotation: float = 0.0
 var _single_ghost: Sprite2D = null
 
+var _last_ghost_cell: Vector2i = Vector2i(-9999, -9999)
+
 func exit() -> void:
 	_clear_preview()
 	_free_single_ghost()
@@ -19,6 +21,9 @@ func exit() -> void:
 
 func update(_delta: float) -> void:
 	var current_cell := GridManager.world_to_cell(context.ghost_parent.get_global_mouse_position())
+	if current_cell != _last_ghost_cell:
+		_last_ghost_cell = current_cell
+		AudioManager.play(AudioManager.SFX.GRID_MOVE)
 	
 	if Input.is_action_pressed("Confirm") and current_cell != _drag_start:
 		_is_dragging = true

@@ -40,9 +40,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var building := GridManager.get_cell_occupant(_drag_start_cell)
 			if building:
 				if _unselect or context.selected_buildings.has(building):
-					_unselect_building(building)
+					_unselect_building(building, true)
 				else:
-					_select_building(building)
+					_select_building(building, true)
 			return
 		
 		_apply_box_select(_drag_start, drag_end)
@@ -66,6 +66,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("Copy Selection"):
 			if not _can_copy_selection():
 				Util.cannot_copy_selection.emit(context.missing_ore_nodes)
+				AudioManager.play(AudioManager.SFX.CANNOT_PURCHASE)
 				context.missing_ore_nodes.clear()
 				return
 			context.entered_from_selection = true
@@ -91,12 +92,16 @@ func _apply_box_select(start: Vector2, end: Vector2) -> void:
 		elif not context.selected_buildings.has(building):
 			_select_building(building)
 
-func _unselect_building(building: Node) -> void:
+func _unselect_building(building: Node, play_sound: bool = false) -> void:
 	context.selected_buildings.erase(building)
+	if play_sound:
+		AudioManager.play(AudioManager.SFX.DESELECT)
 	building.modulate = Color.WHITE
 
-func _select_building(building: Node) -> void:
+func _select_building(building: Node, play_sound: bool = false) -> void:
 	context.selected_buildings.append(building)
+	if play_sound:
+		AudioManager.play(AudioManager.SFX.SELECT)
 	building.modulate = Color.SKY_BLUE
 
 func _select_all_buildings() -> void:

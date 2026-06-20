@@ -81,6 +81,7 @@ func _place_facility(cell: Vector2i) -> void:
 	_play_placement_tween([building])
 	
 	TutorialManager.notify_facility_placed(building)
+	AudioManager.play(AudioManager.SFX.PLACE, Vector2.ZERO, true)
 
 func _place_ore_node(cell: Vector2i) -> void:
 	if not GridManager.is_cell_empty(cell):
@@ -93,6 +94,7 @@ func _place_ore_node(cell: Vector2i) -> void:
 		return
 	_play_placement_tween([node])
 	GameState.consume_node_from_inventory(context.pending_data.id)
+	AudioManager.play(AudioManager.SFX.PLACE, Vector2.ZERO, true)
 
 func _switch_facility() -> void:
 	context.create_ghost(context.pending_data)

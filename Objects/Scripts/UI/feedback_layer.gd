@@ -49,4 +49,4 @@ func _on_cannot_purchase(coins_short: float) -> void:
 	_play_tween_animation()
 
 func _update_missing_coins_label(coins_short: float):
-	missing_label.text = "cannot purchase\nyou're %d coins short" % coins_short
+	missing_label.text = "cannot purchase\nyou're %s coins short" % Util.format_number(coins_short)

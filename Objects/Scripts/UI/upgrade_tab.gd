@@ -29,7 +29,7 @@ func _add_entry(data: UpgradeData) -> void:
 	data.decide_upgrade_cost()
 	button.setup(data)
 	button.update_affordability(GameState.get_total_coins() >= button.data.get_cost())
-	button.upgrade_pressed.connect(_on_upgrade_pressed)
+	button.pressed.connect(_on_upgrade_pressed)
 	_buttons[data.upgrade_id] = button
 
 func _on_upgrade_pressed(data: UpgradeData) -> void:
@@ -50,5 +50,5 @@ func _on_upgrade_pressed(data: UpgradeData) -> void:
 func _on_coins_changed(new_amount: float) -> void:
 	for upgrade_id in _buttons:
 		var button: UpgradeButton = _buttons[upgrade_id]
-		var cost := button.data.get_cost()
+		var cost: int = button.data.get_cost()
 		button.update_affordability(new_amount >= cost)

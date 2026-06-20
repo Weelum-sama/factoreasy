@@ -10,6 +10,14 @@ signal placement_mode_changed(new_mode: PLACEMENTMODE)
 
 ### Helpers
 
+func format_number(n: float) -> String:
+	if n >= 1_000_000_000_000_000:	return "cash overflow"
+	if n >= 1_000_000_000_000:	return "%.2fT" % (n / 1_000_000_000_000.0)
+	if n >= 1_000_000_000:		return "%.2fB" % (n / 1_000_000_000.0)
+	if n >= 1_000_000:			return "%.2fM" % (n / 1_000_000.0)
+	if n >= 1_000:				return "%.1fk" % (n / 1_000.0)
+	return "%d" % n
+
 ## Placement mode management
 
 func set_current_placement_mode(mode: PLACEMENTMODE) -> void:

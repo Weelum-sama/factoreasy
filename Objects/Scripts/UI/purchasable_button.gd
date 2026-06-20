@@ -6,6 +6,10 @@ class_name PurchasableButton
 
 var _tween: Tween
 
+var data: Purchaseable
+
+signal pressed(data: Purchaseable)
+
 func setup_base(texture: Texture2D, display_name: String) -> void:
 	if texture:
 		icon.texture = texture
@@ -18,7 +22,7 @@ func update_affordability(can_afford: bool) -> void:
 	modulate = Color.WHITE if can_afford else Color(1, 1, 1, 0.5)
 
 func _on_left_click() -> void:
-	pass
+	pressed.emit(data)
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -51,11 +55,3 @@ func reset_tween() -> void:
 	_tween = create_tween()
 	_tween.set_trans(Tween.TRANS_CUBIC)
 	_tween.set_ease(Tween.EASE_OUT)
-
-func format_number(n: float) -> String:
-	if n >= 1_000_000_000_000_000:	return "cash overflow"
-	if n >= 1_000_000_000_000:	return "%.2fT" % (n / 1_000_000_000_000.0)
-	if n >= 1_000_000_000:		return "%.2fB" % (n / 1_000_000_000.0)
-	if n >= 1_000_000:			return "%.2fM" % (n / 1_000_000.0)
-	if n >= 1_000:				return "%.1fk" % (n / 1_000.0)
-	return "%d" % n

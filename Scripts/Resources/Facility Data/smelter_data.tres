@@ -14,6 +14,7 @@ script = ExtResource("2_qqdcc")
 recipes = Array[ExtResource("1_vbrvk")]([ExtResource("2_mosmq"), ExtResource("3_6sth1"), ExtResource("5_m8f5w")])
 id = "smelter"
 display_name = "smelter"
+description = "takes ore and processes it into refined products. output values range between 3 - 9"
 texture = ExtResource("5_6sth1")
 preview_texture = ExtResource("1_6sth1")
 scene = ExtResource("3_68nox")

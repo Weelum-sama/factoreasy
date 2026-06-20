@@ -14,6 +14,7 @@ script = ExtResource("3_ml11h")
 recipes = Array[ExtResource("1_di7su")]([ExtResource("2_ml11h"), ExtResource("3_8me0q"), ExtResource("5_3inq2")])
 id = "extractor"
 display_name = "extractor"
+description = "extracts ore from ore nodes. output values range between 0.5 - 2"
 texture = ExtResource("4_di7su")
 preview_texture = ExtResource("1_l2aq0")
 scene = ExtResource("1_nhpwp")

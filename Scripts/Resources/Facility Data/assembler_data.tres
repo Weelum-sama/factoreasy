@@ -15,6 +15,7 @@ script = ExtResource("6_52aac")
 recipes = Array[ExtResource("2_vb8cq")]([ExtResource("3_v8n33"), ExtResource("4_xq23p"), ExtResource("5_52aac"), ExtResource("6_ph1un"), ExtResource("7_arj10")])
 id = "assembler"
 display_name = "assembler"
+description = "can create high value items from mutli input recipes. output values range between 100 - 200"
 texture = ExtResource("1_mrba3")
 preview_texture = ExtResource("1_mrba3")
 scene = ExtResource("5_ig3oe")

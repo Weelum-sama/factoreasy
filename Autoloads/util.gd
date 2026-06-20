@@ -25,6 +25,11 @@ signal cannot_copy_selection(missing_ore: Array[OreNode])
 signal copied_selection
 signal cancelled_copy_selection
 
+## Purchase signals
+
+signal cannot_purchase(coins_short: float)
+signal purchased
+
 ## Cell detection
 
 func get_facing_offset(rotation: float) -> Vector2i:

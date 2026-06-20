@@ -13,6 +13,7 @@ script = ExtResource("4_nmnar")
 recipes = Array[ExtResource("2_4vql1")]([ExtResource("3_nmnar"), ExtResource("4_bpq0o")])
 id = "rod_extruder"
 display_name = "rod extruder"
+description = "extrudes rods from ingots. output values range between 16 - 28"
 texture = ExtResource("5_bpq0o")
 preview_texture = ExtResource("1_2nye5")
 scene = ExtResource("3_y3lxp")

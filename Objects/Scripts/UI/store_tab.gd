@@ -30,7 +30,10 @@ func _add_entry(data: OreNodeData) -> void:
 		if GameState.get_total_coins() >= data.cost:
 			GameState.add_coins(-data.cost)
 			GameState.purchase_node(data.id)
-			)
+			Util.purchased.emit()
+		else:
+			Util.cannot_purchase.emit(data.cost - GameState.get_total_coins())
+	)
 	_buttons[data.id] = button
 	button.data.update_purchase_cost()
 	button.update_label_cost(button.data.cost)

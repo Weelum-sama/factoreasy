@@ -9,6 +9,7 @@
 script = ExtResource("2_q54lo")
 id = "sink"
 display_name = "sink"
+description = "converts any item given into income"
 texture = ExtResource("3_gnhob")
 preview_texture = ExtResource("1_j5vrj")
 scene = ExtResource("1_q54lo")

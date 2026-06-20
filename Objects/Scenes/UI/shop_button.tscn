@@ -6,9 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://bt6eq2ush7l01" path="res://Assets/Sprites/gear_coin.png" id="4_o78rd"]
 
 [node name="ShopButton" type="PanelContainer" unique_id=945987124]
+anchors_preset = -1
+anchor_right = 0.17109375
+anchor_bottom = 0.14166667
+offset_right = -219.0
+offset_bottom = -102.0
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("1_2gku0")
 script = ExtResource("1_boux0")
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1494936461]
 layout_mode = 2

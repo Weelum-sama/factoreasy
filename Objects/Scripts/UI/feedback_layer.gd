@@ -9,10 +9,9 @@ func _ready() -> void:
 	Util.cannot_copy_selection.connect(_on_cannot_copy_selection)
 	Util.copied_selection.connect(_speed_tween_up)
 	Util.cancelled_copy_selection.connect(_speed_tween_up)
+	Util.cannot_purchase.connect(_on_cannot_purchase)
 
-func _on_cannot_copy_selection(missing_nodes: Dictionary):
-	_update_missing_label(missing_nodes)
-	_play_tween_animation()
+## Tweens
 
 func _speed_tween_up() -> void:
 	if tween:
@@ -30,9 +29,24 @@ func _play_tween_animation() -> void:
 	tween.tween_interval(1.5)
 	tween.tween_property(anchor_center, "modulate", Color(1, 1, 1, 0), 4.0)
 
-func _update_missing_label(missing_nodes: Dictionary):
+## Copies
+
+func _on_cannot_copy_selection(missing_nodes: Dictionary):
+	_update_missing_nodes_label(missing_nodes)
+	_play_tween_animation()
+
+func _update_missing_nodes_label(missing_nodes: Dictionary):
 	missing_label.text = "missing:"
 	for missing_node in missing_nodes.keys():
 		var missing: int = missing_nodes[missing_node] - GameState.node_inventory[missing_node]
 		var display_name: String = GameState.facility_registry[missing_node].display_name
 		missing_label.text += "\n%s x%d" % [display_name, missing]
+
+## Purchases
+
+func _on_cannot_purchase(coins_short: float) -> void:
+	_update_missing_coins_label(coins_short)
+	_play_tween_animation()
+
+func _update_missing_coins_label(coins_short: float):
+	missing_label.text = "cannot purchase\nyou're %d coins short" % coins_short

@@ -25,18 +25,22 @@ func open_for(node: Node, screen_pos: Vector2) -> void:
 	close_all()
 	if node is Belt:
 		belt_menu.open(node as Belt, screen_pos)
-		_stack.append(belt_menu)
+		if not _stack.has(belt_menu):
+			_stack.append(belt_menu)
 	elif node is BaseFacility:
 		facility_menu.open(node as BaseFacility, screen_pos)
-		_stack.append(facility_menu)
+		if not _stack.has(facility_menu):
+			_stack.append(facility_menu)
 
 func open_recipe(recipe: Recipe, screen_pos: Vector2) -> void:
 	recipe_menu.open(recipe, screen_pos)
-	_stack.append(recipe_menu)
+	if not _stack.has(recipe_menu):
+		_stack.append(recipe_menu)
 
 func open_item(item: Item, screen_pos: Vector2) -> void:
 	item_menu.open(item, screen_pos)
-	_stack.append(item_menu)
+	if not _stack.has(item_menu):
+		_stack.append(item_menu)
 
 func close_top() -> void:
 	if _stack.is_empty():

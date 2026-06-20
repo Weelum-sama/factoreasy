@@ -13,6 +13,7 @@ script = ExtResource("6_cjd8n")
 recipes = Array[ExtResource("2_p7aet")]([ExtResource("3_xocsv"), ExtResource("4_om1i1")])
 id = "plate_press"
 display_name = "plate press"
+description = "compresses ingots into plates/sheets. output values range between 12 - 24"
 texture = ExtResource("7_u7giw")
 preview_texture = ExtResource("1_n2wcn")
 scene = ExtResource("5_ckmr0")

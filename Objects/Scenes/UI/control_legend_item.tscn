@@ -1,13 +1,24 @@
 [gd_scene format=3 uid="uid://d18hijrx8ushv"]
 
-[ext_resource type="StyleBox" uid="uid://ch7omqu11k1ov" path="res://Assets/Styles/button_style_box_flat.tres" id="1_20h2r"]
 [ext_resource type="Script" uid="uid://dx7osj1if3xvv" path="res://Objects/Scripts/UI/control_legend_item.gd" id="1_jcxqm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcxqm"]
+bg_color = Color(0.6, 0.6, 0.6, 0.3529412)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0.3529412)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="ControlLegendItem" type="PanelContainer" unique_id=797223444]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("1_20h2r")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jcxqm")
 script = ExtResource("1_jcxqm")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1565134046]

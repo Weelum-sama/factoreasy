@@ -3,6 +3,7 @@ class_name FacilityData
 
 @export var id: String = ""
 @export var display_name: String = ""
+@export_multiline var description: String = ""
 @export var texture: Texture2D
 @export var preview_texture: Texture2D
 @export var scene: PackedScene

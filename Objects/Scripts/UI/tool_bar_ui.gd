@@ -37,6 +37,7 @@ func _add_slot(data: FacilityData) -> void:
 	var button: FacilityButton = FACILITY_BUTTON.instantiate()
 	$PanelContainer/SlotContainer.add_child(button)
 	button.setup(data)
+	button.tooltip_text = data.description
 	button.pressed.connect(func(_d):
 		placement_requested.emit(data)
 	)

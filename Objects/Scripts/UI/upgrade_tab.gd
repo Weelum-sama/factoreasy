@@ -35,6 +35,7 @@ func _add_entry(data: UpgradeData) -> void:
 func _on_upgrade_pressed(data: UpgradeData) -> void:
 	var cost := data.get_cost()
 	if GameState.get_total_coins() < cost:
+		Util.cannot_purchase.emit(cost - GameState.get_total_coins())
 		return
 	GameState.add_coins(-cost)
 	GameState.upgrade_level(data.upgrade_id)

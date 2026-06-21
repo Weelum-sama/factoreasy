@@ -2,6 +2,8 @@ extends Node
 
 const MAX_CHANNELS: int = 3
 
+var audio_toggle: bool = true
+
 enum SFX {
 	PLACE,
 	PURCHASE,
@@ -50,6 +52,8 @@ func _create_pool() -> void:
 
 ## Play a sound. Optionally pass a world-space position for 2D audio falloff.
 func play(sfx: SFX, world_position: Vector2 = Vector2.ZERO, random_pitch: bool = false) -> void:
+	if not audio_toggle:
+		return
 	var player := _get_free_player()
 	if player == null:
 		return

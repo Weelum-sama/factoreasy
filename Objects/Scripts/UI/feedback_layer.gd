@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var anchor_center: Control = $AnchorCenter
+@onready var header_label: Label = %HeaderLabel
 @onready var missing_label: Label = %MissingLabel
 
 var tween: Tween
@@ -36,6 +37,7 @@ func _on_cannot_copy_selection(missing_nodes: Dictionary):
 	_play_tween_animation()
 
 func _update_missing_nodes_label(missing_nodes: Dictionary):
+	header_label.text = "cannot copy selection"
 	missing_label.text = "missing:"
 	for missing_node in missing_nodes.keys():
 		var missing: int = missing_nodes[missing_node] - GameState.node_inventory[missing_node]
@@ -49,4 +51,5 @@ func _on_cannot_purchase(coins_short: float) -> void:
 	_play_tween_animation()
 
 func _update_missing_coins_label(coins_short: float):
-	missing_label.text = "cannot purchase\nyou're %s coins short" % Util.format_number(coins_short)
+	header_label.text = "cannot purchase"
+	missing_label.text = "you're %s coins short" % Util.format_number(coins_short)

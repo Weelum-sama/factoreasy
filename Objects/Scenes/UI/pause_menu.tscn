@@ -153,6 +153,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1njfe")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tmpkm")
 text = "resume"
 
+[node name="AudioButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1118311304]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.42, 0.95, 0.313, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmpkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1njfe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tmpkm")
+text = "audio: on"
+
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=84652531]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2

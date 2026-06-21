@@ -9,6 +9,7 @@ func setup(ore_data: OreNodeData, cost: int, owned: int) -> void:
 	setup_base(data.texture, data.display_name)
 	update_label_cost(cost)
 	update_label_owned(owned)
+	tooltip_text = data.description
 
 func update_label_cost(cost: int) -> void:
 	cost_label.text = "x" + Util.format_number(cost)

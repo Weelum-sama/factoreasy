@@ -11,6 +11,7 @@ func setup(facility_data: FacilityData, is_unlocked: bool) -> void:
 	cost_label.text = str(data.base_cost)
 	update_affordability(GameState.get_total_coins() >= data.base_cost)
 	set_unlocked(is_unlocked)
+	tooltip_text = data.description
 
 func set_unlocked(is_unlocked: bool) -> void:
 	h_box_container_unlocked.visible = is_unlocked

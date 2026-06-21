@@ -10,6 +10,7 @@ script = ExtResource("1_kj2l8")
 item = ExtResource("1_4hoad")
 id = "copper_ore_node"
 display_name = "copper ore node"
+description = "copper ore value: 2.0"
 texture = ExtResource("3_4hoad")
 preview_texture = ExtResource("2_juryg")
 building_id = "copper_ore_node"

@@ -10,6 +10,7 @@ script = ExtResource("1_26k3i")
 item = ExtResource("1_py2je")
 id = "coal_ore_node"
 display_name = "coal ore node"
+description = "coal ore value: 1.0"
 texture = ExtResource("4_2tu80")
 preview_texture = ExtResource("2_phyl6")
 building_id = "coal_ore_node"

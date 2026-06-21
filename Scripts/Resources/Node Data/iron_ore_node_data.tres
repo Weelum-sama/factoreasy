@@ -10,6 +10,7 @@ script = ExtResource("1_vx5gp")
 item = ExtResource("1_31xpw")
 id = "iron_ore_node"
 display_name = "iron ore node"
+description = "iron ore value: 0.5"
 texture = ExtResource("3_31xpw")
 preview_texture = ExtResource("2_4kdp5")
 building_id = "iron_ore_node"

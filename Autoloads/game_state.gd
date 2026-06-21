@@ -176,6 +176,7 @@ func get_upgrade_level(upgrade: String) -> int:
 signal grid_load_requested(grid_data: GridData)
 
 const SAVE_PATH_STATE := "user://game_state.tres"
+const SAVE_PATH_OPTIONS := "user://options.tres"
 const SAVE_PATH_GRID  := "user://grid_data.tres"
 
 func save_game() -> void:
@@ -204,6 +205,10 @@ func save_game() -> void:
 			continue
 		grid.entries.append(entry)
 	ResourceSaver.save(grid, SAVE_PATH_GRID)
+	
+	var options := OptionsData.new()
+	options.audio_toggle = AudioManager.audio_toggle
+	ResourceSaver.save(options, SAVE_PATH_OPTIONS)
 
 func load_game() -> void:
 	if ResourceLoader.exists(SAVE_PATH_STATE):
@@ -221,6 +226,10 @@ func load_game() -> void:
 	if ResourceLoader.exists(SAVE_PATH_GRID):
 		var grid: GridData = ResourceLoader.load(SAVE_PATH_GRID)
 		call_deferred("emit_signal", "grid_load_requested", grid)
+	
+	if ResourceLoader.exists(SAVE_PATH_OPTIONS):
+		var options: OptionsData = ResourceLoader.load(SAVE_PATH_OPTIONS)
+		AudioManager.audio_toggle = options.audio_toggle
 
 func reset_save_data() -> void:
 	if ResourceLoader.exists(SAVE_PATH_STATE):

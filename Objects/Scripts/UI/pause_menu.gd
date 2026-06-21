@@ -12,6 +12,7 @@ func _ready() -> void:
 	resume_button.pressed.connect(_on_resume_button_pressed)
 	reset_progress_button.pressed.connect(_on_reset_progress_button_pressed)
 	audio_button.pressed.connect(_on_audio_button_pressed)
+	update_header_label()
 
 func show_menu() -> void:
 	visible = true
@@ -20,6 +21,9 @@ func show_menu() -> void:
 func hide_menu() -> void:
 	visible = false
 	get_tree().paused = false
+
+func update_header_label() -> void:
+	audio_button.text = "audio: on" if AudioManager.audio_toggle else "audio: off"
 
 func _on_save_button_pressed() -> void:
 	GameState.save_game()
@@ -39,4 +43,4 @@ func _on_reset_progress_button_pressed() -> void:
 
 func _on_audio_button_pressed() -> void:
 	AudioManager.audio_toggle = !AudioManager.audio_toggle
-	audio_button.text = "audio: on" if AudioManager.audio_toggle else "audio: off"
+	update_header_label()
